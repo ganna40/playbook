@@ -11,3 +11,4 @@
 | [mz](mz.md) | 선택형 테스트 | BASE+DATA+SCREEN+QUIZ+GRADE+RADAR+SHARE+GA+STYLE-LIGHT | 라이트 |
 | [amlife](amlife.md) | 선택형 테스트 | BASE+DATA+SCREEN+QUIZ+GRADE+RADAR+SHARE+GA+STYLE-LIGHT | 라이트 |
 | [food](food.md) | 추천기 | Svelte+Vite+Tailwind+KakaoLocal+GPS | 라이트 |
+| [tarot](tarot.md) | AI 상담 | React+FastAPI+PostgreSQL+pgvector+Ollama+RAG | 다크 |

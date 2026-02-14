@@ -13,11 +13,13 @@
 |------|------|--------|
 | **Tailwind CSS CDN** | 빌드 없이 유틸리티 CSS | salary |
 | **Tailwind CSS v3 (빌드)** | Vite 빌드 방식 유틸리티 CSS | food |
-| **CSS Variables** | `:root`로 테마 색상 관리 | pong, mz |
+| **CSS Variables** | `:root`로 테마 색상 관리 | pong, mz, tarot |
 | **Pretendard 폰트** | 한글 웹폰트 (CDN) | salary, mz |
-| **Noto Sans KR** | Google Fonts 한글 웹폰트 | food |
+| **Noto Sans KR** | Google Fonts 한글 웹폰트 | food, tarot |
 | **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife |
 | **Svelte 5** | 컴포넌트 기반 UI 프레임워크 | food |
+| **React 18** | 컴포넌트 기반 UI 프레임워크 | tarot |
+| **Framer Motion** | React 애니메이션 라이브러리 | tarot |
 | **Canvas API** | 레이더 차트 그리기 | mz, amlife |
 | **html2canvas** | DOM → 이미지 캡처 | salary, pong, mz, amlife |
 | **CSS 애니메이션** | fadeIn, slamIn, glitch, confetti | 전체 |
@@ -33,6 +35,8 @@
 | **Google Analytics 4** | 방문자/이벤트 트래킹 | salary, pong, mz, amlife |
 | **Web Share API** | 모바일 네이티브 공유 | salary, pong, mz, amlife |
 | **Clipboard API** | URL/텍스트 복사 | salary, pong, mz, amlife |
+| **Ollama** | 로컬 LLM (gemma3, qwen2.5 등) | tarot |
+| **OpenRouter** | 클라우드 LLM API (gpt-4o-mini 등) | tarot |
 | **GitHub REST API** | repo 생성/관리 | git-uploader |
 
 ### 🖥️ 서버 / 인프라
@@ -43,6 +47,8 @@
 | **Ubuntu + Nginx** | 정적 파일 서빙 | 전체 |
 | **Cloudflare** | DNS + SSL + CDN | *.pearsoninsight.com |
 | **GitHub Pages** | Docsify 문서 호스팅 | playbook |
+| **Docker Compose** | 컨테이너 오케스트레이션 | tarot |
+| **FastAPI** | Python 비동기 REST API 서버 | tarot |
 | **SCP** | SSH 파일 전송 | 배포 파이프라인 |
 
 ### 🗄️ 데이터
@@ -52,6 +58,7 @@
 | **JSON 파일** | 데이터 분리 (fetch) | salary, pong, amlife |
 | **인라인 데이터** | JS 내 직접 임베딩 | mz |
 | **URL 파라미터** | 결과 인코딩/디코딩 | mz, amlife |
+| **PostgreSQL + pgvector** | 벡터 DB (768차원 임베딩 검색) | tarot |
 | **localStorage** | 히스토리 저장 (대시보드) | git-uploader |
 
 ### 🛠️ 개발 도구
@@ -69,43 +76,58 @@
 
 > ✅ = 사용함
 
-| 기술 | salary | pong | mz | amlife | food |
-|------|:------:|:----:|:--:|:------:|:----:|
-| **프론트엔드** | | | | | |
-| Tailwind CDN | ✅ | | | | |
-| Tailwind v3 빌드 | | | | | ✅ |
-| CSS Variables | | ✅ | ✅ | | |
-| Pretendard 폰트 | ✅ | | ✅ | | |
-| Noto Sans KR | | | | | ✅ |
-| Svelte 5 | | | | | ✅ |
-| Canvas 레이더차트 | | | ✅ | ✅ | |
-| html2canvas | ✅ | ✅ | ✅ | ✅ | |
-| **API / SDK** | | | | | |
-| Kakao 공유 | ✅ | ✅ | ✅ | ✅ | |
-| Kakao Local API | | | | | ✅ |
-| Geolocation API | | | | | ✅ |
-| Google Analytics | ✅ | ✅ | ✅ | ✅ | |
-| Web Share API | ✅ | ✅ | ✅ | ✅ | |
-| **앱 유형** | | | | | |
-| 계산기 (입력→계산) | ✅ | | | | |
-| O/X 퀴즈 | | ✅ | | | |
-| 선택형 퀴즈 | | | ✅ | ✅ | |
-| 추천기 (질문→검색) | | | | | ✅ |
-| **특수 기능** | | | | | |
-| 질문 타이머 (15초) | | ✅ | ✅ | ✅ | |
-| 결과 공개 연출 | | ✅ | ✅ | ✅ | ✅ |
-| 콤보/상관관계 점수 | | ✅ | | | |
-| 레이더 차트 | | | ✅ | ✅ | |
-| 결과 URL 공유 | | | ✅ | ✅ | |
-| LoL 티어 매핑 | ✅ | | | | |
-| 성별 분기 | | ✅ | | ✅ | |
-| GPS 위치 검색 | | | | | ✅ |
-| 별점 필터/크롤링 | | | | | ✅ |
-| 다시 뽑기 (거부 목록) | | | | | ✅ |
-| Vite API 프록시 | | | | | ✅ |
-| **테마** | | | | | |
-| 라이트 | ✅ | | ✅ | ✅ | ✅ |
-| 다크 | | ✅ | | | |
+| 기술 | salary | pong | mz | amlife | food | tarot |
+|------|:------:|:----:|:--:|:------:|:----:|:-----:|
+| **프론트엔드** | | | | | | |
+| Tailwind CDN | ✅ | | | | | |
+| Tailwind v3 빌드 | | | | | ✅ | |
+| CSS Variables | | ✅ | ✅ | | | ✅ |
+| Pretendard 폰트 | ✅ | | ✅ | | | |
+| Noto Sans KR | | | | | ✅ | ✅ |
+| Svelte 5 | | | | | ✅ | |
+| React 18 | | | | | | ✅ |
+| Framer Motion | | | | | | ✅ |
+| Canvas 레이더차트 | | | ✅ | ✅ | | |
+| html2canvas | ✅ | ✅ | ✅ | ✅ | | |
+| **API / SDK** | | | | | | |
+| Kakao 공유 | ✅ | ✅ | ✅ | ✅ | | |
+| Kakao Local API | | | | | ✅ | |
+| Geolocation API | | | | | ✅ | |
+| Ollama (로컬 LLM) | | | | | | ✅ |
+| OpenRouter (클라우드 LLM) | | | | | | ✅ |
+| Google Analytics | ✅ | ✅ | ✅ | ✅ | | |
+| Web Share API | ✅ | ✅ | ✅ | ✅ | | |
+| **백엔드** | | | | | | |
+| FastAPI | | | | | | ✅ |
+| PostgreSQL + pgvector | | | | | | ✅ |
+| Docker Compose | | | | | | ✅ |
+| RAG 파이프라인 | | | | | | ✅ |
+| SSE 스트리밍 | | | | | | ✅ |
+| **앱 유형** | | | | | | |
+| 계산기 (입력→계산) | ✅ | | | | | |
+| O/X 퀴즈 | | ✅ | | | | |
+| 선택형 퀴즈 | | | ✅ | ✅ | | |
+| 추천기 (질문→검색) | | | | | ✅ | |
+| AI 상담 (LLM 대화) | | | | | | ✅ |
+| **특수 기능** | | | | | | |
+| 질문 타이머 (15초) | | ✅ | ✅ | ✅ | | |
+| 결과 공개 연출 | | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 콤보/상관관계 점수 | | ✅ | | | | |
+| 레이더 차트 | | | ✅ | ✅ | | |
+| 결과 URL 공유 | | | ✅ | ✅ | | |
+| LoL 티어 매핑 | ✅ | | | | | |
+| 성별 분기 | | ✅ | | ✅ | | |
+| GPS 위치 검색 | | | | | ✅ | |
+| 별점 필터/크롤링 | | | | | ✅ | |
+| 다시 뽑기 (거부 목록) | | | | | ✅ | |
+| Vite API 프록시 | | | | | ✅ | |
+| 3D 카드 뒤집기 | | | | | | ✅ |
+| 가드레일 (민감 주제) | | | | | | ✅ |
+| 대화형 채팅 | | | | | | ✅ |
+| 콜드 리딩 기법 | | | | | | ✅ |
+| **테마** | | | | | | |
+| 라이트 | ✅ | | ✅ | ✅ | ✅ | |
+| 다크 | | ✅ | | | | ✅ |
 
 ---
 
@@ -201,6 +223,25 @@ API:    Kakao Local REST API (Vite 프록시)
 특수:   별점 크롤링, 거부 목록, confetti 연출
 ```
 
+### tarot - 타로 마스터 루미나
+```
+유형: AI 타로 상담 (풀스택)
+URL:  (로컬 개발 중)
+스택: React 18 + FastAPI + PostgreSQL/pgvector + Ollama/OpenRouter
+
+질문 입력 → 78장 중 카드 선택 (Fisher-Yates 셔플)
+           → 3D 카드 뒤집기 공개
+           → RAG 5개 소스 검색 → LLM 해석 생성
+           → 대화형 채팅 (추가 질문 가능)
+
+프론트: React 18, Framer Motion, React Router, Axios
+백엔드: FastAPI, SQLAlchemy(async), pgvector, httpx
+LLM:    Ollama(로컬) / OpenRouter(클라우드) 런타임 전환
+RAG:    PKT원전 + 타로교안 + KB + 심리학 고전 + 상담기법
+배포:   Docker Compose (PostgreSQL + Backend)
+특수:   가드레일, 콜드리딩, 메모리매니저, QA매니저, SSE
+```
+
 ---
 
 ## AI에게 줄 때
@@ -210,10 +251,10 @@ API:    Kakao Local REST API (Vite 프록시)
 ```
 위 기술지도를 참고해서 "___" 앱을 만들어줘.
 
-타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기]
+타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기 | tarot처럼 AI상담]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
-참고 레퍼런스: [pong | mz | amlife | salary | food]
+참고 레퍼런스: [pong | mz | amlife | salary | food | tarot]
 
 추가 요구:
 - ...

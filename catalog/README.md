@@ -7,23 +7,24 @@
 
 | 모듈 | 용도 | 의존성 |
 |------|------|--------|
-| [BASE](base.md) | SPA 기본 골격 (HTML + 모바일) | 없음 |
-| [DATA](data.md) | JSON 데이터 분리 패턴 | 없음 |
-| [SCREEN](screen.md) | 화면 전환 (인트로→진행→결과) | BASE |
-| [QUIZ](quiz.md) | 퀴즈/설문 엔진 | BASE, DATA, SCREEN |
-| [CALC](calc.md) | 계산기 엔진 | BASE, DATA, SCREEN |
-| [GRADE](grade.md) | 등급/티어 시스템 | DATA |
-| [RADAR](radar.md) | 레이더 차트 (Canvas) | 없음 |
-| [KAKAO](kakao.md) | 카카오톡 공유 | 없음 |
-| [OG](og.md) | Open Graph 메타태그 | 없음 |
-| [SHARE](share.md) | 통합 공유 (카카오+URL+스크린샷) | KAKAO, OG |
-| [GA](ga.md) | Google Analytics 트래킹 | 없음 |
-| [TIMER](timer.md) | 질문별 타이머 (15초) | QUIZ |
-| [REVEAL](reveal.md) | 결과 공개 연출 (슬램/글리치/컨페티) | GRADE |
-| [URL-ENCODE](url-encode.md) | 결과를 URL로 공유 | 없음 |
-| [STYLE-DARK](style-dark.md) | 다크 테마 CSS | BASE |
-| [STYLE-LIGHT](style-light.md) | 라이트 테마 CSS | BASE |
-| [DEPLOY](deploy.md) | EC2 배포 파이프라인 | 없음 |
+| [BASE](catalog/base.md) | SPA 기본 골격 (HTML + 모바일) | 없음 |
+| [DATA](catalog/data.md) | JSON 데이터 분리 패턴 | 없음 |
+| [SCREEN](catalog/screen.md) | 화면 전환 (인트로→진행→결과) | BASE |
+| [QUIZ](catalog/quiz.md) | 퀴즈/설문 엔진 | BASE, DATA, SCREEN |
+| [CALC](catalog/calc.md) | 계산기 엔진 | BASE, DATA, SCREEN |
+| [GRADE](catalog/grade.md) | 등급/티어 시스템 | DATA |
+| [RADAR](catalog/radar.md) | 레이더 차트 (Canvas) | 없음 |
+| [KAKAO](catalog/kakao.md) | 카카오톡 공유 | 없음 |
+| [KAKAO-LOCAL](catalog/kakao-local.md) | 카카오 로컬 API (장소 검색) | 없음 |
+| [OG](catalog/og.md) | Open Graph 메타태그 | 없음 |
+| [SHARE](catalog/share.md) | 통합 공유 (카카오+URL+스크린샷) | KAKAO, OG |
+| [GA](catalog/ga.md) | Google Analytics 트래킹 | 없음 |
+| [TIMER](catalog/timer.md) | 질문별 타이머 (15초) | QUIZ |
+| [REVEAL](catalog/reveal.md) | 결과 공개 연출 (슬램/글리치/컨페티) | GRADE |
+| [URL-ENCODE](catalog/url-encode.md) | 결과를 URL로 공유 | 없음 |
+| [STYLE-DARK](catalog/style-dark.md) | 다크 테마 CSS | BASE |
+| [STYLE-LIGHT](catalog/style-light.md) | 라이트 테마 CSS | BASE |
+| [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 
 ## 조합 예시
 
@@ -40,4 +41,9 @@ BASE + DATA + SCREEN + CALC + GRADE + SHARE + GA + STYLE-LIGHT
 ### "다차원 분석" (MZ력, 엠생력 같은)
 ```
 BASE + DATA + SCREEN + QUIZ + TIMER + GRADE + RADAR + REVEAL + URL-ENCODE + SHARE + GA + STYLE-LIGHT
+```
+
+### "GPS 맛집 추천기" (food 같은)
+```
+KAKAO-LOCAL + Svelte/React + Vite + Tailwind
 ```

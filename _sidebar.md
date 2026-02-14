@@ -12,6 +12,7 @@
   * [GRADE - 등급/티어](catalog/grade.md)
   * [RADAR - 레이더 차트](catalog/radar.md)
   * [KAKAO - 카카오톡 공유](catalog/kakao.md)
+  * [KAKAO-LOCAL - 장소 검색 API](catalog/kakao-local.md)
   * [OG - Open Graph](catalog/og.md)
   * [SHARE - 통합 공유](catalog/share.md)
   * [GA - Google Analytics](catalog/ga.md)
@@ -29,6 +30,7 @@
   * [mz - MZ력측정기](references/mz.md)
   * [amlife - 엠생력측정기](references/amlife.md)
   * [food - 오늘뭐먹지](references/food.md)
+  * [tarot - 타로마스터루미나](references/tarot.md)
 
 * **레시피**
   * [Flask 대시보드](recipes/flask-dashboard.md)
