@@ -1,0 +1,206 @@
+# 조립 가이드
+
+> 만들고 싶은 앱 타입을 골라 → 부품을 조립하면 끝.
+> 로봇 조립하듯이: **뼈대 + 두뇌 + 얼굴 + 입출력 + 기억장치**
+
+---
+
+## 앱 타입 6종
+
+| 타입 | 뭘 만드는 건지 | 대표 작품 | 난이도 |
+|------|---------------|-----------|--------|
+| **바이럴 테스트** | 사람들이 공유하는 성격/능력 테스트 | pong, mz, amlife | ★☆☆ |
+| **계산기** | 입력하면 결과 나오는 도구 | salary | ★☆☆ |
+| **추천기** | 질문 → 외부 API 검색 → 추천 | food | ★★☆ |
+| **AI 챗봇** | AI가 대화하는 서비스 | tarot, psycho-bot | ★★★ |
+| **알림 봇** | 자동 알림/경고 시스템 | telbot | ★★☆ |
+| **업무 도구** | 팀 협업 대시보드 | collab-tool | ★★★ |
+
+---
+
+## 부품 카테고리
+
+```
+모든 앱 = 뼈대 + 두뇌 + 얼굴 + 입출력 + 기억장치
+
+뼈대(Skeleton) : 앱의 기본 구조. HTML, 프레임워크, 화면 전환
+두뇌(Brain)    : 핵심 로직. 퀴즈 엔진, 계산기, LLM, 검색
+얼굴(Face)     : 보이는 것. 테마, 차트, 애니메이션, 결과 연출
+입출력(I/O)    : 바깥 세상과 연결. 공유, 알림, GPS, 분석
+기억(Memory)   : 데이터 저장. JSON, DB, 캐시
+```
+
+---
+
+## 타입 1: 바이럴 테스트
+
+> "10문항 풀면 너의 ○○력은?" → 결과 카드 → 카톡 공유 → 바이럴
+
+```
+뼈대: BASE + SCREEN
+두뇌: QUIZ + GRADE
+얼굴: STYLE-DARK 또는 STYLE-LIGHT + REVEAL
+입출력: SHARE(KAKAO+OG) + GA
+기억: DATA (JSON)
+```
+
+**옵션 부품:**
+
+| 원하는 기능 | 부품 추가 |
+|------------|----------|
+| 15초 타이머 | + TIMER |
+| 레이더 차트 | + RADAR |
+| URL로 결과 공유 | + URL-ENCODE |
+| 콤보/상관관계 보너스 | 직접 구현 (pong 참고) |
+| 세대별 비교 | 직접 구현 (mz 참고) |
+
+**참고 레퍼런스:** [pong](references/pong.md) (O/X), [mz](references/mz.md) (선택형), [amlife](references/amlife.md) (선택형+나이)
+
+---
+
+## 타입 2: 계산기
+
+> "월급 입력하면 실수령액 + 세금 + 등급 나오는 도구"
+
+```
+뼈대: BASE + SCREEN
+두뇌: CALC + GRADE
+얼굴: STYLE-LIGHT
+입출력: SHARE(KAKAO+OG) + GA
+기억: DATA (JSON — 세율표, 등급표 등)
+```
+
+**참고 레퍼런스:** [salary](references/salary.md)
+
+---
+
+## 타입 3: 추천기
+
+> "질문 3개 → GPS + API 검색 → 맞춤 추천"
+
+```
+뼈대: Svelte 또는 React + Vite + Tailwind
+두뇌: KAKAO-LOCAL (장소 검색) + 키워드 매핑 로직
+얼굴: Tailwind CSS + confetti 연출
+입출력: Geolocation API (GPS)
+기억: TypeScript 인라인 데이터
+```
+
+**참고 레퍼런스:** [food](references/food.md)
+
+---
+
+## 타입 4: AI 챗봇
+
+> "AI가 사용자와 대화. RAG로 지식 검색, LLM으로 답변 생성"
+
+```
+뼈대: FastAPI (백엔드) + React 또는 TELEGRAM (프론트)
+두뇌: LLM + RAG
+얼굴: (프론트 선택에 따라) React UI / 텔레그램 채팅
+입출력: SSE 스트리밍 + TELEGRAM 또는 웹
+기억: PostgreSQL + pgvector + Redis
+```
+
+**규모별 선택:**
+
+| 규모 | LLM | 임베딩 | 프론트 |
+|------|-----|--------|--------|
+| 가벼운 | Ollama (gemma3:4b) | nomic-embed-text (768d) | 텔레그램 봇 |
+| 본격적 | Ollama (exaone3.5:7.8b) + OpenAI 백업 | E5-large (1024d) | React + SSE |
+| 멀티플랫폼 | 듀얼 프로바이더 | sentence-transformers | 텔레그램+디스코드+웹 |
+
+**참고 레퍼런스:** [tarot](references/tarot.md) (웹 AI상담), [psycho-bot](references/psycho-bot.md) (텔레그램 AI상담)
+
+---
+
+## 타입 5: 알림 봇
+
+> "이벤트 발생 → 텔레그램/SMS/전화로 반복 알림 → 확인 누를 때까지"
+
+```
+뼈대: FastAPI
+두뇌: 이벤트 감지 + 반복 알림 로직
+얼굴: (없음 — 봇이 UI)
+입출력: TELEGRAM + TWILIO (전화/SMS)
+기억: 인메모리 (dict)
+```
+
+**참고 레퍼런스:** [telbot](references/telbot.md)
+
+---
+
+## 타입 6: 업무 도구
+
+> "팀 태스크 관리 + KPI 추적 + 캘린더 + 지식창고"
+
+```
+뼈대: Flask + Jinja2 템플릿
+두뇌: CRUD + KPI 가중평균 계산 + 검색/필터
+얼굴: Bootstrap 5 + Glassmorphism + Chart.js + FullCalendar
+입출력: Excel 내보내기 + 파일 업로드
+기억: POCKETBASE (BaaS)
+```
+
+**참고 레퍼런스:** [collab-tool](references/collab-tool.md)
+
+---
+
+## 부품 역할 한눈에
+
+| 부품 | 한마디 | 언제 쓰냐 |
+|------|--------|----------|
+| [BASE](catalog/base.md) | HTML 껍데기 | 순수 HTML 앱일 때 |
+| [SCREEN](catalog/screen.md) | 인트로→진행→결과 전환 | 테스트/계산기 |
+| [DATA](catalog/data.md) | JSON으로 데이터 분리 | 질문/세율표/등급 |
+| [QUIZ](catalog/quiz.md) | 퀴즈 엔진 | O/X, 선택형 테스트 |
+| [CALC](catalog/calc.md) | 계산기 엔진 | 입력→계산→결과 |
+| [GRADE](catalog/grade.md) | 등급 판정 | S~F, 티어, 분위 |
+| [RADAR](catalog/radar.md) | 레이더 차트 | 다차원 점수 시각화 |
+| [TIMER](catalog/timer.md) | 15초 카운트다운 | 긴장감 있는 퀴즈 |
+| [REVEAL](catalog/reveal.md) | 결과 두둥 연출 | 극적인 결과 공개 |
+| [KAKAO](catalog/kakao.md) | 카톡 공유 | 바이럴 공유 |
+| [KAKAO-LOCAL](catalog/kakao-local.md) | 장소 검색 | GPS+맛집 추천 |
+| [OG](catalog/og.md) | 공유 미리보기 | SNS 공유 이미지 |
+| [SHARE](catalog/share.md) | 통합 공유 | 카톡+URL+스크린샷 |
+| [GA](catalog/ga.md) | 방문자 추적 | 트래픽 분석 |
+| [URL-ENCODE](catalog/url-encode.md) | 결과를 URL에 | 링크로 결과 공유 |
+| [STYLE-DARK](catalog/style-dark.md) | 다크 테마 | 어두운 분위기 |
+| [STYLE-LIGHT](catalog/style-light.md) | 라이트 테마 | 밝은 분위기 |
+| [LLM](catalog/llm.md) | AI 텍스트 생성 | AI 대화/분석 |
+| [RAG](catalog/rag.md) | 지식 검색+주입 | AI에 전문지식 부여 |
+| [TELEGRAM](catalog/telegram.md) | 텔레그램 봇 | 챗봇/알림 |
+| [TWILIO](catalog/twilio.md) | 전화/SMS 알림 | 긴급 알림 |
+| [POCKETBASE](catalog/pocketbase.md) | DB+인증+API | 빠른 백엔드 |
+| [DEPLOY](catalog/deploy.md) | EC2 배포 | 서버에 올리기 |
+
+---
+
+## 뭘 할 때 뭘 봐야 하나
+
+| 상황 | 참고할 곳 |
+|------|----------|
+| "이런 앱 만들고 싶어" | → 이 페이지에서 **앱 타입** 골라서 부품 조합 |
+| "이 부품 어떻게 쓰지?" | → [모듈 카탈로그](catalog/README.md)에서 해당 모듈 클릭 |
+| "비슷한 앱 코드 보고 싶어" | → [레퍼런스](references/README.md)에서 가장 비슷한 앱 |
+| "전체 기술 한눈에 보고 싶어" | → [기술 지도](tech-map.md) |
+| "새 프로젝트 분석해서 추가" | → [AI 지침서](INSTRUCTIONS.md) |
+| "이 기술 어떻게 세팅하지?" | → [레시피](recipes/github-upload.md) |
+| "이거 왜 안 돼?" | → [삽질 방지](gotchas/tailwind-v4.md) |
+| "서버가 죽었어" | → [EC2 OOM](gotchas/ec2-oom-swap.md) + [보안](gotchas/ec2-security.md) |
+| "GitHub에 올리는 법" | → [GitHub 업로드](recipes/github-upload.md) |
+
+---
+
+## AI한테 던지는 법
+
+```
+playbook의 조립 가이드를 보고
+"___" 앱을 만들어줘.
+
+타입: [바이럴 테스트 / 계산기 / 추천기 / AI 챗봇 / 알림 봇 / 업무 도구]
+부품: [필요한 모듈 나열]
+참고: [가장 비슷한 레퍼런스]
+테마: [다크 / 라이트]
+추가: [특별 요구사항]
+```

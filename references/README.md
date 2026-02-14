@@ -13,3 +13,5 @@
 | [food](references/food.md) | 추천기 | Svelte+Vite+Tailwind+KakaoLocal+GPS | 라이트 |
 | [tarot](references/tarot.md) | AI 상담 | React+FastAPI+PostgreSQL+pgvector+Ollama+RAG | 다크 |
 | [psycho-bot](references/psycho-bot.md) | AI 챗봇 | FastAPI+PostgreSQL+pgvector+Ollama+OpenAI+Telegram | - |
+| [telbot](references/telbot.md) | 알림 봇 | FastAPI+Telegram+Twilio | - |
+| [collab-tool](references/collab-tool.md) | 업무 도구 | Flask+PocketBase+Bootstrap5+FullCalendar+Chart.js | 듀얼 |

@@ -1,4 +1,5 @@
 * [Home](/)
+* [**조립 가이드** (앱 타입별 부품 조합)](builder.md)
 * [**기술 지도** (전체 한눈에)](tech-map.md)
 * [**AI 지침서** (새 Claude에게 던지기)](INSTRUCTIONS.md)
 
@@ -24,6 +25,8 @@
   * [LLM - Ollama/OpenAI/GGUF](catalog/llm.md)
   * [RAG - 벡터 검색 파이프라인](catalog/rag.md)
   * [TELEGRAM - 텔레그램 봇](catalog/telegram.md)
+  * [TWILIO - 전화/SMS 알림](catalog/twilio.md)
+  * [POCKETBASE - BaaS](catalog/pocketbase.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
 
 * **레퍼런스 (실제 앱)**
@@ -35,6 +38,8 @@
   * [food - 오늘뭐먹지](references/food.md)
   * [tarot - 타로마스터루미나](references/tarot.md)
   * [psycho-bot - AI심리상담챗봇](references/psycho-bot.md)
+  * [telbot - 텔레그램알림봇](references/telbot.md)
+  * [collab-tool - 팀협업대시보드](references/collab-tool.md)
 
 * **레시피**
   * [Flask 대시보드](recipes/flask-dashboard.md)

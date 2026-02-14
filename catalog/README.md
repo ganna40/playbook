@@ -27,6 +27,8 @@
 | [LLM](catalog/llm.md) | LLM 연동 (Ollama/OpenAI/OpenRouter/GGUF) | 없음 |
 | [RAG](catalog/rag.md) | RAG 파이프라인 (벡터 검색) | LLM |
 | [TELEGRAM](catalog/telegram.md) | 텔레그램 봇 (python-telegram-bot) | 없음 |
+| [TWILIO](catalog/twilio.md) | 전화/SMS 알림 (Twilio) | 없음 |
+| [POCKETBASE](catalog/pocketbase.md) | BaaS (DB+인증+파일+API) | 없음 |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 
 ## 조합 예시
@@ -59,4 +61,14 @@ LLM + RAG + React + FastAPI + PostgreSQL/pgvector + Docker
 ### "AI 챗봇 (텔레그램)" (psycho-bot 같은)
 ```
 LLM + RAG + TELEGRAM + FastAPI + PostgreSQL/pgvector + Redis + Docker
+```
+
+### "알림 봇" (telbot 같은)
+```
+TELEGRAM + TWILIO + FastAPI
+```
+
+### "업무 도구 대시보드" (collab-tool 같은)
+```
+Flask + POCKETBASE + Bootstrap 5 + Chart.js + FullCalendar
 ```

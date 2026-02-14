@@ -39,7 +39,8 @@
 | **OpenAI API** | GPT-4o/4o-mini 직접 호출 | psycho-bot |
 | **OpenRouter** | 클라우드 LLM API (gpt-4o-mini 등) | tarot |
 | **sentence-transformers** | 로컬 임베딩 (E5-large 1024d) | psycho-bot |
-| **python-telegram-bot** | 텔레그램 봇 프레임워크 | psycho-bot |
+| **python-telegram-bot** | 텔레그램 봇 프레임워크 | psycho-bot, telbot |
+| **Twilio SDK** | 전화(TTS)/SMS 발송 | telbot |
 | **GitHub REST API** | repo 생성/관리 | git-uploader |
 
 ### 🖥️ 서버 / 인프라
@@ -51,9 +52,10 @@
 | **Cloudflare** | DNS + SSL + CDN | *.pearsoninsight.com |
 | **GitHub Pages** | Docsify 문서 호스팅 | playbook |
 | **Docker Compose** | 컨테이너 오케스트레이션 | tarot, psycho-bot |
-| **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot |
+| **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot, telbot |
 | **Redis** | 캐시 서버 (임베딩/RAG/프로필) | psycho-bot |
 | **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot |
+| **PocketBase** | BaaS (DB+인증+파일+API) | collab-tool |
 | **SCP** | SSH 파일 전송 | 배포 파이프라인 |
 
 ### 🗄️ 데이터
@@ -66,12 +68,22 @@
 | **PostgreSQL + pgvector** | 벡터 DB (임베딩 검색) | tarot, psycho-bot |
 | **localStorage** | 히스토리 저장 (대시보드) | git-uploader |
 
+### 🎨 UI 프레임워크
+
+| 기술 | 설명 | 사용처 |
+|------|------|--------|
+| **Bootstrap 5** | UI 컴포넌트 프레임워크 | collab-tool |
+| **Glassmorphism** | 블러+투명+네온 글래스 UI | collab-tool |
+| **FullCalendar 6** | 캘린더 위젯 (월/주/리스트) | collab-tool |
+| **Chart.js** | 차트 라이브러리 (Burn-up 등) | collab-tool |
+| **Orbitron 폰트** | SF 스타일 제목 폰트 | collab-tool |
+
 ### 🛠️ 개발 도구
 
 | 기술 | 설명 | 사용처 |
 |------|------|--------|
 | **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food |
-| **Flask (Python)** | 로컬 대시보드 서버 | git-uploader |
+| **Flask (Python)** | 웹 프레임워크 (Blueprint) | git-uploader, collab-tool |
 | **Git Credential Manager** | GitHub 토큰 자동 추출 | git-uploader |
 | **Docsify** | 마크다운 → 웹사이트 | playbook |
 
@@ -81,73 +93,92 @@
 
 > ✅ = 사용함
 
-| 기술 | salary | pong | mz | amlife | food | tarot | psycho-bot |
-|------|:------:|:----:|:--:|:------:|:----:|:-----:|:----------:|
-| **프론트엔드** | | | | | | | |
-| Tailwind CDN | ✅ | | | | | | |
-| Tailwind v3 빌드 | | | | | ✅ | | |
-| CSS Variables | | ✅ | ✅ | | | ✅ | |
-| Pretendard 폰트 | ✅ | | ✅ | | | | |
-| Noto Sans KR | | | | | ✅ | ✅ | |
-| Svelte 5 | | | | | ✅ | | |
-| React 18 | | | | | | ✅ | |
-| Framer Motion | | | | | | ✅ | |
-| Canvas 레이더차트 | | | ✅ | ✅ | | | |
-| html2canvas | ✅ | ✅ | ✅ | ✅ | | | |
-| **API / SDK** | | | | | | | |
-| Kakao 공유 | ✅ | ✅ | ✅ | ✅ | | | |
-| Kakao Local API | | | | | ✅ | | |
-| Geolocation API | | | | | ✅ | | |
-| Ollama (로컬 LLM) | | | | | | ✅ | ✅ |
-| OpenAI API (직접) | | | | | | | ✅ |
-| OpenRouter (클라우드 LLM) | | | | | | ✅ | |
-| sentence-transformers | | | | | | | ✅ |
-| python-telegram-bot | | | | | | | ✅ |
-| Google Analytics | ✅ | ✅ | ✅ | ✅ | | | |
-| Web Share API | ✅ | ✅ | ✅ | ✅ | | | |
-| **백엔드** | | | | | | | |
-| FastAPI | | | | | | ✅ | ✅ |
-| PostgreSQL + pgvector | | | | | | ✅ | ✅ |
-| Redis | | | | | | | ✅ |
-| Docker Compose | | | | | | ✅ | ✅ |
-| RAG 파이프라인 | | | | | | ✅ | ✅ |
-| SSE 스트리밍 | | | | | | ✅ | ✅ |
-| Alembic (마이그레이션) | | | | | | | ✅ |
-| SQLAlchemy 2.0 (async) | | | | | | ✅ | ✅ |
-| **앱 유형** | | | | | | | |
-| 계산기 (입력→계산) | ✅ | | | | | | |
-| O/X 퀴즈 | | ✅ | | | | | |
-| 선택형 퀴즈 | | | ✅ | ✅ | | | |
-| 추천기 (질문→검색) | | | | | ✅ | | |
-| AI 상담 (LLM 대화) | | | | | | ✅ | ✅ |
-| 텔레그램 봇 | | | | | | | ✅ |
-| **특수 기능** | | | | | | | |
-| 질문 타이머 (15초) | | ✅ | ✅ | ✅ | | | |
-| 결과 공개 연출 | | ✅ | ✅ | ✅ | ✅ | ✅ | |
-| 콤보/상관관계 점수 | | ✅ | | | | | |
-| 레이더 차트 | | | ✅ | ✅ | | | |
-| 결과 URL 공유 | | | ✅ | ✅ | | | |
-| LoL 티어 매핑 | ✅ | | | | | | |
-| 성별 분기 | | ✅ | | ✅ | | | |
-| GPS 위치 검색 | | | | | ✅ | | |
-| 별점 필터/크롤링 | | | | | ✅ | | |
-| 다시 뽑기 (거부 목록) | | | | | ✅ | | |
-| Vite API 프록시 | | | | | ✅ | | |
-| 3D 카드 뒤집기 | | | | | | ✅ | |
-| 가드레일 (민감 주제) | | | | | | ✅ | |
-| 대화형 채팅 | | | | | | ✅ | ✅ |
-| 콜드 리딩 기법 | | | | | | ✅ | |
-| 3단계 위기감지 | | | | | | | ✅ |
-| 3단계 주제분류 | | | | | | | ✅ |
-| 5모드 대화 | | | | | | | ✅ |
-| 감정분류 | | | | | | | ✅ |
-| 학습DB (자동개선) | | | | | | | ✅ |
-| 자기인식 엔진 | | | | | | | ✅ |
-| 그룹채팅 지원 | | | | | | | ✅ |
-| 사용자 요청 감지 | | | | | | | ✅ |
-| **테마** | | | | | | | |
-| 라이트 | ✅ | | ✅ | ✅ | ✅ | | |
-| 다크 | | ✅ | | | | ✅ | |
+| 기술 | salary | pong | mz | amlife | food | tarot | psycho-bot | telbot | collab-tool |
+|------|:------:|:----:|:--:|:------:|:----:|:-----:|:----------:|:------:|:-----------:|
+| **프론트엔드** | | | | | | | | | |
+| Tailwind CDN | ✅ | | | | | | | | |
+| Tailwind v3 빌드 | | | | | ✅ | | | | |
+| CSS Variables | | ✅ | ✅ | | | ✅ | | | ✅ |
+| Pretendard 폰트 | ✅ | | ✅ | | | | | | |
+| Noto Sans KR | | | | | ✅ | ✅ | | | ✅ |
+| Orbitron 폰트 | | | | | | | | | ✅ |
+| Svelte 5 | | | | | ✅ | | | | |
+| React 18 | | | | | | ✅ | | | |
+| Framer Motion | | | | | | ✅ | | | |
+| Bootstrap 5 | | | | | | | | | ✅ |
+| Glassmorphism | | | | | | | | | ✅ |
+| Canvas 레이더차트 | | | ✅ | ✅ | | | | | |
+| html2canvas | ✅ | ✅ | ✅ | ✅ | | | | | |
+| FullCalendar 6 | | | | | | | | | ✅ |
+| Chart.js | | | | | | | | | ✅ |
+| **API / SDK** | | | | | | | | | |
+| Kakao 공유 | ✅ | ✅ | ✅ | ✅ | | | | | |
+| Kakao Local API | | | | | ✅ | | | | |
+| Geolocation API | | | | | ✅ | | | | |
+| Ollama (로컬 LLM) | | | | | | ✅ | ✅ | | |
+| OpenAI API (직접) | | | | | | | ✅ | | |
+| OpenRouter (클라우드 LLM) | | | | | | ✅ | | | |
+| sentence-transformers | | | | | | | ✅ | | |
+| python-telegram-bot | | | | | | | ✅ | ✅ | |
+| Twilio (전화/SMS) | | | | | | | | ✅ | |
+| Google Analytics | ✅ | ✅ | ✅ | ✅ | | | | | |
+| Web Share API | ✅ | ✅ | ✅ | ✅ | | | | | |
+| **백엔드** | | | | | | | | | |
+| FastAPI | | | | | | ✅ | ✅ | ✅ | |
+| Flask (Blueprint) | | | | | | | | | ✅ |
+| PocketBase (BaaS) | | | | | | | | | ✅ |
+| PostgreSQL + pgvector | | | | | | ✅ | ✅ | | |
+| Redis | | | | | | | ✅ | | |
+| Docker Compose | | | | | | ✅ | ✅ | | |
+| RAG 파이프라인 | | | | | | ✅ | ✅ | | |
+| SSE 스트리밍 | | | | | | ✅ | ✅ | | |
+| Alembic (마이그레이션) | | | | | | | ✅ | | |
+| SQLAlchemy 2.0 (async) | | | | | | ✅ | ✅ | | |
+| **앱 유형** | | | | | | | | | |
+| 계산기 (입력→계산) | ✅ | | | | | | | | |
+| O/X 퀴즈 | | ✅ | | | | | | | |
+| 선택형 퀴즈 | | | ✅ | ✅ | | | | | |
+| 추천기 (질문→검색) | | | | | ✅ | | | | |
+| AI 상담 (LLM 대화) | | | | | | ✅ | ✅ | | |
+| 텔레그램 봇 | | | | | | | ✅ | ✅ | |
+| 알림 봇 (반복+확인) | | | | | | | | ✅ | |
+| 업무 도구 (CRUD+KPI) | | | | | | | | | ✅ |
+| **특수 기능** | | | | | | | | | |
+| 질문 타이머 (15초) | | ✅ | ✅ | ✅ | | | | | |
+| 결과 공개 연출 | | ✅ | ✅ | ✅ | ✅ | ✅ | | | |
+| 콤보/상관관계 점수 | | ✅ | | | | | | | |
+| 레이더 차트 | | | ✅ | ✅ | | | | | |
+| 결과 URL 공유 | | | ✅ | ✅ | | | | | |
+| LoL 티어 매핑 | ✅ | | | | | | | | |
+| 성별 분기 | | ✅ | | ✅ | | | | | |
+| GPS 위치 검색 | | | | | ✅ | | | | |
+| 별점 필터/크롤링 | | | | | ✅ | | | | |
+| 다시 뽑기 (거부 목록) | | | | | ✅ | | | | |
+| Vite API 프록시 | | | | | ✅ | | | | |
+| 3D 카드 뒤집기 | | | | | | ✅ | | | |
+| 가드레일 (민감 주제) | | | | | | ✅ | | | |
+| 대화형 채팅 | | | | | | ✅ | ✅ | | |
+| 콜드 리딩 기법 | | | | | | ✅ | | | |
+| 3단계 위기감지 | | | | | | | ✅ | | |
+| 3단계 주제분류 | | | | | | | ✅ | | |
+| 5모드 대화 | | | | | | | ✅ | | |
+| 감정분류 | | | | | | | ✅ | | |
+| 학습DB (자동개선) | | | | | | | ✅ | | |
+| 자기인식 엔진 | | | | | | | ✅ | | |
+| 그룹채팅 지원 | | | | | | | ✅ | | |
+| 사용자 요청 감지 | | | | | | | ✅ | | |
+| 반복 알림 (확인까지) | | | | | | | | ✅ | |
+| Twilio 전화/SMS | | | | | | | | ✅ | |
+| KPI 가중 평균 | | | | | | | | | ✅ |
+| Burn-up 차트 | | | | | | | | | ✅ |
+| FullCalendar 캘린더 | | | | | | | | | ✅ |
+| Excel 내보내기 | | | | | | | | | ✅ |
+| 다중 파일 업로드 | | | | | | | | | ✅ |
+| 듀얼 테마 토글 | | | | | | | | | ✅ |
+| JARVIS 배경 애니메이션 | | | | | | | | | ✅ |
+| **테마** | | | | | | | | | |
+| 라이트 | ✅ | | ✅ | ✅ | ✅ | | | | ✅ |
+| 다크 | | ✅ | | | | ✅ | | | ✅ |
 
 ---
 
@@ -289,6 +320,40 @@ NLP 파이프라인:
   - 18+ DB 테이블
 ```
 
+### telbot - 텔레그램 트리거 알림 봇
+```
+유형: 알림 봇 (반복 알림 + 확인)
+URL:  (내부 서비스)
+조합: TELEGRAM + TWILIO + FastAPI
+
+POST /trigger → 텔레그램 반복 알림 (🚨 [1], 🚨 [2], ...)
+             → "✅ 확인" 버튼 누를 때까지 반복
+             → Twilio 전화/SMS 에스컬레이션
+
+백엔드: FastAPI + python-telegram-bot + Twilio SDK
+상태:   인메모리 dict (alert_id → active)
+특수:   UUID 알림 ID, 0.5~10초 간격, 다중 알림 동시
+```
+
+### collab-tool - 팀 협업 대시보드 (ARK-CORTEX)
+```
+유형: 업무 도구 (팀 협업 대시보드)
+URL:  (내부 서비스)
+조합: Flask + POCKETBASE + Bootstrap 5 + Chart.js + FullCalendar
+
+5개 Blueprint:
+  /tasks       → 태스크 CRUD + Excel 내보내기
+  /calendar    → FullCalendar (우선순위 색상)
+  /kpi         → 가중 KR + Burn-up 차트
+  /completed   → 완료 아카이브
+  /warehouse   → 지식 창고 + 다중 파일
+
+백엔드: Flask + PocketBase (BaaS)
+테마:   Glassmorphism 듀얼 (다크=JARVIS 네온 / 라이트=클린)
+폰트:   Orbitron (제목) + Noto Sans KR (본문)
+특수:   KPI 가중 평균, On-Track 분석, JARVIS 배경 애니메이션
+```
+
 ---
 
 ## AI에게 줄 때
@@ -298,10 +363,10 @@ NLP 파이프라인:
 ```
 위 기술지도를 참고해서 "___" 앱을 만들어줘.
 
-타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기 | tarot처럼 AI상담 | psycho-bot처럼 AI챗봇]
+타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기 | tarot처럼 AI상담 | psycho-bot처럼 AI챗봇 | telbot처럼 알림봇 | collab-tool처럼 업무도구]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
-참고 레퍼런스: [pong | mz | amlife | salary | food | tarot | psycho-bot]
+참고 레퍼런스: [pong | mz | amlife | salary | food | tarot | psycho-bot | telbot | collab-tool]
 
 추가 요구:
 - ...
