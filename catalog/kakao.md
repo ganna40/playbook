@@ -13,12 +13,22 @@
 
 ```javascript
 // 앱 시작 시 1회 호출
-Kakao.init('YOUR_KAKAO_APP_KEY');
-// 현재 사용 중인 키: 51534421af42ae554dab88c5f58e2090
+if (window.Kakao && !Kakao.isInitialized()) {
+  Kakao.init('YOUR_KAKAO_APP_KEY');
+}
 ```
 
 > **Kakao Developers** (https://developers.kakao.com) 에서 앱 생성 후 JavaScript 키 사용.
 > 플랫폼 설정에서 도메인 등록 필수.
+
+## 앱별 Kakao 키
+
+| 앱 | 키 |
+|-----|-----|
+| salary | `d374df0ebf74958122e78977437aff4d` |
+| pong | `f73d82313342c09563c22a9b884b0dd4` |
+| mz | `f856cfaf6a221e0565604457f67d8ee8` |
+| amlife | `217c7f6152efeadb73c8eeaf193edcb7` |
 
 ## 공유 함수
 
