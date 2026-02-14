@@ -1,5 +1,6 @@
 * [Home](/)
 * [**기술 지도** (전체 한눈에)](tech-map.md)
+* [**AI 지침서** (새 Claude에게 던지기)](INSTRUCTIONS.md)
 
 * **모듈 카탈로그**
   * [카탈로그 총정리](catalog/README.md)
