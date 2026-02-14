@@ -23,12 +23,14 @@ if (window.Kakao && !Kakao.isInitialized()) {
 
 ## 앱별 Kakao 키
 
+> **참고:** 실제 키는 각 앱의 소스 코드에 포함되어 있음. 로컬 `_secrets.md` 참조.
+
 | 앱 | 키 |
 |-----|-----|
-| salary | `d374df0ebf74958122e78977437aff4d` |
-| pong | `f73d82313342c09563c22a9b884b0dd4` |
-| mz | `f856cfaf6a221e0565604457f67d8ee8` |
-| amlife | `217c7f6152efeadb73c8eeaf193edcb7` |
+| salary | `[각 프로젝트 소스 참조]` |
+| pong | `[각 프로젝트 소스 참조]` |
+| mz | `[각 프로젝트 소스 참조]` |
+| amlife | `[각 프로젝트 소스 참조]` |
 
 ## 공유 함수
 

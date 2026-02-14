@@ -16,15 +16,15 @@
 
 ```bash
 # 로컬 → 서버
-scp -i "C:\Users\ganna\Downloads\eyeom40.pem" -r \
-  ./project/* ubuntu@3.34.190.131:/var/www/프로젝트명/
+scp -i "YOUR_PEM_KEY_PATH" -r \
+  ./project/* YOUR_SSH_USER@YOUR_SERVER_IP:/var/www/프로젝트명/
 ```
 
 ## 2. Nginx 서브도메인 설정
 
 ```bash
 # SSH 접속
-ssh -i "C:\Users\ganna\Downloads\eyeom40.pem" ubuntu@3.34.190.131
+ssh -i "YOUR_PEM_KEY_PATH" YOUR_SSH_USER@YOUR_SERVER_IP
 
 # Nginx 설정 추가
 sudo nano /etc/nginx/sites-available/프로젝트명
@@ -55,7 +55,7 @@ sudo systemctl reload nginx
 1. Cloudflare 대시보드 → DNS
 2. A 레코드 추가:
    - Name: `프로젝트명` (예: salary)
-   - Content: `3.34.190.131`
+   - Content: `YOUR_SERVER_IP`
    - Proxy: ON (주황색 구름)
 3. SSL: Full (strict)
 
@@ -85,12 +85,14 @@ cd /path/to/git-uploader && bash upload.sh /var/www/프로젝트명 프로젝트
 
 ## 서버 정보
 
+> 실제 값은 로컬 `_secrets.md` 참조.
+
 | 항목 | 값 |
 |------|-----|
-| IP | 3.34.190.131 |
+| IP | `[비공개]` |
 | OS | Ubuntu |
-| User | ubuntu |
-| Key | eyeom40.pem |
+| User | `[비공개]` |
+| Key | `[비공개]` |
 | Web Root | /var/www/ |
 | Nginx | /etc/nginx/sites-available/ |
 | Domain | *.pearsoninsight.com |

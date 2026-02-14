@@ -15,7 +15,7 @@ gtag('config', 'G-XXXXXXXXXX');
 </script>
 ```
 
-> 현재 사용 중인 ID: `G-QL0VH60WTE`
+> 현재 사용 중인 ID: 로컬 `_secrets.md` 참조
 
 ## 커스텀 이벤트 (선택)
 

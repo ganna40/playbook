@@ -19,12 +19,19 @@
 | 로컬 | C:\Users\ganna\Downloads\playbook |
 | Docsify 기반 | index.html + 마크다운 파일들 |
 
+## 민감 정보
+
+> **서버 IP, SSH 키, API 키 등 민감 정보는 공개 파일에 넣지 마.**
+> 실제 값은 로컬 전용 파일 `_secrets.md`에 있음 (gitignore됨).
+> 배포나 서버 작업이 필요하면 사용자에게 `_secrets.md` 내용을 달라고 해.
+
 ## 폴더 구조
 
 ```
 playbook/
 ├── index.html          # Docsify 설정 (건드리지 마)
 ├── _sidebar.md         # 사이드바 네비게이션
+├── _secrets.md         # ★ 민감 정보 (gitignore됨, 공개 안됨)
 ├── README.md           # 홈페이지
 ├── tech-map.md         # ★ 기술 지도 (한눈에 보기)
 ├── INSTRUCTIONS.md     # ★ 이 파일 (AI 지침서)
@@ -73,29 +80,85 @@ playbook/
 
 ### 1. "새 프로젝트를 분석해서 playbook에 추가해줘"
 
-**순서:**
+이건 가장 자주 하는 작업이다. **아래 단계를 빠짐없이 따라라.**
 
-1. 프로젝트 코드를 읽는다 (index.html, data.json 등)
-2. 사용된 기술을 카테고리별로 분류한다:
-   - 프론트엔드 (CSS 방식, 폰트, 차트 등)
-   - API/SDK (카카오, GA, 외부 서비스)
-   - 서버/인프라 (호스팅, DNS, SSL)
-   - 데이터 (JSON 구조, 로드 방식)
-3. 기존 모듈과 비교한다:
-   - 기존 모듈로 설명 가능 → 레퍼런스만 추가
-   - 새로운 패턴 발견 → 새 모듈 파일 생성
-4. 아래 파일들을 업데이트한다:
+#### 1단계: 프로젝트 코드 읽기
 
-| 파일 | 할 일 |
-|------|-------|
-| `references/새프로젝트.md` | 새로 생성 (아래 템플릿 따라) |
-| `references/README.md` | 목록에 추가 |
-| `tech-map.md` | 기술 카테고리 + 매트릭스 + 프로필 카드 추가 |
-| `catalog/README.md` | 새 모듈 있으면 추가 |
-| `catalog/새모듈.md` | 새 모듈 있으면 생성 |
-| `_sidebar.md` | 네비게이션에 추가 |
+사용자가 프로젝트 경로를 알려줄 거다. 아래 파일들을 **반드시** 읽어라:
 
-5. git commit + push
+```
+필수:
+  index.html          ← HTML 구조, <head> 태그 (CDN, 폰트, 메타태그)
+  *.js / script.js    ← 핵심 로직 (화면 전환, 점수 계산, API 호출)
+  *.css / style.css   ← CSS 방식 (Tailwind? 순수 CSS? CSS Variables?)
+  data.json           ← 있으면 데이터 구조 분석
+
+선택:
+  og-*.png            ← OG 이미지 파일명 패턴
+  기타 정적 파일       ← 이미지, 폰트 등
+```
+
+#### 2단계: 기술 추출 체크리스트
+
+코드를 읽으면서 **아래 항목들을 하나씩 확인**하고 채워라:
+
+```
+□ 앱 유형: [계산기 / O/X 퀴즈 / 선택형 퀴즈 / 기타]
+□ CSS 방식: [Tailwind CDN / 순수 CSS / CSS Variables / 인라인]
+□ 폰트: [Pretendard CDN / 시스템 폰트 / 기타]
+□ 테마: [다크 / 라이트] + 악센트 색상
+□ 데이터: [JSON 분리(fetch) / 인라인(JS 내장)]
+□ 차트: [Canvas 레이더 / 없음 / 기타]
+□ Kakao SDK: [있음 → 키 확인] / [없음]
+□ GA: [있음 → ID 확인] / [없음]
+□ html2canvas: [있음 / 없음]
+□ Web Share API: [있음 / 없음]
+□ 타이머: [있음 → 몇초?] / [없음]
+□ 결과 공개 연출: [있음 → 애니메이션 종류] / [없음]
+□ URL 인코딩: [있음 → 인코딩 방식] / [없음]
+□ 등급 시스템: [있음 → 등급 이름들] / [없음]
+□ 성별 분기: [있음 / 없음]
+□ 특수 기능: [콤보, 상관관계, 킬러문항, 나이 가중치 등]
+```
+
+#### 3단계: 기존 모듈과 비교
+
+`catalog/README.md`의 모듈 목록을 보고:
+- **기존 모듈로 설명 가능** → 레퍼런스만 추가
+- **새로운 패턴 발견** → 새 모듈 파일 생성 (아래 모듈 템플릿 따라)
+
+#### 4단계: 파일 생성/업데이트
+
+아래 파일들을 **빠짐없이** 업데이트한다:
+
+| 순서 | 파일 | 할 일 |
+|------|------|-------|
+| 1 | `references/새프로젝트.md` | 새로 생성 (아래 레퍼런스 템플릿) |
+| 2 | `references/README.md` | 목록 테이블에 한 줄 추가 |
+| 3 | `tech-map.md` — 기술 카테고리 | 새로운 기술이 있으면 해당 카테고리 테이블에 추가 |
+| 4 | `tech-map.md` — 매트릭스 | 새 앱 열(column) 추가, ✅ 체크 |
+| 5 | `tech-map.md` — 프로필 카드 | 새 프로필 카드 블록 추가 |
+| 6 | `catalog/README.md` | 새 모듈 있으면 테이블에 추가 |
+| 7 | `catalog/새모듈.md` | 새 모듈 있으면 파일 생성 |
+| 8 | `_sidebar.md` | 레퍼런스 + 새 모듈 네비게이션에 추가 |
+
+#### 5단계: 검증
+
+- [ ] 레퍼런스 파일에 모듈 조합이 정확한가?
+- [ ] tech-map.md 매트릭스에 누락된 기술이 없는가?
+- [ ] _sidebar.md에 새 항목이 추가되었는가?
+- [ ] 민감 정보(API 키, 서버 IP 등)가 공개 파일에 없는가?
+
+#### 6단계: Git 업데이트
+
+```bash
+cd C:\Users\ganna\Downloads\playbook
+git add -A
+git commit -m "add: 새프로젝트 레퍼런스 + 분석"
+git push origin main
+```
+
+---
 
 **레퍼런스 템플릿:**
 
@@ -150,6 +213,8 @@ playbook의 {프로젝트명} 레퍼런스를 보고
 \```
 ```
 
+---
+
 ### 2. "새 모듈을 발견했어, 카탈로그에 추가해줘"
 
 **모듈 파일 템플릿:**
@@ -202,9 +267,9 @@ playbook의 {프로젝트명} 레퍼런스를 보고
 3. 참고 레퍼런스가 있으면 해당 앱 구조 따르기
 4. 조합해서 index.html + data.json 생성
 5. 로컬에서 테스트
-6. EC2 배포 (`catalog/deploy.md` 따라)
+6. EC2 배포 (`catalog/deploy.md` 따라) — 서버 정보는 사용자에게 요청
 7. GitHub 백업
-8. 완성 후 → references에 새 레퍼런스로 추가
+8. 완성 후 → 위의 "1. 새 프로젝트 분석" 워크플로우 실행
 
 ### 4. "playbook 전체를 GitHub에 업데이트해줘"
 
@@ -222,19 +287,6 @@ Git 설정:
 - Git 경로: "C:\Program Files\Git\cmd\git.exe"
 
 ---
-
-## 서버 정보
-
-| 항목 | 값 |
-|------|-----|
-| EC2 IP | 3.34.190.131 |
-| SSH User | ubuntu |
-| SSH Key | C:\Users\ganna\Downloads\eyeom40.pem |
-| Web Root | /var/www/ |
-| Nginx 설정 | /etc/nginx/sites-available/ |
-| Domain | *.pearsoninsight.com (Cloudflare) |
-| GitHub | ganna40 |
-| GA ID | G-QL0VH60WTE |
 
 ## git-uploader 대시보드
 
@@ -255,3 +307,5 @@ EC2에서 파일 가져와서 GitHub에 올리거나, 로컬 폴더를 GitHub에
 3. **tech-map.md는 항상 최신** - 새 프로젝트 추가 시 반드시 업데이트
 4. **코드는 실제 동작하는 것만** - 이론적 설명 아니라 복붙 가능한 코드
 5. **한국어로 작성** - 사용자가 한국어 사용자
+6. **민감 정보 금지** - 서버 IP, SSH 키, API 키는 `_secrets.md`에만 (gitignore)
+7. **새 프로젝트 추가 시 6단계 전부 수행** - 레퍼런스만 만들고 tech-map 안 고치면 안됨

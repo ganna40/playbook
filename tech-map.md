@@ -25,7 +25,7 @@
 |------|------|--------|
 | **Kakao JS SDK 2.7.4** | 카카오톡 공유 (sendDefault) | 전체 |
 | **Kakao scrapImage** | 공유 이미지 서버 업로드 | salary, pong, amlife |
-| **Google Analytics 4** | 방문자/이벤트 트래킹 | 전체 (G-QL0VH60WTE) |
+| **Google Analytics 4** | 방문자/이벤트 트래킹 | 전체 |
 | **Web Share API** | 모바일 네이티브 공유 | salary, pong, mz, amlife |
 | **Clipboard API** | URL/텍스트 복사 | 전체 |
 | **GitHub REST API** | repo 생성/관리 | git-uploader |
@@ -34,7 +34,7 @@
 
 | 기술 | 설명 | 사용처 |
 |------|------|--------|
-| **AWS EC2** | 웹서버 호스팅 (3.34.190.131) | 전체 |
+| **AWS EC2** | 웹서버 호스팅 | 전체 |
 | **Ubuntu + Nginx** | 정적 파일 서빙 | 전체 |
 | **Cloudflare** | DNS + SSL + CDN | *.pearsoninsight.com |
 | **GitHub Pages** | Docsify 문서 호스팅 | playbook |
@@ -109,7 +109,7 @@ URL:  salary.pearsoninsight.com
 데이터: salary-data.json (세율, 세액표, 분위표, 티어, 차량)
 폰트:   Pretendard
 CSS:    Tailwind CDN
-Kakao:  d374df0ebf74958122e78977437aff4d
+Kakao:  [프로젝트 소스 참조]
 ```
 
 ### pong - 퐁퐁 측정기
@@ -127,7 +127,7 @@ URL:  pong.pearsoninsight.com
 폰트:   시스템 폰트
 CSS:    순수 CSS + :root 변수 (다크)
 특수:   킬러문항 강제등급, 패시브 보정
-Kakao:  f73d82313342c09563c22a9b884b0dd4
+Kakao:  [프로젝트 소스 참조]
 ```
 
 ### mz - MZ력 측정기
@@ -145,7 +145,7 @@ URL:  mz.pearsoninsight.com
 폰트:   Pretendard
 CSS:    순수 CSS + :root 변수 (라이트)
 특수:   출생연도 입력, 세대 평균 비교, URL 결과공유
-Kakao:  f856cfaf6a221e0565604457f67d8ee8
+Kakao:  [프로젝트 소스 참조]
 ```
 
 ### amlife - 엠생력 측정기
@@ -163,7 +163,7 @@ URL:  amlife.pearsoninsight.com
 폰트:   시스템 폰트
 CSS:    인라인 (라이트)
 특수:   나이별 가중치, State machine 렌더링, URL 결과공유, 성별분기
-Kakao:  217c7f6152efeadb73c8eeaf193edcb7
+Kakao:  [프로젝트 소스 참조]
 ```
 
 ---
