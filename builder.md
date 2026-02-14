@@ -142,7 +142,7 @@
 기억: POCKETBASE (BaaS)
 ```
 
-**참고 레퍼런스:** [collab-tool](references/collab-tool.md) (Flask+PocketBase), [dictionary](references/dictionary.md) (Go+MySQL CLI 위자드)
+**참고 레퍼런스:** [collab-tool](references/collab-tool.md) (Flask+PocketBase), [dictionary](references/dictionary.md) (Go+MySQL CLI 위자드), [rackops](references/rackops.md) (React19+FastAPI DCIM)
 
 ---
 

@@ -19,9 +19,14 @@
 | **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife, dictionary |
 | **Svelte 5** | 컴포넌트 기반 UI 프레임워크 | food |
 | **React 18** | 컴포넌트 기반 UI 프레임워크 | tarot |
+| **React 19 + TypeScript** | 최신 React SPA (타입 안전) | rackops |
 | **Framer Motion** | React 애니메이션 라이브러리 | tarot |
 | **Canvas API** | 레이더 차트 그리기 | mz, amlife |
 | **html2canvas** | DOM → 이미지 캡처 | salary, pong, mz, amlife |
+| **Tailwind CSS v4** | @theme 블록 다크 테마 (빌드) | rackops |
+| **recharts** | React 차트 라이브러리 (KPI, GPU 등) | rackops |
+| **lucide-react** | React 아이콘 팩 | rackops |
+| **react-router-dom 7** | React SPA 라우팅 | rackops |
 | **CSS 애니메이션** | fadeIn, slamIn, glitch, confetti | 전체 |
 
 ### 📡 API / SDK
@@ -53,11 +58,15 @@
 | **Cloudflare** | DNS + SSL + CDN | *.pearsoninsight.com |
 | **GitHub Pages** | Docsify 문서 호스팅 | playbook |
 | **Docker Compose** | 컨테이너 오케스트레이션 | tarot, psycho-bot |
-| **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot, telbot, error-automation |
+| **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot, telbot, error-automation, rackops |
 | **Go (net/http)** | Go 표준 라이브러리 HTTP 서버 | dictionary |
-| **Redis** | 캐시 서버 (임베딩/RAG/대화기억) | psycho-bot, human2 |
-| **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot |
+| **Redis** | 캐시 서버 (임베딩/RAG/대화기억/태스크큐) | psycho-bot, human2, rackops |
+| **Celery 5** | 비동기 태스크 큐 (백그라운드 작업) | rackops |
+| **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot, rackops |
 | **PocketBase** | BaaS (DB+인증+파일+API) | collab-tool |
+| **python-jose (JWT)** | JWT 토큰 인증 (HS256) | rackops |
+| **Pydantic v2** | 요청/응답 모델 검증 | rackops |
+| **WebSocket** | 실시간 양방향 통신 | rackops |
 | **SCP** | SSH 파일 전송 | 배포 파이프라인 |
 
 ### 🗄️ 데이터
@@ -68,6 +77,7 @@
 | **인라인 데이터** | JS 내 직접 임베딩 | mz |
 | **URL 파라미터** | 결과 인코딩/디코딩 | mz, amlife |
 | **PostgreSQL + pgvector** | 벡터 DB (임베딩 검색) | tarot, psycho-bot, human2 |
+| **PostgreSQL** | 관계형 DB (20+ 테이블, asyncpg) | rackops |
 | **MySQL/MariaDB** | 관계형 DB (CRUD, 세션, 인증) | dictionary |
 | **SQLite** | 파일 기반 경량 DB | error-automation |
 | **pandas + openpyxl** | 엑셀 데이터 분석/가공 | product-j |
@@ -87,7 +97,7 @@
 
 | 기술 | 설명 | 사용처 |
 |------|------|--------|
-| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food |
+| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food, rackops |
 | **Flask (Python)** | 웹 프레임워크 (Blueprint) | git-uploader, collab-tool |
 | **Git Credential Manager** | GitHub 토큰 자동 추출 | git-uploader |
 | **Docsify** | 마크다운 → 웹사이트 | playbook |
@@ -98,118 +108,137 @@
 
 > ✅ = 사용함
 
-| 기술 | salary | pong | mz | amlife | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-auto | human2 | dictionary |
-|------|:------:|:----:|:--:|:------:|:----:|:-----:|:----------:|:------:|:-----------:|:---------:|:----------:|:------:|:----------:|
-| **프론트엔드** | | | | | | | | | | | | | |
-| Tailwind CDN | ✅ | | | | | | | | | | | | |
-| Tailwind v3 빌드 | | | | | ✅ | | | | | | | | |
-| CSS Variables | | ✅ | ✅ | | | ✅ | | | ✅ | | | | ✅ |
-| Pretendard 폰트 | ✅ | | ✅ | | | | | | | | | | |
-| Noto Sans KR | | | | | ✅ | ✅ | | | ✅ | | | | |
-| Orbitron 폰트 | | | | | | | | | ✅ | | | | |
-| Svelte 5 | | | | | ✅ | | | | | | | | |
-| React 18 | | | | | | ✅ | | | | | | | |
-| Framer Motion | | | | | | ✅ | | | | | | | |
-| Bootstrap 5 | | | | | | | | | ✅ | | | | |
-| Glassmorphism | | | | | | | | | ✅ | | | | |
-| Vanilla JS SPA | | | | | | | | | | | | | ✅ |
-| Canvas 레이더차트 | | | ✅ | ✅ | | | | | | | | | |
-| html2canvas | ✅ | ✅ | ✅ | ✅ | | | | | | | | | |
-| FullCalendar 6 | | | | | | | | | ✅ | | | | |
-| Chart.js | | | | | | | | | ✅ | | | | |
-| **API / SDK** | | | | | | | | | | | | | |
-| Kakao 공유 | ✅ | ✅ | ✅ | ✅ | | | | | | | | | |
-| Kakao Local API | | | | | ✅ | | | | | | | | |
-| Geolocation API | | | | | ✅ | | | | | | | | |
-| Ollama (로컬 LLM) | | | | | | ✅ | ✅ | | | | ✅ | ✅ | |
-| OpenAI API (직접) | | | | | | | ✅ | | | | | | |
-| OpenRouter (클라우드 LLM) | | | | | | ✅ | | | | | | | |
-| sentence-transformers | | | | | | | ✅ | | | | | ✅ | |
-| LangChain | | | | | | | | | | | | ✅ | |
-| python-telegram-bot | | | | | | | ✅ | ✅ | | | ✅ | ✅ | |
-| Twilio (전화/SMS) | | | | | | | | ✅ | | | ✅ | | |
-| Google Analytics | ✅ | ✅ | ✅ | ✅ | | | | | | | | | |
-| Web Share API | ✅ | ✅ | ✅ | ✅ | | | | | | | | | |
-| **백엔드** | | | | | | | | | | | | | |
-| FastAPI | | | | | | ✅ | ✅ | ✅ | | | ✅ | | |
-| Flask (Blueprint) | | | | | | | | | ✅ | | | | |
-| Go (net/http) | | | | | | | | | | | | | ✅ |
-| PocketBase (BaaS) | | | | | | | | | ✅ | | | | |
-| PostgreSQL + pgvector | | | | | | ✅ | ✅ | | | | | ✅ | |
-| MySQL/MariaDB | | | | | | | | | | | | | ✅ |
-| SQLite | | | | | | | | | | | ✅ | | |
-| Redis | | | | | | | ✅ | | | | | ✅ | |
-| pandas + openpyxl | | | | | | | | | | ✅ | | | |
-| Docker Compose | | | | | | ✅ | ✅ | | | | | | |
-| RAG 파이프라인 | | | | | | ✅ | ✅ | | | | | ✅ | |
-| SSE 스트리밍 | | | | | | ✅ | ✅ | | | | | | |
-| Alembic (마이그레이션) | | | | | | | ✅ | | | | | | |
-| SQLAlchemy 2.0 (async) | | | | | | ✅ | ✅ | | | | | | |
-| bcrypt (세션 인증) | | | | | | | | | | | | | ✅ |
-| **앱 유형** | | | | | | | | | | | | | |
-| 계산기 (입력→계산) | ✅ | | | | | | | | | | | | |
-| 데이터 분석 (엑셀) | | | | | | | | | | ✅ | | | |
-| O/X 퀴즈 | | ✅ | | | | | | | | | | | |
-| 선택형 퀴즈 | | | ✅ | ✅ | | | | | | | | | |
-| 추천기 (질문→검색) | | | | | ✅ | | | | | | | | |
-| AI 상담 (LLM 대화) | | | | | | ✅ | ✅ | | | | | ✅ | |
-| 텔레그램 봇 | | | | | | | ✅ | ✅ | | | ✅ | ✅ | |
-| 알림 봇 (반복+확인) | | | | | | | | ✅ | | | ✅ | | |
-| 업무 도구 (CRUD+KPI) | | | | | | | | | ✅ | | | | ✅ |
-| SRE 장애 자동화 | | | | | | | | | | | ✅ | | |
-| 페르소나 복제 챗봇 | | | | | | | | | | | | ✅ | |
-| CLI 레퍼런스+실행기 | | | | | | | | | | | | | ✅ |
-| **특수 기능** | | | | | | | | | | | | | |
-| 질문 타이머 (15초) | | ✅ | ✅ | ✅ | | | | | | | | | |
-| 결과 공개 연출 | | ✅ | ✅ | ✅ | ✅ | ✅ | | | | | | | |
-| 콤보/상관관계 점수 | | ✅ | | | | | | | | | | | |
-| 레이더 차트 | | | ✅ | ✅ | | | | | | | | | |
-| 결과 URL 공유 | | | ✅ | ✅ | | | | | | | | | |
-| LoL 티어 매핑 | ✅ | | | | | | | | | | | | |
-| 성별 분기 | | ✅ | | ✅ | | | | | | | | | |
-| GPS 위치 검색 | | | | | ✅ | | | | | | | | |
-| 별점 필터/크롤링 | | | | | ✅ | | | | | | | | |
-| 다시 뽑기 (거부 목록) | | | | | ✅ | | | | | | | | |
-| Vite API 프록시 | | | | | ✅ | | | | | | | | |
-| 3D 카드 뒤집기 | | | | | | ✅ | | | | | | | |
-| 가드레일 (민감 주제) | | | | | | ✅ | | | | | | | |
-| 대화형 채팅 | | | | | | ✅ | ✅ | | | | | ✅ | |
-| 콜드 리딩 기법 | | | | | | ✅ | | | | | | | |
-| 3단계 위기감지 | | | | | | | ✅ | | | | | | |
-| 3단계 주제분류 | | | | | | | ✅ | | | | | | |
-| 5모드 대화 | | | | | | | ✅ | | | | | | |
-| 감정분류 | | | | | | | ✅ | | | | | | |
-| 학습DB (자동개선) | | | | | | | ✅ | | | | | | |
-| 자기인식 엔진 | | | | | | | ✅ | | | | | | |
-| 그룹채팅 지원 | | | | | | | ✅ | | | | | | |
-| 사용자 요청 감지 | | | | | | | ✅ | | | | | | |
-| 반복 알림 (확인까지) | | | | | | | | ✅ | | | ✅ | | |
-| Twilio 전화/SMS | | | | | | | | ✅ | | | ✅ | | |
-| KPI 가중 평균 | | | | | | | | | ✅ | | | | |
-| Burn-up 차트 | | | | | | | | | ✅ | | | | |
-| FullCalendar 캘린더 | | | | | | | | | ✅ | | | | |
-| Excel 내보내기 | | | | | | | | | ✅ | | | | |
-| 다중 파일 업로드 | | | | | | | | | ✅ | | | | |
-| 듀얼 테마 토글 | | | | | | | | | ✅ | | | | ✅ |
-| JARVIS 배경 애니메이션 | | | | | | | | | ✅ | | | | |
-| 엑셀 피벗 분석 | | | | | | | | | | ✅ | | | |
-| 3단계 보고서 라이프사이클 | | | | | | | | | | | ✅ | | |
-| 자연어 보고서 수정 | | | | | | | | | | | ✅ | | |
-| 당직 관리 (Tier 에스컬레이션) | | | | | | | | | | | ✅ | | |
-| 페르소나 7단계 프롬프트 | | | | | | | | | | | | ✅ | |
-| 듀얼 메모리 (Redis+pgvector) | | | | | | | | | | | | ✅ | |
-| 카톡 ETL (469만 메시지) | | | | | | | | | | | | ✅ | |
-| 태도 기반 응답 모드 | | | | | | | | | | | | ✅ | |
-| 청크 전송 (타이핑 효과) | | | | | | | | | | | | ✅ | |
-| 변수 템플릿 시나리오 | | | | | | | | | | | | | ✅ |
-| CLI 직접 실행 (exec) | | | | | | | | | | | | | ✅ |
-| 레거시→신규 매핑 | | | | | | | | | | | | | ✅ |
-| 공개/비공개 콘텐츠 | | | | | | | | | | | | | ✅ |
-| 구문 하이라이팅 | | | | | | | | | | | | | ✅ |
-| go:embed 단일 바이너리 | | | | | | | | | | | | | ✅ |
-| **테마** | | | | | | | | | | | | | |
-| 라이트 | ✅ | | ✅ | ✅ | ✅ | | | | ✅ | | | | ✅ |
-| 다크 | | ✅ | | | | ✅ | | | ✅ | | | | ✅ |
+| 기술 | salary | pong | mz | amlife | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-auto | human2 | dictionary | rackops |
+|------|:------:|:----:|:--:|:------:|:----:|:-----:|:----------:|:------:|:-----------:|:---------:|:----------:|:------:|:----------:|:-------:|
+| **프론트엔드** | | | | | | | | | | | | | | |
+| Tailwind CDN | ✅ | | | | | | | | | | | | | |
+| Tailwind v3 빌드 | | | | | ✅ | | | | | | | | | |
+| Tailwind v4 (@theme) | | | | | | | | | | | | | | ✅ |
+| CSS Variables | | ✅ | ✅ | | | ✅ | | | ✅ | | | | ✅ | |
+| Pretendard 폰트 | ✅ | | ✅ | | | | | | | | | | | |
+| Noto Sans KR | | | | | ✅ | ✅ | | | ✅ | | | | | |
+| Orbitron 폰트 | | | | | | | | | ✅ | | | | | |
+| Svelte 5 | | | | | ✅ | | | | | | | | | |
+| React 18 | | | | | | ✅ | | | | | | | | |
+| React 19 + TypeScript | | | | | | | | | | | | | | ✅ |
+| Framer Motion | | | | | | ✅ | | | | | | | | |
+| recharts | | | | | | | | | | | | | | ✅ |
+| lucide-react | | | | | | | | | | | | | | ✅ |
+| react-router-dom 7 | | | | | | | | | | | | | | ✅ |
+| Bootstrap 5 | | | | | | | | | ✅ | | | | | |
+| Glassmorphism | | | | | | | | | ✅ | | | | | |
+| Vanilla JS SPA | | | | | | | | | | | | | ✅ | |
+| Canvas 레이더차트 | | | ✅ | ✅ | | | | | | | | | | |
+| html2canvas | ✅ | ✅ | ✅ | ✅ | | | | | | | | | | |
+| FullCalendar 6 | | | | | | | | | ✅ | | | | | |
+| Chart.js | | | | | | | | | ✅ | | | | | |
+| **API / SDK** | | | | | | | | | | | | | | |
+| Kakao 공유 | ✅ | ✅ | ✅ | ✅ | | | | | | | | | | |
+| Kakao Local API | | | | | ✅ | | | | | | | | | |
+| Geolocation API | | | | | ✅ | | | | | | | | | |
+| Ollama (로컬 LLM) | | | | | | ✅ | ✅ | | | | ✅ | ✅ | | |
+| OpenAI API (직접) | | | | | | | ✅ | | | | | | | |
+| OpenRouter (클라우드 LLM) | | | | | | ✅ | | | | | | | | |
+| sentence-transformers | | | | | | | ✅ | | | | | ✅ | | |
+| LangChain | | | | | | | | | | | | ✅ | | |
+| python-telegram-bot | | | | | | | ✅ | ✅ | | | ✅ | ✅ | | |
+| Twilio (전화/SMS) | | | | | | | | ✅ | | | ✅ | | | |
+| Google Analytics | ✅ | ✅ | ✅ | ✅ | | | | | | | | | | |
+| Web Share API | ✅ | ✅ | ✅ | ✅ | | | | | | | | | | |
+| **백엔드** | | | | | | | | | | | | | | |
+| FastAPI | | | | | | ✅ | ✅ | ✅ | | | ✅ | | | ✅ |
+| Flask (Blueprint) | | | | | | | | | ✅ | | | | | |
+| Go (net/http) | | | | | | | | | | | | | ✅ | |
+| PocketBase (BaaS) | | | | | | | | | ✅ | | | | | |
+| PostgreSQL + pgvector | | | | | | ✅ | ✅ | | | | | ✅ | | |
+| PostgreSQL (단독) | | | | | | | | | | | | | | ✅ |
+| MySQL/MariaDB | | | | | | | | | | | | | ✅ | |
+| SQLite | | | | | | | | | | | ✅ | | | |
+| Redis | | | | | | | ✅ | | | | | ✅ | | ✅ |
+| Celery 5 | | | | | | | | | | | | | | ✅ |
+| pandas + openpyxl | | | | | | | | | | ✅ | | | | |
+| Docker Compose | | | | | | ✅ | ✅ | | | | | | | |
+| RAG 파이프라인 | | | | | | ✅ | ✅ | | | | | ✅ | | |
+| SSE 스트리밍 | | | | | | ✅ | ✅ | | | | | | | |
+| Alembic (마이그레이션) | | | | | | | ✅ | | | | | | | ✅ |
+| SQLAlchemy 2.0 (async) | | | | | | ✅ | ✅ | | | | | | | ✅ |
+| JWT (python-jose) | | | | | | | | | | | | | | ✅ |
+| Pydantic v2 | | | | | | | | | | | | | | ✅ |
+| WebSocket | | | | | | | | | | | | | | ✅ |
+| bcrypt (세션 인증) | | | | | | | | | | | | | ✅ | |
+| **앱 유형** | | | | | | | | | | | | | | |
+| 계산기 (입력→계산) | ✅ | | | | | | | | | | | | | |
+| 데이터 분석 (엑셀) | | | | | | | | | | ✅ | | | | |
+| O/X 퀴즈 | | ✅ | | | | | | | | | | | | |
+| 선택형 퀴즈 | | | ✅ | ✅ | | | | | | | | | | |
+| 추천기 (질문→검색) | | | | | ✅ | | | | | | | | | |
+| AI 상담 (LLM 대화) | | | | | | ✅ | ✅ | | | | | ✅ | | |
+| 텔레그램 봇 | | | | | | | ✅ | ✅ | | | ✅ | ✅ | | |
+| 알림 봇 (반복+확인) | | | | | | | | ✅ | | | ✅ | | | |
+| 업무 도구 (CRUD+KPI) | | | | | | | | | ✅ | | | | ✅ | ✅ |
+| DCIM 인프라 관리 | | | | | | | | | | | | | | ✅ |
+| SRE 장애 자동화 | | | | | | | | | | | ✅ | | | |
+| 페르소나 복제 챗봇 | | | | | | | | | | | | ✅ | | |
+| CLI 레퍼런스+실행기 | | | | | | | | | | | | | ✅ | |
+| **특수 기능** | | | | | | | | | | | | | | |
+| 질문 타이머 (15초) | | ✅ | ✅ | ✅ | | | | | | | | | | |
+| 결과 공개 연출 | | ✅ | ✅ | ✅ | ✅ | ✅ | | | | | | | | |
+| 콤보/상관관계 점수 | | ✅ | | | | | | | | | | | | |
+| 레이더 차트 | | | ✅ | ✅ | | | | | | | | | | |
+| 결과 URL 공유 | | | ✅ | ✅ | | | | | | | | | | |
+| LoL 티어 매핑 | ✅ | | | | | | | | | | | | | |
+| 성별 분기 | | ✅ | | ✅ | | | | | | | | | | |
+| GPS 위치 검색 | | | | | ✅ | | | | | | | | | |
+| 별점 필터/크롤링 | | | | | ✅ | | | | | | | | | |
+| 다시 뽑기 (거부 목록) | | | | | ✅ | | | | | | | | | |
+| Vite API 프록시 | | | | | ✅ | | | | | | | | | ✅ |
+| 3D 카드 뒤집기 | | | | | | ✅ | | | | | | | | |
+| 가드레일 (민감 주제) | | | | | | ✅ | | | | | | | | |
+| 대화형 채팅 | | | | | | ✅ | ✅ | | | | | ✅ | | |
+| 콜드 리딩 기법 | | | | | | ✅ | | | | | | | | |
+| 3단계 위기감지 | | | | | | | ✅ | | | | | | | |
+| 3단계 주제분류 | | | | | | | ✅ | | | | | | | |
+| 5모드 대화 | | | | | | | ✅ | | | | | | | |
+| 감정분류 | | | | | | | ✅ | | | | | | | |
+| 학습DB (자동개선) | | | | | | | ✅ | | | | | | | |
+| 자기인식 엔진 | | | | | | | ✅ | | | | | | | |
+| 그룹채팅 지원 | | | | | | | ✅ | | | | | | | |
+| 사용자 요청 감지 | | | | | | | ✅ | | | | | | | |
+| 반복 알림 (확인까지) | | | | | | | | ✅ | | | ✅ | | | |
+| Twilio 전화/SMS | | | | | | | | ✅ | | | ✅ | | | |
+| KPI 가중 평균 | | | | | | | | | ✅ | | | | | |
+| Burn-up 차트 | | | | | | | | | ✅ | | | | | |
+| FullCalendar 캘린더 | | | | | | | | | ✅ | | | | | |
+| Excel 내보내기 | | | | | | | | | ✅ | | | | | |
+| 다중 파일 업로드 | | | | | | | | | ✅ | | | | | |
+| 듀얼 테마 토글 | | | | | | | | | ✅ | | | | ✅ | |
+| JARVIS 배경 애니메이션 | | | | | | | | | ✅ | | | | | |
+| 엑셀 피벗 분석 | | | | | | | | | | ✅ | | | | |
+| 3단계 보고서 라이프사이클 | | | | | | | | | | | ✅ | | | |
+| 자연어 보고서 수정 | | | | | | | | | | | ✅ | | | |
+| 당직 관리 (Tier 에스컬레이션) | | | | | | | | | | | ✅ | | | |
+| 페르소나 7단계 프롬프트 | | | | | | | | | | | | ✅ | | |
+| 듀얼 메모리 (Redis+pgvector) | | | | | | | | | | | | ✅ | | |
+| 카톡 ETL (469만 메시지) | | | | | | | | | | | | ✅ | | |
+| 태도 기반 응답 모드 | | | | | | | | | | | | ✅ | | |
+| 청크 전송 (타이핑 효과) | | | | | | | | | | | | ✅ | | |
+| 변수 템플릿 시나리오 | | | | | | | | | | | | | ✅ | |
+| CLI 직접 실행 (exec) | | | | | | | | | | | | | ✅ | |
+| 레거시→신규 매핑 | | | | | | | | | | | | | ✅ | |
+| 공개/비공개 콘텐츠 | | | | | | | | | | | | | ✅ | |
+| 구문 하이라이팅 | | | | | | | | | | | | | ✅ | |
+| go:embed 단일 바이너리 | | | | | | | | | | | | | ✅ | |
+| 비주얼 랙 다이어그램 | | | | | | | | | | | | | | ✅ |
+| GPU MIG 관리 | | | | | | | | | | | | | | ✅ |
+| 인프라 액션 (IPMI/Evacuate) | | | | | | | | | | | | | | ✅ |
+| 실시간 대시보드 (KPI) | | | | | | | | | | | | | | ✅ |
+| i18n (한국어/영어) | | | | | | | | | | | | | | ✅ |
+| 감사 로그 (audit_logs) | | | | | | | | | | | | | | ✅ |
+| AI 인시던트 분석 | | | | | | | | | | | | | | ✅ |
+| 역할 기반 접근 (RBAC) | | | | | | | | | | | | | | ✅ |
+| **테마** | | | | | | | | | | | | | | |
+| 라이트 | ✅ | | ✅ | ✅ | ✅ | | | | ✅ | | | | ✅ | |
+| 다크 | | ✅ | | | | ✅ | | | ✅ | | | | ✅ | ✅ |
 
 ---
 
@@ -454,6 +483,28 @@ DB:     MySQL (9개 테이블)
 특수:   CLI 실행, 변수 템플릿, 레거시→신규 매핑, 구문 하이라이팅
 ```
 
+### rackops - DCIM 인프라 관리 시스템
+```
+유형: 업무 도구 (DCIM — 데이터센터 인프라 관리)
+URL:  (내부 서비스)
+조합: React 19 + TypeScript + Vite 7 + Tailwind v4 + recharts
+      + FastAPI + SQLAlchemy(async) + Alembic + PostgreSQL + Redis + Celery
+      + JWT 인증 + WebSocket + i18n(ko/en)
+
+비주얼 랙 다이어그램 (42U/45U 가변 높이)
+  → GPU MIG 관리 (풀/디바이스/슬라이스/할당/테넌트 쿼타)
+  → 인프라 액션 (Evacuate, IPMI Reboot/Power, VM Migrate, Node Drain)
+  → 실시간 대시보드 (KPI, 랙 맵, GPU 사용률, 이벤트)
+  → AI 인시던트 분석 + 감사 로그
+
+프론트: React 19, TypeScript, Tailwind v4 (@theme), recharts, lucide-react
+백엔드: FastAPI, SQLAlchemy 2.0(async), Alembic, Celery 5, Redis 5
+DB:     PostgreSQL (20+ 테이블, asyncpg)
+인증:   JWT (HS256, 24시간) + 역할 (admin/operator/viewer)
+API:    49개 REST 엔드포인트 + WebSocket
+특수:   비주얼 랙, GPU MIG, IPMI, i18n, 감사 로그, 다중 알림 채널
+```
+
 ---
 
 ## AI에게 줄 때
@@ -463,10 +514,10 @@ DB:     MySQL (9개 테이블)
 ```
 위 기술지도를 참고해서 "___" 앱을 만들어줘.
 
-타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구]
+타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
-참고 레퍼런스: [pong | mz | amlife | salary | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary]
+참고 레퍼런스: [pong | mz | amlife | salary | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops]
 
 추가 요구:
 - ...

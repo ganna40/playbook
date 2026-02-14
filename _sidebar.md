@@ -44,6 +44,7 @@
   * [error-automation - SRE장애자동화](references/error-automation.md)
   * [human2 - 페르소나RAG챗봇](references/human2.md)
   * [dictionary - CLI위자드](references/dictionary.md)
+  * [rackops - DCIM인프라관리](references/rackops.md)
 
 * **레시피**
   * [Flask 대시보드](recipes/flask-dashboard.md)
