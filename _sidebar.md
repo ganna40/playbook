@@ -28,6 +28,7 @@
   * [pong - 퐁퐁측정기](references/pong.md)
   * [mz - MZ력측정기](references/mz.md)
   * [amlife - 엠생력측정기](references/amlife.md)
+  * [food - 오늘뭐먹지](references/food.md)
 
 * **레시피**
   * [Flask 대시보드](recipes/flask-dashboard.md)

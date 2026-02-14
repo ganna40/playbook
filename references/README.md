@@ -10,3 +10,4 @@
 | [pong](pong.md) | O/X 테스트 | BASE+DATA+SCREEN+QUIZ+GRADE+SHARE+GA+STYLE-DARK | 다크 |
 | [mz](mz.md) | 선택형 테스트 | BASE+DATA+SCREEN+QUIZ+GRADE+RADAR+SHARE+GA+STYLE-LIGHT | 라이트 |
 | [amlife](amlife.md) | 선택형 테스트 | BASE+DATA+SCREEN+QUIZ+GRADE+RADAR+SHARE+GA+STYLE-LIGHT | 라이트 |
+| [food](food.md) | 추천기 | Svelte+Vite+Tailwind+KakaoLocal+GPS | 라이트 |

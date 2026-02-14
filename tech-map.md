@@ -12,9 +12,12 @@
 | 기술 | 설명 | 사용처 |
 |------|------|--------|
 | **Tailwind CSS CDN** | 빌드 없이 유틸리티 CSS | salary |
+| **Tailwind CSS v3 (빌드)** | Vite 빌드 방식 유틸리티 CSS | food |
 | **CSS Variables** | `:root`로 테마 색상 관리 | pong, mz |
 | **Pretendard 폰트** | 한글 웹폰트 (CDN) | salary, mz |
+| **Noto Sans KR** | Google Fonts 한글 웹폰트 | food |
 | **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife |
+| **Svelte 5** | 컴포넌트 기반 UI 프레임워크 | food |
 | **Canvas API** | 레이더 차트 그리기 | mz, amlife |
 | **html2canvas** | DOM → 이미지 캡처 | salary, pong, mz, amlife |
 | **CSS 애니메이션** | fadeIn, slamIn, glitch, confetti | 전체 |
@@ -23,11 +26,13 @@
 
 | 기술 | 설명 | 사용처 |
 |------|------|--------|
-| **Kakao JS SDK 2.7.4** | 카카오톡 공유 (sendDefault) | 전체 |
+| **Kakao JS SDK 2.7.4** | 카카오톡 공유 (sendDefault) | salary, pong, mz, amlife |
+| **Kakao Local REST API** | 키워드 장소 검색 (반경 검색) | food |
 | **Kakao scrapImage** | 공유 이미지 서버 업로드 | salary, pong, amlife |
-| **Google Analytics 4** | 방문자/이벤트 트래킹 | 전체 |
+| **Geolocation API** | GPS 현재 위치 | food |
+| **Google Analytics 4** | 방문자/이벤트 트래킹 | salary, pong, mz, amlife |
 | **Web Share API** | 모바일 네이티브 공유 | salary, pong, mz, amlife |
-| **Clipboard API** | URL/텍스트 복사 | 전체 |
+| **Clipboard API** | URL/텍스트 복사 | salary, pong, mz, amlife |
 | **GitHub REST API** | repo 생성/관리 | git-uploader |
 
 ### 🖥️ 서버 / 인프라
@@ -53,6 +58,7 @@
 
 | 기술 | 설명 | 사용처 |
 |------|------|--------|
+| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food |
 | **Flask (Python)** | 로컬 대시보드 서버 | git-uploader |
 | **Git Credential Manager** | GitHub 토큰 자동 추출 | git-uploader |
 | **Docsify** | 마크다운 → 웹사이트 | playbook |
@@ -63,33 +69,43 @@
 
 > ✅ = 사용함
 
-| 기술 | salary | pong | mz | amlife |
-|------|:------:|:----:|:--:|:------:|
-| **프론트엔드** | | | | |
-| Tailwind CDN | ✅ | | | |
-| CSS Variables | | ✅ | ✅ | |
-| Pretendard 폰트 | ✅ | | ✅ | |
-| Canvas 레이더차트 | | | ✅ | ✅ |
-| html2canvas | ✅ | ✅ | ✅ | ✅ |
-| **API / SDK** | | | | |
-| Kakao 공유 | ✅ | ✅ | ✅ | ✅ |
-| Google Analytics | ✅ | ✅ | ✅ | ✅ |
-| Web Share API | ✅ | ✅ | ✅ | ✅ |
-| **앱 유형** | | | | |
-| 계산기 (입력→계산) | ✅ | | | |
-| O/X 퀴즈 | | ✅ | | |
-| 선택형 퀴즈 | | | ✅ | ✅ |
-| **특수 기능** | | | | |
-| 질문 타이머 (15초) | | ✅ | ✅ | ✅ |
-| 결과 공개 연출 | | ✅ | ✅ | ✅ |
-| 콤보/상관관계 점수 | | ✅ | | |
-| 레이더 차트 | | | ✅ | ✅ |
-| 결과 URL 공유 | | | ✅ | ✅ |
-| LoL 티어 매핑 | ✅ | | | |
-| 성별 분기 | | ✅ | | ✅ |
-| **테마** | | | | |
-| 라이트 | ✅ | | ✅ | ✅ |
-| 다크 | | ✅ | | |
+| 기술 | salary | pong | mz | amlife | food |
+|------|:------:|:----:|:--:|:------:|:----:|
+| **프론트엔드** | | | | | |
+| Tailwind CDN | ✅ | | | | |
+| Tailwind v3 빌드 | | | | | ✅ |
+| CSS Variables | | ✅ | ✅ | | |
+| Pretendard 폰트 | ✅ | | ✅ | | |
+| Noto Sans KR | | | | | ✅ |
+| Svelte 5 | | | | | ✅ |
+| Canvas 레이더차트 | | | ✅ | ✅ | |
+| html2canvas | ✅ | ✅ | ✅ | ✅ | |
+| **API / SDK** | | | | | |
+| Kakao 공유 | ✅ | ✅ | ✅ | ✅ | |
+| Kakao Local API | | | | | ✅ |
+| Geolocation API | | | | | ✅ |
+| Google Analytics | ✅ | ✅ | ✅ | ✅ | |
+| Web Share API | ✅ | ✅ | ✅ | ✅ | |
+| **앱 유형** | | | | | |
+| 계산기 (입력→계산) | ✅ | | | | |
+| O/X 퀴즈 | | ✅ | | | |
+| 선택형 퀴즈 | | | ✅ | ✅ | |
+| 추천기 (질문→검색) | | | | | ✅ |
+| **특수 기능** | | | | | |
+| 질문 타이머 (15초) | | ✅ | ✅ | ✅ | |
+| 결과 공개 연출 | | ✅ | ✅ | ✅ | ✅ |
+| 콤보/상관관계 점수 | | ✅ | | | |
+| 레이더 차트 | | | ✅ | ✅ | |
+| 결과 URL 공유 | | | ✅ | ✅ | |
+| LoL 티어 매핑 | ✅ | | | | |
+| 성별 분기 | | ✅ | | ✅ | |
+| GPS 위치 검색 | | | | | ✅ |
+| 별점 필터/크롤링 | | | | | ✅ |
+| 다시 뽑기 (거부 목록) | | | | | ✅ |
+| Vite API 프록시 | | | | | ✅ |
+| **테마** | | | | | |
+| 라이트 | ✅ | | ✅ | ✅ | ✅ |
+| 다크 | | ✅ | | | |
 
 ---
 
@@ -166,6 +182,25 @@ CSS:    인라인 (라이트)
 Kakao:  [프로젝트 소스 참조]
 ```
 
+### food - 오늘 뭐먹지?
+```
+유형: 추천기 (GPS 맛집 추천)
+URL:  (로컬 개발 중)
+스택: Svelte 5 + TypeScript + Vite 7 + Tailwind v3
+
+3가지 질문 (기분, 음식종류, 시간여유)
+  → 키워드 매핑 (mood×food×time → 검색어 3개)
+  → GPS 위치 기반 반경 2km 식당 검색
+  → 별점 필터 (3.5+/4.0+/4.5+)
+  → 랜덤 추천 + 다시 뽑기
+
+데이터: TypeScript 인라인 (keywordMap)
+폰트:   Noto Sans KR (Google Fonts)
+CSS:    Tailwind v3 빌드 (파스텔 그라데이션)
+API:    Kakao Local REST API (Vite 프록시)
+특수:   별점 크롤링, 거부 목록, confetti 연출
+```
+
 ---
 
 ## AI에게 줄 때
@@ -175,10 +210,10 @@ Kakao:  [프로젝트 소스 참조]
 ```
 위 기술지도를 참고해서 "___" 앱을 만들어줘.
 
-타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기]
+타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
-참고 레퍼런스: [pong | mz | amlife | salary]
+참고 레퍼런스: [pong | mz | amlife | salary | food]
 
 추가 요구:
 - ...
