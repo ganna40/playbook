@@ -15,3 +15,7 @@
 | [psycho-bot](references/psycho-bot.md) | AI 챗봇 | FastAPI+PostgreSQL+pgvector+Ollama+OpenAI+Telegram | - |
 | [telbot](references/telbot.md) | 알림 봇 | FastAPI+Telegram+Twilio | - |
 | [collab-tool](references/collab-tool.md) | 업무 도구 | Flask+PocketBase+Bootstrap5+FullCalendar+Chart.js | 듀얼 |
+| [product-j](references/product-j.md) | 데이터 분석 | Python+pandas+openpyxl | - |
+| [error-automation](references/error-automation.md) | SRE 자동화 | LLM+Telegram+Twilio+SQLite | - |
+| [human2](references/human2.md) | 페르소나 챗봇 | LLM+RAG+Telegram+pgvector+Redis+LangChain | - |
+| [dictionary](references/dictionary.md) | CLI 위자드 | Go+MySQL+VanillaJS+CSS Variables | 듀얼 |

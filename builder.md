@@ -70,7 +70,7 @@
 기억: DATA (JSON — 세율표, 등급표 등)
 ```
 
-**참고 레퍼런스:** [salary](references/salary.md)
+**참고 레퍼런스:** [salary](references/salary.md), [product-j](references/product-j.md) (엑셀 데이터 분석)
 
 ---
 
@@ -110,7 +110,7 @@
 | 본격적 | Ollama (exaone3.5:7.8b) + OpenAI 백업 | E5-large (1024d) | React + SSE |
 | 멀티플랫폼 | 듀얼 프로바이더 | sentence-transformers | 텔레그램+디스코드+웹 |
 
-**참고 레퍼런스:** [tarot](references/tarot.md) (웹 AI상담), [psycho-bot](references/psycho-bot.md) (텔레그램 AI상담)
+**참고 레퍼런스:** [tarot](references/tarot.md) (웹 AI상담), [psycho-bot](references/psycho-bot.md) (텔레그램 AI상담), [human2](references/human2.md) (페르소나 복제), [error-automation](references/error-automation.md) (SRE 보고서 자동화)
 
 ---
 
@@ -126,7 +126,7 @@
 기억: 인메모리 (dict)
 ```
 
-**참고 레퍼런스:** [telbot](references/telbot.md)
+**참고 레퍼런스:** [telbot](references/telbot.md) (단순 반복 알림), [error-automation](references/error-automation.md) (SRE 에스컬레이션)
 
 ---
 
@@ -142,7 +142,7 @@
 기억: POCKETBASE (BaaS)
 ```
 
-**참고 레퍼런스:** [collab-tool](references/collab-tool.md)
+**참고 레퍼런스:** [collab-tool](references/collab-tool.md) (Flask+PocketBase), [dictionary](references/dictionary.md) (Go+MySQL CLI 위자드)
 
 ---
 

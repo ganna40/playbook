@@ -40,6 +40,10 @@
   * [psycho-bot - AI심리상담챗봇](references/psycho-bot.md)
   * [telbot - 텔레그램알림봇](references/telbot.md)
   * [collab-tool - 팀협업대시보드](references/collab-tool.md)
+  * [product-j - 엑셀재고분석](references/product-j.md)
+  * [error-automation - SRE장애자동화](references/error-automation.md)
+  * [human2 - 페르소나RAG챗봇](references/human2.md)
+  * [dictionary - CLI위자드](references/dictionary.md)
 
 * **레시피**
   * [Flask 대시보드](recipes/flask-dashboard.md)
