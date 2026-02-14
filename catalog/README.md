@@ -24,8 +24,9 @@
 | [URL-ENCODE](catalog/url-encode.md) | 결과를 URL로 공유 | 없음 |
 | [STYLE-DARK](catalog/style-dark.md) | 다크 테마 CSS | BASE |
 | [STYLE-LIGHT](catalog/style-light.md) | 라이트 테마 CSS | BASE |
-| [LLM](catalog/llm.md) | LLM 연동 (Ollama/OpenRouter) | 없음 |
+| [LLM](catalog/llm.md) | LLM 연동 (Ollama/OpenAI/OpenRouter/GGUF) | 없음 |
 | [RAG](catalog/rag.md) | RAG 파이프라인 (벡터 검색) | LLM |
+| [TELEGRAM](catalog/telegram.md) | 텔레그램 봇 (python-telegram-bot) | 없음 |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 
 ## 조합 예시
@@ -53,4 +54,9 @@ KAKAO-LOCAL + Svelte/React + Vite + Tailwind
 ### "AI 상담 풀스택" (tarot 같은)
 ```
 LLM + RAG + React + FastAPI + PostgreSQL/pgvector + Docker
+```
+
+### "AI 챗봇 (텔레그램)" (psycho-bot 같은)
+```
+LLM + RAG + TELEGRAM + FastAPI + PostgreSQL/pgvector + Redis + Docker
 ```

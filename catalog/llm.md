@@ -196,19 +196,72 @@ def switch_provider(provider: str):
         current_service = OpenRouterService()
 ```
 
+## OpenAI API 직접 호출
+
+```python
+OPENAI_API_KEY = "sk-..."  # .env에서 로드
+
+async def generate_openai(messages: list[dict], model: str = "gpt-4o") -> str:
+    async with httpx.AsyncClient(timeout=60.0) as client:
+        response = await client.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {OPENAI_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": model,
+                "messages": messages,
+                "temperature": 0.8,
+                "max_tokens": 2048,
+            }
+        )
+        data = response.json()
+        return data["choices"][0]["message"]["content"]
+```
+
+> OpenRouter와 차이: OpenAI 직접 = 중개 없이 빠름. OpenRouter = 여러 모델 통합 접근.
+
+## GGUF 로컬 추론 (llama-cpp-python)
+
+```bash
+pip install llama-cpp-python
+# GPU 가속: CMAKE_ARGS="-DGGML_CUDA=on" pip install llama-cpp-python
+```
+
+```python
+from llama_cpp import Llama
+
+llm = Llama(
+    model_path="./models/llama-3-Korean-Bllossom-8B-Q4_K_M.gguf",
+    n_ctx=4096,
+    n_gpu_layers=-1,  # 전부 GPU
+)
+
+def generate_gguf(prompt: str) -> str:
+    output = llm(prompt, max_tokens=2048, temperature=0.8)
+    return output["choices"][0]["text"]
+```
+
+> Ollama 없이 GGUF 파일로 직접 추론. GPU 가속 시 빠르지만 설정 복잡.
+
 ## 모델 추천
 
-| 용도 | Ollama (로컬) | OpenRouter (클라우드) |
-|------|--------------|---------------------|
-| 텍스트 생성 | gemma3:4b, qwen2.5:7b | openai/gpt-4o-mini |
-| 한국어 특화 | qwen2.5:7b | openai/gpt-4o |
-| 임베딩 | nomic-embed-text (768차원) | - |
-| 가벼운 작업 | gemma3:1b | openai/gpt-4o-mini |
+| 용도 | Ollama (로컬) | OpenAI (직접) | OpenRouter (클라우드) |
+|------|--------------|--------------|---------------------|
+| 텍스트 생성 | gemma3:4b, qwen2.5:7b | gpt-4o-mini | openai/gpt-4o-mini |
+| 한국어 특화 | exaone3.5:7.8b, qwen2.5:7b | gpt-4o | openai/gpt-4o |
+| 임베딩 | nomic-embed-text (768d) | text-embedding-3-small | - |
+| 가벼운 작업 | gemma3:1b | gpt-4o-mini | openai/gpt-4o-mini |
+| GGUF 로컬 | - | - | - |
+
+> psycho-bot에서는 exaone3.5:7.8b(한국어 특화) + GPT-4o(클라우드 백업) 조합 사용.
 
 ## 주의사항
 
 - Ollama는 **GPU 메모리** 필요 (4b 모델: ~4GB VRAM)
-- OpenRouter는 **API 키 + 크레딧** 필요
-- 타임아웃을 넉넉히 설정 (Ollama: 120초, OpenRouter: 60초)
+- OpenAI / OpenRouter는 **API 키 + 크레딧** 필요
+- 타임아웃을 넉넉히 설정 (Ollama: 120초, OpenAI: 60초, OpenRouter: 60초)
 - 스트리밍은 UX 개선에 큰 효과 (체감 응답 시간 감소)
-- 임베딩은 Ollama에서만 생성 (OpenRouter는 임베딩 미제공)
+- 임베딩: Ollama(nomic-embed-text 768d) 또는 sentence-transformers(E5 1024d) 사용
+- GGUF는 모델 파일(.gguf) 직접 관리 필요, GPU 설정이 복잡

@@ -195,11 +195,41 @@ async def answer_with_rag(question: str, session: AsyncSession) -> str:
 
 ## 임베딩 모델
 
+### Ollama 기반 (간편)
+
 | 모델 | 차원 | 크기 | 특징 |
 |------|------|------|------|
 | nomic-embed-text | 768 | 274MB | 범용, Ollama 지원 |
 | bge-m3 | 1024 | 2.2GB | 다국어 강력 |
 | mxbai-embed-large | 1024 | 670MB | 고성능 |
+
+### sentence-transformers 기반 (고품질)
+
+```bash
+pip install sentence-transformers torch
+```
+
+```python
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer("intfloat/multilingual-e5-large")  # 1024차원
+
+def generate_embedding(text: str, is_query: bool = True) -> list[float]:
+    """sentence-transformers로 임베딩 생성 (1024차원)"""
+    # E5 모델은 prefix 필수
+    prefix = "query: " if is_query else "passage: "
+    embedding = model.encode(prefix + text, normalize_embeddings=True)
+    return embedding.tolist()
+```
+
+| 모델 | 차원 | 특징 |
+|------|------|------|
+| intfloat/multilingual-e5-large | 1024 | 다국어 최강, 한국어 우수 |
+| BAAI/bge-m3 | 1024 | 다국어 + 긴 문서 |
+| jhgan/ko-sbert-sts | 768 | 한국어 특화 |
+
+> psycho-bot에서는 multilingual-e5-large (1024d) + Redis 캐시 조합 사용.
+> DB 스키마의 Vector 차원을 모델과 **반드시 일치**시켜야 함 (768 vs 1024).
 
 ## 유사도 임계값 가이드
 

@@ -23,6 +23,7 @@
   * [STYLE-LIGHT - 라이트 테마](catalog/style-light.md)
   * [LLM - Ollama/OpenRouter](catalog/llm.md)
   * [RAG - 벡터 검색 파이프라인](catalog/rag.md)
+  * [TELEGRAM - 텔레그램 봇](catalog/telegram.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
 
 * **레퍼런스 (실제 앱)**
@@ -33,6 +34,7 @@
   * [amlife - 엠생력측정기](references/amlife.md)
   * [food - 오늘뭐먹지](references/food.md)
   * [tarot - 타로마스터루미나](references/tarot.md)
+  * [psycho-bot - AI심리상담챗봇](references/psycho-bot.md)
 
 * **레시피**
   * [Flask 대시보드](recipes/flask-dashboard.md)

@@ -35,8 +35,11 @@
 | **Google Analytics 4** | 방문자/이벤트 트래킹 | salary, pong, mz, amlife |
 | **Web Share API** | 모바일 네이티브 공유 | salary, pong, mz, amlife |
 | **Clipboard API** | URL/텍스트 복사 | salary, pong, mz, amlife |
-| **Ollama** | 로컬 LLM (gemma3, qwen2.5 등) | tarot |
+| **Ollama** | 로컬 LLM (gemma3, exaone3.5 등) | tarot, psycho-bot |
+| **OpenAI API** | GPT-4o/4o-mini 직접 호출 | psycho-bot |
 | **OpenRouter** | 클라우드 LLM API (gpt-4o-mini 등) | tarot |
+| **sentence-transformers** | 로컬 임베딩 (E5-large 1024d) | psycho-bot |
+| **python-telegram-bot** | 텔레그램 봇 프레임워크 | psycho-bot |
 | **GitHub REST API** | repo 생성/관리 | git-uploader |
 
 ### 🖥️ 서버 / 인프라
@@ -47,8 +50,10 @@
 | **Ubuntu + Nginx** | 정적 파일 서빙 | 전체 |
 | **Cloudflare** | DNS + SSL + CDN | *.pearsoninsight.com |
 | **GitHub Pages** | Docsify 문서 호스팅 | playbook |
-| **Docker Compose** | 컨테이너 오케스트레이션 | tarot |
-| **FastAPI** | Python 비동기 REST API 서버 | tarot |
+| **Docker Compose** | 컨테이너 오케스트레이션 | tarot, psycho-bot |
+| **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot |
+| **Redis** | 캐시 서버 (임베딩/RAG/프로필) | psycho-bot |
+| **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot |
 | **SCP** | SSH 파일 전송 | 배포 파이프라인 |
 
 ### 🗄️ 데이터
@@ -58,7 +63,7 @@
 | **JSON 파일** | 데이터 분리 (fetch) | salary, pong, amlife |
 | **인라인 데이터** | JS 내 직접 임베딩 | mz |
 | **URL 파라미터** | 결과 인코딩/디코딩 | mz, amlife |
-| **PostgreSQL + pgvector** | 벡터 DB (768차원 임베딩 검색) | tarot |
+| **PostgreSQL + pgvector** | 벡터 DB (임베딩 검색) | tarot, psycho-bot |
 | **localStorage** | 히스토리 저장 (대시보드) | git-uploader |
 
 ### 🛠️ 개발 도구
@@ -76,58 +81,73 @@
 
 > ✅ = 사용함
 
-| 기술 | salary | pong | mz | amlife | food | tarot |
-|------|:------:|:----:|:--:|:------:|:----:|:-----:|
-| **프론트엔드** | | | | | | |
-| Tailwind CDN | ✅ | | | | | |
-| Tailwind v3 빌드 | | | | | ✅ | |
-| CSS Variables | | ✅ | ✅ | | | ✅ |
-| Pretendard 폰트 | ✅ | | ✅ | | | |
-| Noto Sans KR | | | | | ✅ | ✅ |
-| Svelte 5 | | | | | ✅ | |
-| React 18 | | | | | | ✅ |
-| Framer Motion | | | | | | ✅ |
-| Canvas 레이더차트 | | | ✅ | ✅ | | |
-| html2canvas | ✅ | ✅ | ✅ | ✅ | | |
-| **API / SDK** | | | | | | |
-| Kakao 공유 | ✅ | ✅ | ✅ | ✅ | | |
-| Kakao Local API | | | | | ✅ | |
-| Geolocation API | | | | | ✅ | |
-| Ollama (로컬 LLM) | | | | | | ✅ |
-| OpenRouter (클라우드 LLM) | | | | | | ✅ |
-| Google Analytics | ✅ | ✅ | ✅ | ✅ | | |
-| Web Share API | ✅ | ✅ | ✅ | ✅ | | |
-| **백엔드** | | | | | | |
-| FastAPI | | | | | | ✅ |
-| PostgreSQL + pgvector | | | | | | ✅ |
-| Docker Compose | | | | | | ✅ |
-| RAG 파이프라인 | | | | | | ✅ |
-| SSE 스트리밍 | | | | | | ✅ |
-| **앱 유형** | | | | | | |
-| 계산기 (입력→계산) | ✅ | | | | | |
-| O/X 퀴즈 | | ✅ | | | | |
-| 선택형 퀴즈 | | | ✅ | ✅ | | |
-| 추천기 (질문→검색) | | | | | ✅ | |
-| AI 상담 (LLM 대화) | | | | | | ✅ |
-| **특수 기능** | | | | | | |
-| 질문 타이머 (15초) | | ✅ | ✅ | ✅ | | |
-| 결과 공개 연출 | | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 콤보/상관관계 점수 | | ✅ | | | | |
-| 레이더 차트 | | | ✅ | ✅ | | |
-| 결과 URL 공유 | | | ✅ | ✅ | | |
-| LoL 티어 매핑 | ✅ | | | | | |
-| 성별 분기 | | ✅ | | ✅ | | |
-| GPS 위치 검색 | | | | | ✅ | |
-| 별점 필터/크롤링 | | | | | ✅ | |
-| 다시 뽑기 (거부 목록) | | | | | ✅ | |
-| Vite API 프록시 | | | | | ✅ | |
-| 3D 카드 뒤집기 | | | | | | ✅ |
-| 가드레일 (민감 주제) | | | | | | ✅ |
-| 대화형 채팅 | | | | | | ✅ |
-| 콜드 리딩 기법 | | | | | | ✅ |
-| **테마** | | | | | | |
-| 라이트 | ✅ | | ✅ | ✅ | ✅ | |
-| 다크 | | ✅ | | | | ✅ |
+| 기술 | salary | pong | mz | amlife | food | tarot | psycho-bot |
+|------|:------:|:----:|:--:|:------:|:----:|:-----:|:----------:|
+| **프론트엔드** | | | | | | | |
+| Tailwind CDN | ✅ | | | | | | |
+| Tailwind v3 빌드 | | | | | ✅ | | |
+| CSS Variables | | ✅ | ✅ | | | ✅ | |
+| Pretendard 폰트 | ✅ | | ✅ | | | | |
+| Noto Sans KR | | | | | ✅ | ✅ | |
+| Svelte 5 | | | | | ✅ | | |
+| React 18 | | | | | | ✅ | |
+| Framer Motion | | | | | | ✅ | |
+| Canvas 레이더차트 | | | ✅ | ✅ | | | |
+| html2canvas | ✅ | ✅ | ✅ | ✅ | | | |
+| **API / SDK** | | | | | | | |
+| Kakao 공유 | ✅ | ✅ | ✅ | ✅ | | | |
+| Kakao Local API | | | | | ✅ | | |
+| Geolocation API | | | | | ✅ | | |
+| Ollama (로컬 LLM) | | | | | | ✅ | ✅ |
+| OpenAI API (직접) | | | | | | | ✅ |
+| OpenRouter (클라우드 LLM) | | | | | | ✅ | |
+| sentence-transformers | | | | | | | ✅ |
+| python-telegram-bot | | | | | | | ✅ |
+| Google Analytics | ✅ | ✅ | ✅ | ✅ | | | |
+| Web Share API | ✅ | ✅ | ✅ | ✅ | | | |
+| **백엔드** | | | | | | | |
+| FastAPI | | | | | | ✅ | ✅ |
+| PostgreSQL + pgvector | | | | | | ✅ | ✅ |
+| Redis | | | | | | | ✅ |
+| Docker Compose | | | | | | ✅ | ✅ |
+| RAG 파이프라인 | | | | | | ✅ | ✅ |
+| SSE 스트리밍 | | | | | | ✅ | ✅ |
+| Alembic (마이그레이션) | | | | | | | ✅ |
+| SQLAlchemy 2.0 (async) | | | | | | ✅ | ✅ |
+| **앱 유형** | | | | | | | |
+| 계산기 (입력→계산) | ✅ | | | | | | |
+| O/X 퀴즈 | | ✅ | | | | | |
+| 선택형 퀴즈 | | | ✅ | ✅ | | | |
+| 추천기 (질문→검색) | | | | | ✅ | | |
+| AI 상담 (LLM 대화) | | | | | | ✅ | ✅ |
+| 텔레그램 봇 | | | | | | | ✅ |
+| **특수 기능** | | | | | | | |
+| 질문 타이머 (15초) | | ✅ | ✅ | ✅ | | | |
+| 결과 공개 연출 | | ✅ | ✅ | ✅ | ✅ | ✅ | |
+| 콤보/상관관계 점수 | | ✅ | | | | | |
+| 레이더 차트 | | | ✅ | ✅ | | | |
+| 결과 URL 공유 | | | ✅ | ✅ | | | |
+| LoL 티어 매핑 | ✅ | | | | | | |
+| 성별 분기 | | ✅ | | ✅ | | | |
+| GPS 위치 검색 | | | | | ✅ | | |
+| 별점 필터/크롤링 | | | | | ✅ | | |
+| 다시 뽑기 (거부 목록) | | | | | ✅ | | |
+| Vite API 프록시 | | | | | ✅ | | |
+| 3D 카드 뒤집기 | | | | | | ✅ | |
+| 가드레일 (민감 주제) | | | | | | ✅ | |
+| 대화형 채팅 | | | | | | ✅ | ✅ |
+| 콜드 리딩 기법 | | | | | | ✅ | |
+| 3단계 위기감지 | | | | | | | ✅ |
+| 3단계 주제분류 | | | | | | | ✅ |
+| 5모드 대화 | | | | | | | ✅ |
+| 감정분류 | | | | | | | ✅ |
+| 학습DB (자동개선) | | | | | | | ✅ |
+| 자기인식 엔진 | | | | | | | ✅ |
+| 그룹채팅 지원 | | | | | | | ✅ |
+| 사용자 요청 감지 | | | | | | | ✅ |
+| **테마** | | | | | | | |
+| 라이트 | ✅ | | ✅ | ✅ | ✅ | | |
+| 다크 | | ✅ | | | | ✅ | |
 
 ---
 
@@ -242,6 +262,33 @@ RAG:    PKT원전 + 타로교안 + KB + 심리학 고전 + 상담기법
 특수:   가드레일, 콜드리딩, 메모리매니저, QA매니저, SSE
 ```
 
+### psycho-bot - AI 심리 상담 챗봇 (마음벗)
+```
+유형: AI 심리 상담 챗봇 (텔레그램/웹)
+URL:  (개발 중)
+조합: LLM + RAG + TELEGRAM
+
+백엔드: FastAPI + SQLAlchemy 2.0(async) + Alembic
+DB:     PostgreSQL + pgvector (1024d) + Redis 7
+LLM:    Ollama(exaone3.5:7.8b) / OpenAI(GPT-4o) / GGUF
+임베딩: sentence-transformers (multilingual-e5-large 1024d)
+봇:     python-telegram-bot 21 (개인/그룹)
+배포:   Docker Compose (PostgreSQL + Redis)
+
+NLP 파이프라인:
+  위기감지(3단계) → 주제분류(3단계) → 모드감지(5모드) → 감정분류
+  → RAG검색 + 대화요약 + 프로필 + 자기인식 → 프롬프트 조합 → LLM
+
+특수:
+  - 5가지 대화 모드 (상담/교육/친구/짧은답변/하이브리드)
+  - 3단계 위기감지 (1393 자살예방 핫라인 연결)
+  - 학습DB (대화에서 키워드/패턴 자동 추출)
+  - 자기인식 엔진 (EXAONE-Deep 추론)
+  - 사용자 요청 감지 ("반말해줘", "질문하지마" 등 JSONB)
+  - 그룹채팅 + 관계 메타데이터
+  - 18+ DB 테이블
+```
+
 ---
 
 ## AI에게 줄 때
@@ -251,10 +298,10 @@ RAG:    PKT원전 + 타로교안 + KB + 심리학 고전 + 상담기법
 ```
 위 기술지도를 참고해서 "___" 앱을 만들어줘.
 
-타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기 | tarot처럼 AI상담]
+타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기 | tarot처럼 AI상담 | psycho-bot처럼 AI챗봇]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
-참고 레퍼런스: [pong | mz | amlife | salary | food | tarot]
+참고 레퍼런스: [pong | mz | amlife | salary | food | tarot | psycho-bot]
 
 추가 요구:
 - ...
