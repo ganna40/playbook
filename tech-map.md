@@ -44,7 +44,6 @@
 | **OpenAI API** | GPT-4o/4o-mini 직접 호출 | psycho-bot |
 | **OpenRouter** | 클라우드 LLM API (gpt-4o-mini 등) | tarot |
 | **sentence-transformers** | 로컬 임베딩 (E5-large 1024d, ko-sroberta 768d) | psycho-bot, human2 |
-| **LangChain** | LLM 워크플로우 오케스트레이션 | human2 |
 | **python-telegram-bot** | 텔레그램 봇 프레임워크 | psycho-bot, telbot, error-automation, human2 |
 | **Twilio SDK** | 전화(TTS)/SMS 발송 | telbot, error-automation |
 | **GitHub REST API** | repo 생성/관리 | git-uploader |
@@ -140,7 +139,6 @@
 | OpenAI API (직접) | | | | | | | ✅ | | | | | | | |
 | OpenRouter (클라우드 LLM) | | | | | | ✅ | | | | | | | | |
 | sentence-transformers | | | | | | | ✅ | | | | | ✅ | | |
-| LangChain | | | | | | | | | | | | ✅ | | |
 | python-telegram-bot | | | | | | | ✅ | ✅ | | | ✅ | ✅ | | |
 | Twilio (전화/SMS) | | | | | | | | ✅ | | | ✅ | | | |
 | Google Analytics | ✅ | ✅ | ✅ | ✅ | | | | | | | | | | |
@@ -357,7 +355,7 @@ RAG:    PKT원전 + 타로교안 + KB + 심리학 고전 + 상담기법
 ```
 유형: AI 심리 상담 챗봇 (텔레그램/웹)
 URL:  (개발 중)
-조합: LLM + RAG + TELEGRAM
+조합: LLM + RAG + REDIS + DYNAMIC-PROMPT + TELEGRAM
 
 백엔드: FastAPI + SQLAlchemy 2.0(async) + Alembic
 DB:     PostgreSQL + pgvector (1024d) + Redis 7
@@ -450,7 +448,7 @@ LLM:    Ollama (gemma3:4b)
 ```
 유형: AI 챗봇 (페르소나 복제)
 URL:  (내부 서비스)
-조합: LLM + RAG + TELEGRAM + PostgreSQL/pgvector + Redis + LangChain
+조합: LLM + RAG + REDIS + DYNAMIC-PROMPT + TELEGRAM
 
 카톡 로그 469만 메시지 → ETL (파싱→청킹→추출→임베딩)
                        → 2,068 세션 벡터 DB 저장

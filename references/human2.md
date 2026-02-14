@@ -15,7 +15,7 @@
 ## 모듈 조합
 
 ```
-LLM + RAG + TELEGRAM + PostgreSQL/pgvector + Redis + LangChain
+LLM + RAG + REDIS + DYNAMIC-PROMPT + TELEGRAM
 ```
 
 ## 핵심 아키텍처
@@ -75,7 +75,6 @@ Step 7: 현재 쿼리 (사용자 메시지 + 화자 컨텍스트)
 | Redis 7 | 단기 대화 기억 (24시간 TTL) |
 | sentence-transformers | ko-sroberta-multitask 임베딩 (768d) |
 | python-telegram-bot 21 | 텔레그램 봇 (폴링) |
-| LangChain | LLM 워크플로우 오케스트레이션 |
 | asyncpg | PostgreSQL 비동기 드라이버 |
 | httpx | Ollama 비동기 HTTP 호출 |
 | CUDA 12.6 + PyTorch | RTX 4060 Ti GPU 가속 (임베딩) |

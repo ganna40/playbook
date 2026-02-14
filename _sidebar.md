@@ -27,6 +27,8 @@
   * [TELEGRAM - 텔레그램 봇](catalog/telegram.md)
   * [TWILIO - 전화/SMS 알림](catalog/twilio.md)
   * [POCKETBASE - BaaS](catalog/pocketbase.md)
+  * [REDIS - 캐시/세션/큐](catalog/redis.md)
+  * [DYNAMIC-PROMPT - 동적 프롬프트](catalog/dynamic-prompt.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
 
 * **레퍼런스 (실제 앱)**

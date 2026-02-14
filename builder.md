@@ -96,10 +96,10 @@
 
 ```
 뼈대: FastAPI (백엔드) + React 또는 TELEGRAM (프론트)
-두뇌: LLM + RAG
+두뇌: LLM + RAG + DYNAMIC-PROMPT
 얼굴: (프론트 선택에 따라) React UI / 텔레그램 채팅
 입출력: SSE 스트리밍 + TELEGRAM 또는 웹
-기억: PostgreSQL + pgvector + Redis
+기억: PostgreSQL + pgvector + REDIS
 ```
 
 **규모별 선택:**
@@ -172,6 +172,8 @@
 | [TELEGRAM](catalog/telegram.md) | 텔레그램 봇 | 챗봇/알림 |
 | [TWILIO](catalog/twilio.md) | 전화/SMS 알림 | 긴급 알림 |
 | [POCKETBASE](catalog/pocketbase.md) | DB+인증+API | 빠른 백엔드 |
+| [REDIS](catalog/redis.md) | 캐시+세션+큐 | AI 챗봇, 실시간 앱 |
+| [DYNAMIC-PROMPT](catalog/dynamic-prompt.md) | 동적 프롬프트 조립 | AI 챗봇 변수 주입 |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 | 서버에 올리기 |
 
 ---

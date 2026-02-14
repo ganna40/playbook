@@ -12,11 +12,11 @@
 | [amlife](references/amlife.md) | 선택형 테스트 | BASE+DATA+SCREEN+QUIZ+GRADE+RADAR+SHARE+GA+STYLE-LIGHT | 라이트 |
 | [food](references/food.md) | 추천기 | Svelte+Vite+Tailwind+KakaoLocal+GPS | 라이트 |
 | [tarot](references/tarot.md) | AI 상담 | React+FastAPI+PostgreSQL+pgvector+Ollama+RAG | 다크 |
-| [psycho-bot](references/psycho-bot.md) | AI 챗봇 | FastAPI+PostgreSQL+pgvector+Ollama+OpenAI+Telegram | - |
+| [psycho-bot](references/psycho-bot.md) | AI 챗봇 | LLM+RAG+REDIS+DYNAMIC-PROMPT+TELEGRAM | - |
 | [telbot](references/telbot.md) | 알림 봇 | FastAPI+Telegram+Twilio | - |
 | [collab-tool](references/collab-tool.md) | 업무 도구 | Flask+PocketBase+Bootstrap5+FullCalendar+Chart.js | 듀얼 |
 | [product-j](references/product-j.md) | 데이터 분석 | Python+pandas+openpyxl | - |
 | [error-automation](references/error-automation.md) | SRE 자동화 | LLM+Telegram+Twilio+SQLite | - |
-| [human2](references/human2.md) | 페르소나 챗봇 | LLM+RAG+Telegram+pgvector+Redis+LangChain | - |
+| [human2](references/human2.md) | 페르소나 챗봇 | LLM+RAG+REDIS+DYNAMIC-PROMPT+TELEGRAM | - |
 | [dictionary](references/dictionary.md) | CLI 위자드 | Go+MySQL+VanillaJS+CSS Variables | 듀얼 |
 | [rackops](references/rackops.md) | DCIM 인프라관리 | React19+FastAPI+PostgreSQL+Redis+Celery+JWT+WebSocket | 다크 |

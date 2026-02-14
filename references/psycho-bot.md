@@ -16,10 +16,10 @@
 ## 모듈 조합
 
 ```
-LLM + RAG + TELEGRAM
+LLM + RAG + REDIS + DYNAMIC-PROMPT + TELEGRAM
 ```
 
-**추가 스택**: FastAPI, PostgreSQL/pgvector, Redis, sentence-transformers, Alembic, Docker Compose
+**추가 스택**: FastAPI, PostgreSQL/pgvector, sentence-transformers, Alembic, Docker Compose
 
 ## 아키텍처
 

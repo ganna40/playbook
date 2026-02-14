@@ -29,6 +29,8 @@
 | [TELEGRAM](catalog/telegram.md) | 텔레그램 봇 (python-telegram-bot) | 없음 |
 | [TWILIO](catalog/twilio.md) | 전화/SMS 알림 (Twilio) | 없음 |
 | [POCKETBASE](catalog/pocketbase.md) | BaaS (DB+인증+파일+API) | 없음 |
+| [REDIS](catalog/redis.md) | 캐시 + 세션 + 태스크 큐 | 없음 |
+| [DYNAMIC-PROMPT](catalog/dynamic-prompt.md) | 동적 프롬프트 빌더 (변수 주입) | LLM |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 
 ## 조합 예시
@@ -55,12 +57,12 @@ KAKAO-LOCAL + Svelte/React + Vite + Tailwind
 
 ### "AI 상담 풀스택" (tarot 같은)
 ```
-LLM + RAG + React + FastAPI + PostgreSQL/pgvector + Docker
+LLM + RAG + DYNAMIC-PROMPT + React + FastAPI + PostgreSQL/pgvector + Docker
 ```
 
 ### "AI 챗봇 (텔레그램)" (psycho-bot 같은)
 ```
-LLM + RAG + TELEGRAM + FastAPI + PostgreSQL/pgvector + Redis + Docker
+LLM + RAG + REDIS + DYNAMIC-PROMPT + TELEGRAM + FastAPI + PostgreSQL/pgvector + Docker
 ```
 
 ### "알림 봇" (telbot 같은)
@@ -68,7 +70,17 @@ LLM + RAG + TELEGRAM + FastAPI + PostgreSQL/pgvector + Redis + Docker
 TELEGRAM + TWILIO + FastAPI
 ```
 
+### "페르소나 RAG 챗봇" (human2 같은)
+```
+LLM + RAG + REDIS + DYNAMIC-PROMPT + TELEGRAM + PostgreSQL/pgvector
+```
+
 ### "업무 도구 대시보드" (collab-tool 같은)
 ```
 Flask + POCKETBASE + Bootstrap 5 + Chart.js + FullCalendar
+```
+
+### "DCIM 인프라 관리" (rackops 같은)
+```
+React 19 + Tailwind v4 + recharts + FastAPI + REDIS + PostgreSQL + Celery + JWT + WebSocket
 ```
