@@ -142,7 +142,7 @@
 기억: POCKETBASE (BaaS)
 ```
 
-**참고 레퍼런스:** [collab-tool](references/collab-tool.md) (Flask+PocketBase), [dictionary](references/dictionary.md) (Go+MySQL CLI 위자드), [rackops](references/rackops.md) (React19+FastAPI DCIM)
+**참고 레퍼런스:** [collab-tool](references/collab-tool.md) (Flask+PocketBase), [dictionary](references/dictionary.md) (Go+MySQL CLI 위자드), [rackops](references/rackops.md) (Svelte+FastAPI DCIM)
 
 ---
 
@@ -172,7 +172,7 @@
 | [TELEGRAM](catalog/telegram.md) | 텔레그램 봇 | 챗봇/알림 |
 | [TWILIO](catalog/twilio.md) | 전화/SMS 알림 | 긴급 알림 |
 | [POCKETBASE](catalog/pocketbase.md) | DB+인증+API | 빠른 백엔드 |
-| [REDIS](catalog/redis.md) | 캐시+세션+큐 | AI 챗봇, 실시간 앱 |
+| [REDIS](catalog/redis.md) | 캐시+세션+대화기억 | AI 챗봇 |
 | [DYNAMIC-PROMPT](catalog/dynamic-prompt.md) | 동적 프롬프트 조립 | AI 챗봇 변수 주입 |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 | 서버에 올리기 |
 

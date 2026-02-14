@@ -1,15 +1,14 @@
-# [REDIS] 캐시 + 세션 + 태스크 큐
+# [REDIS] 캐시 + 세션 + 대화 기억
 
-> 빠른 캐싱, 대화 히스토리, Celery 브로커가 필요할 때 사용.
-> psycho-bot(다층 캐시), human2(대화 기억), rackops(태스크 큐)에서 사용.
+> 빠른 캐싱, 대화 히스토리가 필요할 때 사용.
+> psycho-bot(다층 캐시), human2(대화 기억)에서 사용.
 
 ## 아키텍처
 
 ```
 앱 → Redis
      ├── 캐시 (임베딩, 프로필, RAG 결과)     ← psycho-bot
-     ├── 대화 히스토리 (단기 기억)             ← human2
-     └── Celery 브로커 (백그라운드 작업)       ← rackops
+     └── 대화 히스토리 (단기 기억)             ← human2
 ```
 
 ## Docker 설치
@@ -195,42 +194,6 @@ rag:{hash}:{top_k}     ← RAG 결과 (TTL 10분)
 chat_history:{chat_id} ← 대화 기록 (TTL 24시간)
 ```
 
-## 패턴 3: Celery 브로커
-
-> rackops에서 사용. Redis를 Celery 태스크 큐 브로커로 사용.
-
-```python
-# requirements.txt
-# redis>=5.2.0
-# celery>=5.4.0
-
-# celery_config.py
-from celery import Celery
-
-app = Celery(
-    "tasks",
-    broker="redis://localhost:6379/0",
-    backend="redis://localhost:6379/1",  # 결과 저장용 DB 분리
-)
-
-app.conf.update(
-    task_serializer="json",
-    accept_content=["json"],
-    result_serializer="json",
-    timezone="Asia/Seoul",
-)
-
-# tasks.py
-@app.task
-def monitor_hosts():
-    """백그라운드 호스트 모니터링."""
-    # ...
-    return {"checked": 42, "alerts": 3}
-
-# 실행
-monitor_hosts.delay()  # 비동기 실행
-```
-
 ## Graceful Fallback 패턴
 
 > Redis 없어도 앱이 죽지 않게. psycho-bot에서 사용.
@@ -283,7 +246,6 @@ prompt = build_prompt(history=history, rag_docs=docs, message=user_message)
 
 ```
 redis>=5.2.0         # async Redis 클라이언트 (redis.asyncio 포함)
-# celery>=5.4.0      # 태스크 큐 필요시
 ```
 
 ## 주의사항
@@ -292,5 +254,4 @@ redis>=5.2.0         # async Redis 클라이언트 (redis.asyncio 포함)
 - `decode_responses=False` → 바이트 반환 (바이너리/임베딩용)
 - TTL은 데이터 특성에 맞게 조절 (자주 변하는 것 = 짧게)
 - Docker에서 `redis_data` 볼륨 마운트 → 재시작해도 데이터 유지
-- Celery 쓸 때 broker와 backend DB 번호 분리 (0번, 1번)
 - Redis 없이도 작동하게 fallback 패턴 권장

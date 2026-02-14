@@ -17,16 +17,13 @@
 | **Pretendard 폰트** | 한글 웹폰트 (CDN) | salary, mz |
 | **Noto Sans KR** | Google Fonts 한글 웹폰트 | food, tarot |
 | **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife, dictionary |
-| **Svelte 5** | 컴포넌트 기반 UI 프레임워크 | food |
+| **Svelte 5** | 컴포넌트 기반 UI 프레임워크 | food, rackops |
+| **D3.js** | 데이터 시각화 (Force Graph, 토폴로지) | rackops |
+| **Lucide-Svelte** | Svelte 아이콘 팩 | rackops |
 | **React 18** | 컴포넌트 기반 UI 프레임워크 | tarot |
-| **React 19 + TypeScript** | 최신 React SPA (타입 안전) | rackops |
 | **Framer Motion** | React 애니메이션 라이브러리 | tarot |
 | **Canvas API** | 레이더 차트 그리기 | mz, amlife |
 | **html2canvas** | DOM → 이미지 캡처 | salary, pong, mz, amlife |
-| **Tailwind CSS v4** | @theme 블록 다크 테마 (빌드) | rackops |
-| **recharts** | React 차트 라이브러리 (KPI, GPU 등) | rackops |
-| **lucide-react** | React 아이콘 팩 | rackops |
-| **react-router-dom 7** | React SPA 라우팅 | rackops |
 | **CSS 애니메이션** | fadeIn, slamIn, glitch, confetti | 전체 |
 
 ### 📡 API / SDK
@@ -59,13 +56,12 @@
 | **Docker Compose** | 컨테이너 오케스트레이션 | tarot, psycho-bot |
 | **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot, telbot, error-automation, rackops |
 | **Go (net/http)** | Go 표준 라이브러리 HTTP 서버 | dictionary |
-| **Redis** | 캐시 서버 (임베딩/RAG/대화기억/태스크큐) | psycho-bot, human2, rackops |
-| **Celery 5** | 비동기 태스크 큐 (백그라운드 작업) | rackops |
-| **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot, rackops |
+| **Redis** | 캐시 서버 (임베딩/RAG/대화기억) | psycho-bot, human2 |
+| **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot |
 | **PocketBase** | BaaS (DB+인증+파일+API) | collab-tool |
-| **python-jose (JWT)** | JWT 토큰 인증 (HS256) | rackops |
-| **Pydantic v2** | 요청/응답 모델 검증 | rackops |
-| **WebSocket** | 실시간 양방향 통신 | rackops |
+| **APScheduler** | 백그라운드 주기적 스케줄러 | rackops |
+| **Paramiko** | SSH 클라이언트 (원격 명령어 실행) | rackops |
+| **PySNMP** | SNMP 클라이언트 (iLO/IPMI 정보 수집) | rackops |
 | **SCP** | SSH 파일 전송 | 배포 파이프라인 |
 
 ### 🗄️ 데이터
@@ -76,10 +72,10 @@
 | **인라인 데이터** | JS 내 직접 임베딩 | mz |
 | **URL 파라미터** | 결과 인코딩/디코딩 | mz, amlife |
 | **PostgreSQL + pgvector** | 벡터 DB (임베딩 검색) | tarot, psycho-bot, human2 |
-| **PostgreSQL** | 관계형 DB (20+ 테이블, asyncpg) | rackops |
-| **MySQL/MariaDB** | 관계형 DB (CRUD, 세션, 인증) | dictionary |
+| **MySQL/MariaDB** | 관계형 DB (CRUD, 세션, 인증) | dictionary, rackops |
 | **SQLite** | 파일 기반 경량 DB | error-automation |
 | **pandas + openpyxl** | 엑셀 데이터 분석/가공 | product-j |
+| **OpenPyXL** | 엑셀 비주얼 리포트 (셀 병합, 색상) | rackops |
 | **localStorage** | 히스토리 저장 (대시보드) | git-uploader, dictionary |
 
 ### 🎨 UI 프레임워크
@@ -111,19 +107,16 @@
 |------|:------:|:----:|:--:|:------:|:----:|:-----:|:----------:|:------:|:-----------:|:---------:|:----------:|:------:|:----------:|:-------:|
 | **프론트엔드** | | | | | | | | | | | | | | |
 | Tailwind CDN | ✅ | | | | | | | | | | | | | |
-| Tailwind v3 빌드 | | | | | ✅ | | | | | | | | | |
-| Tailwind v4 (@theme) | | | | | | | | | | | | | | ✅ |
+| Tailwind v3 빌드 | | | | | ✅ | | | | | | | | | ✅ |
 | CSS Variables | | ✅ | ✅ | | | ✅ | | | ✅ | | | | ✅ | |
 | Pretendard 폰트 | ✅ | | ✅ | | | | | | | | | | | |
 | Noto Sans KR | | | | | ✅ | ✅ | | | ✅ | | | | | |
 | Orbitron 폰트 | | | | | | | | | ✅ | | | | | |
-| Svelte 5 | | | | | ✅ | | | | | | | | | |
+| Svelte 5 | | | | | ✅ | | | | | | | | | ✅ |
+| D3.js | | | | | | | | | | | | | | ✅ |
+| Lucide-Svelte | | | | | | | | | | | | | | ✅ |
 | React 18 | | | | | | ✅ | | | | | | | | |
-| React 19 + TypeScript | | | | | | | | | | | | | | ✅ |
 | Framer Motion | | | | | | ✅ | | | | | | | | |
-| recharts | | | | | | | | | | | | | | ✅ |
-| lucide-react | | | | | | | | | | | | | | ✅ |
-| react-router-dom 7 | | | | | | | | | | | | | | ✅ |
 | Bootstrap 5 | | | | | | | | | ✅ | | | | | |
 | Glassmorphism | | | | | | | | | ✅ | | | | | |
 | Vanilla JS SPA | | | | | | | | | | | | | ✅ | |
@@ -149,20 +142,19 @@
 | Go (net/http) | | | | | | | | | | | | | ✅ | |
 | PocketBase (BaaS) | | | | | | | | | ✅ | | | | | |
 | PostgreSQL + pgvector | | | | | | ✅ | ✅ | | | | | ✅ | | |
-| PostgreSQL (단독) | | | | | | | | | | | | | | ✅ |
-| MySQL/MariaDB | | | | | | | | | | | | | ✅ | |
+| MySQL/MariaDB | | | | | | | | | | | | | ✅ | ✅ |
 | SQLite | | | | | | | | | | | ✅ | | | |
-| Redis | | | | | | | ✅ | | | | | ✅ | | ✅ |
-| Celery 5 | | | | | | | | | | | | | | ✅ |
+| Redis | | | | | | | ✅ | | | | | ✅ | | |
+| APScheduler | | | | | | | | | | | | | | ✅ |
+| Paramiko (SSH) | | | | | | | | | | | | | | ✅ |
+| PySNMP (SNMP) | | | | | | | | | | | | | | ✅ |
+| OpenPyXL (엑셀 리포트) | | | | | | | | | | | | | | ✅ |
 | pandas + openpyxl | | | | | | | | | | ✅ | | | | |
 | Docker Compose | | | | | | ✅ | ✅ | | | | | | | |
 | RAG 파이프라인 | | | | | | ✅ | ✅ | | | | | ✅ | | |
 | SSE 스트리밍 | | | | | | ✅ | ✅ | | | | | | | |
-| Alembic (마이그레이션) | | | | | | | ✅ | | | | | | | ✅ |
-| SQLAlchemy 2.0 (async) | | | | | | ✅ | ✅ | | | | | | | ✅ |
-| JWT (python-jose) | | | | | | | | | | | | | | ✅ |
-| Pydantic v2 | | | | | | | | | | | | | | ✅ |
-| WebSocket | | | | | | | | | | | | | | ✅ |
+| Alembic (마이그레이션) | | | | | | | ✅ | | | | | | | |
+| SQLAlchemy 2.0 (async) | | | | | | ✅ | ✅ | | | | | | | |
 | bcrypt (세션 인증) | | | | | | | | | | | | | ✅ | |
 | **앱 유형** | | | | | | | | | | | | | | |
 | 계산기 (입력→계산) | ✅ | | | | | | | | | | | | | |
@@ -227,13 +219,11 @@
 | 구문 하이라이팅 | | | | | | | | | | | | | ✅ | |
 | go:embed 단일 바이너리 | | | | | | | | | | | | | ✅ | |
 | 비주얼 랙 다이어그램 | | | | | | | | | | | | | | ✅ |
-| GPU MIG 관리 | | | | | | | | | | | | | | ✅ |
-| 인프라 액션 (IPMI/Evacuate) | | | | | | | | | | | | | | ✅ |
-| 실시간 대시보드 (KPI) | | | | | | | | | | | | | | ✅ |
-| i18n (한국어/영어) | | | | | | | | | | | | | | ✅ |
-| 감사 로그 (audit_logs) | | | | | | | | | | | | | | ✅ |
-| AI 인시던트 분석 | | | | | | | | | | | | | | ✅ |
-| 역할 기반 접근 (RBAC) | | | | | | | | | | | | | | ✅ |
+| 네트워크 토폴로지 (D3.js) | | | | | | | | | | | | | | ✅ |
+| SSH/SNMP 자동 감지 | | | | | | | | | | | | | | ✅ |
+| SSH Console (웹 터미널) | | | | | | | | | | | | | | ✅ |
+| 비주얼 엑셀 리포트 | | | | | | | | | | | | | | ✅ |
+| 드래그&드롭 (랙 장비 이동) | | | | | | | | | | | | | | ✅ |
 | **테마** | | | | | | | | | | | | | | |
 | 라이트 | ✅ | | ✅ | ✅ | ✅ | | | | ✅ | | | | ✅ | |
 | 다크 | | ✅ | | | | ✅ | | | ✅ | | | | ✅ | ✅ |
@@ -485,22 +475,21 @@ DB:     MySQL (9개 테이블)
 ```
 유형: 업무 도구 (DCIM — 데이터센터 인프라 관리)
 URL:  (내부 서비스)
-조합: React 19 + TypeScript + Vite 7 + Tailwind v4 + recharts
-      + FastAPI + SQLAlchemy(async) + Alembic + PostgreSQL + Redis + Celery
-      + JWT 인증 + WebSocket + i18n(ko/en)
+조합: Svelte (Vite) + Tailwind CSS + D3.js + Lucide-Svelte
+      + FastAPI + APScheduler + Paramiko (SSH) + PySNMP (SNMP) + OpenPyXL
+      + MySQL
 
-비주얼 랙 다이어그램 (42U/45U 가변 높이)
-  → GPU MIG 관리 (풀/디바이스/슬라이스/할당/테넌트 쿼타)
-  → 인프라 액션 (Evacuate, IPMI Reboot/Power, VM Migrate, Node Drain)
-  → 실시간 대시보드 (KPI, 랙 맵, GPU 사용률, 이벤트)
-  → AI 인시던트 분석 + 감사 로그
+비주얼 랙 다이어그램 (42U/45U 가변 높이, 드래그&드롭, PDU)
+  → SSH/SNMP 실시간 모니터링 (1분 폴링, 전력/온도/인터페이스)
+  → Auto-Detect (IP/ID/PW → 모델명/시리얼 자동 수집)
+  → 네트워크 토폴로지 (D3.js Force Graph, 줌/팬/드래그)
+  → SSH Console (웹에서 명령어 실행)
+  → 비주얼 엑셀 리포트 (셀 병합 + 색상, 위치/랙별 필터링)
 
-프론트: React 19, TypeScript, Tailwind v4 (@theme), recharts, lucide-react
-백엔드: FastAPI, SQLAlchemy 2.0(async), Alembic, Celery 5, Redis 5
-DB:     PostgreSQL (20+ 테이블, asyncpg)
-인증:   JWT (HS256, 24시간) + 역할 (admin/operator/viewer)
-API:    49개 REST 엔드포인트 + WebSocket
-특수:   비주얼 랙, GPU MIG, IPMI, i18n, 감사 로그, 다중 알림 채널
+프론트: Svelte (Vite), Tailwind CSS, D3.js, Lucide-Svelte
+백엔드: FastAPI, Uvicorn, APScheduler, Paramiko, PySNMP, OpenPyXL
+DB:     MySQL (locations, racks, physical_devices)
+특수:   비주얼 랙, 네트워크 토폴로지, SSH/SNMP 모니터링, 엑셀 리포트
 ```
 
 ---

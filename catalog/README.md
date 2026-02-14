@@ -29,7 +29,7 @@
 | [TELEGRAM](catalog/telegram.md) | 텔레그램 봇 (python-telegram-bot) | 없음 |
 | [TWILIO](catalog/twilio.md) | 전화/SMS 알림 (Twilio) | 없음 |
 | [POCKETBASE](catalog/pocketbase.md) | BaaS (DB+인증+파일+API) | 없음 |
-| [REDIS](catalog/redis.md) | 캐시 + 세션 + 태스크 큐 | 없음 |
+| [REDIS](catalog/redis.md) | 캐시 + 세션 + 대화 기억 | 없음 |
 | [DYNAMIC-PROMPT](catalog/dynamic-prompt.md) | 동적 프롬프트 빌더 (변수 주입) | LLM |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 
@@ -82,5 +82,5 @@ Flask + POCKETBASE + Bootstrap 5 + Chart.js + FullCalendar
 
 ### "DCIM 인프라 관리" (rackops 같은)
 ```
-React 19 + Tailwind v4 + recharts + FastAPI + REDIS + PostgreSQL + Celery + JWT + WebSocket
+Svelte + Tailwind CSS + D3.js + FastAPI + APScheduler + Paramiko + PySNMP + OpenPyXL + MySQL
 ```

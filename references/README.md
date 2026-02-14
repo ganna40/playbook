@@ -19,4 +19,4 @@
 | [error-automation](references/error-automation.md) | SRE 자동화 | LLM+Telegram+Twilio+SQLite | - |
 | [human2](references/human2.md) | 페르소나 챗봇 | LLM+RAG+REDIS+DYNAMIC-PROMPT+TELEGRAM | - |
 | [dictionary](references/dictionary.md) | CLI 위자드 | Go+MySQL+VanillaJS+CSS Variables | 듀얼 |
-| [rackops](references/rackops.md) | DCIM 인프라관리 | React19+FastAPI+PostgreSQL+Redis+Celery+JWT+WebSocket | 다크 |
+| [rackops](references/rackops.md) | DCIM 인프라관리 | Svelte+D3.js+FastAPI+Paramiko+PySNMP+MySQL | 다크 |
