@@ -192,10 +192,12 @@ sudo systemctl restart apache2
 
 ## 설치 후 로드맵
 
+> 1~2번은 [WordPress 도메인+SSL 레시피](recipes/wordpress-domain-ssl.md) 참조.
+
 | 순서 | 작업 | 비용 |
 |------|------|------|
-| 1 | 도메인 연결 (가비아/Namecheap) | 연 1~2만원 |
-| 2 | HTTPS 설정 (Let's Encrypt 무료 SSL) | 무료 |
+| 1 | 도메인 연결 + DNS 설정 (Cloudflare 추천) | 연 ~13,000원 |
+| 2 | HTTPS 설정 (Cloudflare SSL 자동 적용) | 무료 |
 | 3 | Google Search Console 등록 | 무료 |
 | 4 | SEO 맞춤 글 10개+ 작성 | - |
 | 5 | Google AdSense 신청 | 무료 |

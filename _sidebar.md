@@ -50,6 +50,7 @@
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)
+  * [WordPress 도메인+SSL](recipes/wordpress-domain-ssl.md)
   * [Flask 대시보드](recipes/flask-dashboard.md)
   * [서버→GitHub 파이프라인](recipes/server-to-github.md)
   * [React+Vite+Tailwind v4](recipes/react-vite-tailwind.md)
