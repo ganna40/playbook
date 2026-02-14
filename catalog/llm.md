@@ -1,4 +1,4 @@
-# [LLM] LLM 연동 (Ollama / OpenRouter)
+# [LLM] LLM 연동 (Ollama / OpenAI / OpenRouter / GGUF)
 
 > AI 텍스트 생성이 필요할 때 사용.
 > Ollama(로컬 무료) / OpenRouter(클라우드 유료) 듀얼 프로바이더 패턴.

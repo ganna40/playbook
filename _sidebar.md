@@ -21,7 +21,7 @@
   * [URL-ENCODE - 결과 URL 공유](catalog/url-encode.md)
   * [STYLE-DARK - 다크 테마](catalog/style-dark.md)
   * [STYLE-LIGHT - 라이트 테마](catalog/style-light.md)
-  * [LLM - Ollama/OpenRouter](catalog/llm.md)
+  * [LLM - Ollama/OpenAI/GGUF](catalog/llm.md)
   * [RAG - 벡터 검색 파이프라인](catalog/rag.md)
   * [TELEGRAM - 텔레그램 봇](catalog/telegram.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
@@ -40,8 +40,11 @@
   * [Flask 대시보드](recipes/flask-dashboard.md)
   * [서버→GitHub 파이프라인](recipes/server-to-github.md)
   * [React+Vite+Tailwind v4](recipes/react-vite-tailwind.md)
+  * [GitHub 업로드 가이드](recipes/github-upload.md)
 
 * **삽질 방지**
   * [Tailwind CSS v4](gotchas/tailwind-v4.md)
   * [Windows + SSH](gotchas/windows-ssh.md)
   * [CSS Grid/Flex 오버플로우](gotchas/css-overflow.md)
+  * [EC2 OOM Kill + Swap + MySQL](gotchas/ec2-oom-swap.md)
+  * [EC2 보안 (feroxbuster 차단)](gotchas/ec2-security.md)
