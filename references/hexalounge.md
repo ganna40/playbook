@@ -47,6 +47,7 @@ Django 6 (WSGI)
 | **토스트 알림** | fixed 오버레이 알림 (콘텐츠 밀림 방지) |
 | **커스텀 뱃지 툴팁** | CSS ::after 툴팁 (data-tip 속성, JS 불필요) |
 | **Django Admin 테마** | Toss 디자인으로 Admin 인터페이스 커스터마이징 |
+| **랜딩 심사 대기 카운트** | 비로그인 랜딩 페이지에 실시간 심사 대기 인원 수 표시 (Q 필터 OR 조건) |
 | **Management Commands** | generate_recommendations (매일 18시), expire_matches (매일 0시) |
 
 ## 핵심 API/기술
