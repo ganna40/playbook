@@ -21,6 +21,8 @@
   * [URL-ENCODE - 결과 URL 공유](catalog/url-encode.md)
   * [STYLE-DARK - 다크 테마](catalog/style-dark.md)
   * [STYLE-LIGHT - 라이트 테마](catalog/style-light.md)
+  * [LLM - Ollama/OpenRouter](catalog/llm.md)
+  * [RAG - 벡터 검색 파이프라인](catalog/rag.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
 
 * **레퍼런스 (실제 앱)**
