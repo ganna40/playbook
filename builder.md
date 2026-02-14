@@ -5,7 +5,7 @@
 
 ---
 
-## 앱 타입 6종
+## 앱 타입 7종
 
 | 타입 | 뭘 만드는 건지 | 대표 작품 | 난이도 |
 |------|---------------|-----------|--------|
@@ -15,6 +15,7 @@
 | **AI 챗봇** | AI가 대화하는 서비스 | tarot, psycho-bot | ★★★ |
 | **알림 봇** | 자동 알림/경고 시스템 | telbot | ★★☆ |
 | **업무 도구** | 팀 협업 대시보드 | collab-tool | ★★★ |
+| **커뮤니티 플랫폼** | 인증+게시판+매칭+채팅 | hexalounge | ★★★ |
 
 ---
 
@@ -146,6 +147,32 @@
 
 ---
 
+## 타입 7: 커뮤니티 플랫폼
+
+> "인증으로 신뢰도 쌓고, 게시판에서 소통하고, 매칭으로 만나는 서비스"
+
+```
+뼈대: DJANGO (ORM, Admin, Template, Signal, Middleware)
+두뇌: 인증 심사 + 매칭 알고리즘 + 접근 제어
+얼굴: Tailwind CDN + HTMX (부분 교체) + Canvas RADAR
+입출력: HTMX (좋아요/댓글/무한스크롤) + JSON 폴링 (채팅)
+기억: SQLite (개발) → PostgreSQL (프로덕션)
+```
+
+**핵심 패턴:**
+
+| 패턴 | 설명 |
+|------|------|
+| 뱃지 시스템 | 서류 업로드 → Admin 심사 → 자동 뱃지 부여 (Signal) |
+| 접근 제어 | 게시판별 조건 (티어/성별/인증) → Service 레이어 분리 |
+| 매칭 추천 | Management Command (Cron) → 점수 기반 추천 3명 |
+| HTMX 부분 교체 | full page vs partial 분기 (`HX-Request` 헤더 감지) |
+| JSON 폴링 채팅 | 2초 간격 fetch → 새 메시지 append → bubble 애니메이션 |
+
+**참고 레퍼런스:** [hexalounge](references/hexalounge.md) (Django+HTMX 인증 매칭 커뮤니티)
+
+---
+
 ## 부품 역할 한눈에
 
 | 부품 | 한마디 | 언제 쓰냐 |
@@ -174,6 +201,8 @@
 | [POCKETBASE](catalog/pocketbase.md) | DB+인증+API | 빠른 백엔드 |
 | [REDIS](catalog/redis.md) | 캐시+세션+대화기억 | AI 챗봇 |
 | [DYNAMIC-PROMPT](catalog/dynamic-prompt.md) | 동적 프롬프트 조립 | AI 챗봇 변수 주입 |
+| [DJANGO](catalog/django.md) | Django 풀스택 | 서버 렌더링 앱 |
+| [HTMX](catalog/htmx.md) | 서버 HTML 부분 교체 | SPA 같은 UX |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 | 서버에 올리기 |
 
 ---
@@ -200,7 +229,7 @@
 playbook의 조립 가이드를 보고
 "___" 앱을 만들어줘.
 
-타입: [바이럴 테스트 / 계산기 / 추천기 / AI 챗봇 / 알림 봇 / 업무 도구]
+타입: [바이럴 테스트 / 계산기 / 추천기 / AI 챗봇 / 알림 봇 / 업무 도구 / 커뮤니티 플랫폼]
 부품: [필요한 모듈 나열]
 참고: [가장 비슷한 레퍼런스]
 테마: [다크 / 라이트]

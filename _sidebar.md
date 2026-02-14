@@ -29,6 +29,8 @@
   * [POCKETBASE - BaaS](catalog/pocketbase.md)
   * [REDIS - 캐시/세션/큐](catalog/redis.md)
   * [DYNAMIC-PROMPT - 동적 프롬프트](catalog/dynamic-prompt.md)
+  * [DJANGO - Django 풀스택](catalog/django.md)
+  * [HTMX - 서버 렌더링 인터랙션](catalog/htmx.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
 
 * **레퍼런스 (실제 앱)**
@@ -47,6 +49,7 @@
   * [human2 - 페르소나RAG챗봇](references/human2.md)
   * [dictionary - CLI위자드](references/dictionary.md)
   * [rackops - DCIM인프라관리](references/rackops.md)
+  * [hexalounge - 인증매칭커뮤니티](references/hexalounge.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)
@@ -55,6 +58,7 @@
   * [서버→GitHub 파이프라인](recipes/server-to-github.md)
   * [React+Vite+Tailwind v4](recipes/react-vite-tailwind.md)
   * [GitHub 업로드 가이드](recipes/github-upload.md)
+  * [Django+HTMX+Tailwind](recipes/django-htmx-tailwind.md)
 
 * **삽질 방지**
   * [Tailwind CSS v4](gotchas/tailwind-v4.md)

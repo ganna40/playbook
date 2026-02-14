@@ -31,6 +31,8 @@
 | [POCKETBASE](catalog/pocketbase.md) | BaaS (DB+인증+파일+API) | 없음 |
 | [REDIS](catalog/redis.md) | 캐시 + 세션 + 대화 기억 | 없음 |
 | [DYNAMIC-PROMPT](catalog/dynamic-prompt.md) | 동적 프롬프트 빌더 (변수 주입) | LLM |
+| [DJANGO](catalog/django.md) | Django 풀스택 프레임워크 | 없음 |
+| [HTMX](catalog/htmx.md) | 서버 렌더링 인터랙션 | 서버 (Django/Flask) |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 
 ## 조합 예시
@@ -83,4 +85,9 @@ Flask + POCKETBASE + Bootstrap 5 + Chart.js + FullCalendar
 ### "DCIM 인프라 관리" (rackops 같은)
 ```
 Svelte + Tailwind CSS + D3.js + FastAPI + APScheduler + Paramiko + PySNMP + OpenPyXL + MySQL
+```
+
+### "커뮤니티 플랫폼" (hexalounge 같은)
+```
+DJANGO + HTMX + Tailwind CDN + Alpine.js + Canvas RADAR + GRADE
 ```
