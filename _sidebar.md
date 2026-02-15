@@ -31,6 +31,8 @@
   * [DYNAMIC-PROMPT - 동적 프롬프트](catalog/dynamic-prompt.md)
   * [DJANGO - Django 풀스택](catalog/django.md)
   * [HTMX - 서버 렌더링 인터랙션](catalog/htmx.md)
+  * [PORTONE - PG 결제](catalog/portone.md)
+  * [PILLOW-OG - 동적 OG 이미지](catalog/pillow-og.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
 
 * **레퍼런스 (실제 앱)**
@@ -50,6 +52,7 @@
   * [dictionary - CLI위자드](references/dictionary.md)
   * [rackops - DCIM인프라관리](references/rackops.md)
   * [hexalounge - 인증매칭커뮤니티](references/hexalounge.md)
+  * [hexaconsulting - 연애컨설팅퍼널](references/hexaconsulting.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)

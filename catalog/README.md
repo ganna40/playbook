@@ -33,6 +33,8 @@
 | [DYNAMIC-PROMPT](catalog/dynamic-prompt.md) | 동적 프롬프트 빌더 (변수 주입) | LLM |
 | [DJANGO](catalog/django.md) | Django 풀스택 프레임워크 | 없음 |
 | [HTMX](catalog/htmx.md) | 서버 렌더링 인터랙션 | 서버 (Django/Flask) |
+| [PORTONE](catalog/portone.md) | PG 결제 (PortOne/아임포트) | 서버 (Django/Flask) |
+| [PILLOW-OG](catalog/pillow-og.md) | 서버사이드 OG 이미지 동적 생성 | 서버 + Pillow |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 
 ## 조합 예시
@@ -90,4 +92,9 @@ Svelte + Tailwind CSS + D3.js + FastAPI + APScheduler + Paramiko + PySNMP + Open
 ### "커뮤니티 플랫폼" (hexalounge 같은)
 ```
 DJANGO + HTMX + Tailwind CDN + Alpine.js + Canvas RADAR + GRADE
+```
+
+### "세일즈 퍼널" (hexaconsulting 같은)
+```
+DJANGO + HTMX + Tailwind CDN + Alpine.js + RADAR + GRADE + PILLOW-OG + PORTONE + SHARE + DEPLOY
 ```

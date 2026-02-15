@@ -21,3 +21,4 @@
 | [dictionary](references/dictionary.md) | CLI 위자드 | Go+MySQL+VanillaJS+CSS Variables | 듀얼 |
 | [rackops](references/rackops.md) | DCIM 인프라관리 | Svelte+D3.js+FastAPI+Paramiko+PySNMP+MySQL | 다크 |
 | [hexalounge](references/hexalounge.md) | 커뮤니티 플랫폼 | Django+HTMX+Tailwind CDN+Alpine.js+Canvas+3-Tier매칭+Elo | 라이트 |
+| [hexaconsulting](references/hexaconsulting.md) | 세일즈 퍼널 | DJANGO+HTMX+Tailwind CDN+Alpine.js+RADAR+PILLOW-OG+PORTONE+DEPLOY | 라이트 |

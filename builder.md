@@ -16,6 +16,7 @@
 | **알림 봇** | 자동 알림/경고 시스템 | telbot | ★★☆ |
 | **업무 도구** | 팀 협업 대시보드 | collab-tool | ★★★ |
 | **커뮤니티 플랫폼** | 인증+게시판+매칭+채팅 | hexalounge | ★★★ |
+| **세일즈 퍼널** | 진단→결과→랜딩→결제 | hexaconsulting | ★★☆ |
 
 ---
 
@@ -178,6 +179,35 @@
 
 ---
 
+## 타입 8: 세일즈 퍼널
+
+> "바이럴 진단 → 찌그러진 육각형 결과 → 전문가 랜딩 → PG 결제"
+
+```
+뼈대: DJANGO (ORM, Admin, Template) + HTMX (파셜 스왑)
+두뇌: 진단 엔진 (점수 계산 + 등급 판정 + 불균형 감지) + 결제 검증
+얼굴: Tailwind CDN + Canvas RADAR + PILLOW-OG + REVEAL
+입출력: SHARE (카카오+텔레그램+X+인스타+html2canvas) + PORTONE (결제)
+기억: SQLite (진단 세션, 상품, 주문)
+```
+
+**핵심 패턴:**
+
+| 패턴 | 설명 |
+|------|------|
+| HTMX 파셜 스왑 | 1문항씩 hx-post → 프로그레스 바+문항 함께 교체 |
+| HX-Redirect | 마지막 문항 후 full page 이동 (HTMX 중첩 방지) |
+| 수능 등급 매핑 | 점수(0~100) → 분위표 기준 1~9등급 |
+| 불균형 감지 | max-min gap ≥ 40 → 특수 라벨 ("스펙형 인간") |
+| Pillow 동적 OG | 사용자별 결과 PNG 서버사이드 렌더링 |
+| IP 중복제거 | 참여자 수 카운팅 (IP 기반 distinct) |
+| PortOne 결제 | iamport.js → 서버 금액 검증 → 주문 상태 업데이트 |
+| FOMO 세일즈 | 타이머 + 할인율 + 제한 수량 연출 |
+
+**참고 레퍼런스:** [hexaconsulting](references/hexaconsulting.md) (Django+HTMX 연애 컨설팅 퍼널)
+
+---
+
 ## 부품 역할 한눈에
 
 | 부품 | 한마디 | 언제 쓰냐 |
@@ -208,6 +238,8 @@
 | [DYNAMIC-PROMPT](catalog/dynamic-prompt.md) | 동적 프롬프트 조립 | AI 챗봇 변수 주입 |
 | [DJANGO](catalog/django.md) | Django 풀스택 | 서버 렌더링 앱 |
 | [HTMX](catalog/htmx.md) | 서버 HTML 부분 교체 | SPA 같은 UX |
+| [PORTONE](catalog/portone.md) | PG 결제 | 상품 결제 |
+| [PILLOW-OG](catalog/pillow-og.md) | 동적 OG 이미지 | 개인화 공유 썸네일 |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 | 서버에 올리기 |
 
 ---
