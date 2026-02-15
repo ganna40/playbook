@@ -190,8 +190,12 @@
 | 성별 분기 | | ✅ | | ✅ | | | | | | | | | | | ✅ |
 | 6각형 인증 시스템 | | | | | | | | | | | | | | | ✅ |
 | 뱃지 기반 접근 제어 | | | | | | | | | | | | | | | ✅ |
-| 일일 매칭 추천 (3명) | | | | | | | | | | | | | | | ✅ |
+| 3-Tier 매칭 (Mirror/Dream/Destiny) | | | | | | | | | | | | | | | ✅ |
+| 인기도 Elo (Laplace smoothing) | | | | | | | | | | | | | | | ✅ |
 | 양방향 좋아요 매칭 | | | | | | | | | | | | | | | ✅ |
+| Admin 매칭 시뮬레이터 | | | | | | | | | | | | | | | ✅ |
+| 포인트/월렛 시스템 | | | | | | | | | | | | | | | ✅ |
+| Canvas 파티클 애니메이션 | | | | | | | | | | | | | | | ✅ |
 | HTMX 부분 교체 | | | | | | | | | | | | | | | ✅ |
 | JSON 폴링 채팅 | | | | | | | | | | | | | | | ✅ |
 | 대댓글 (재귀 댓글) | | | | | | | | | | | | | | | ✅ |
@@ -512,21 +516,25 @@ DB:     MySQL (locations, racks, physical_devices)
 
 ### hexalounge - 인증 기반 소셜 매칭 커뮤니티
 ```
-유형: 커뮤니티 플랫폼 (인증+게시판+매칭+채팅)
+유형: 커뮤니티 플랫폼 (인증+게시판+매칭+채팅+포인트)
 GitHub: github.com/ganna40/hexalounge
 조합: DJANGO + HTMX + Tailwind CDN + Alpine.js + Canvas RADAR + GRADE
 
 6가지 인증 (연봉/외모/나이/직장/학벌/체형/MBTI)
-  → Admin 심사 → 뱃지 자동 부여 → 헥사그램
+  → Admin 심사 → 뱃지 자동 부여 (등급 세분화: 외모S/A/B, 자산Lv.1~3)
   → 뱃지 기반 게시판 접근 제어 (public/tier/gender/verified)
-  → 일일 매칭 추천 3명 (MBTI궁합+지역+활동점수)
+  → 3-Tier 매칭: Mirror(±5점) / Dream(+5~20점) / Destiny(MBTI궁합)
+  → 인기도 Elo (Laplace smoothing) + spec 합산 점수
   → 양방향 좋아요 → 매칭 성사 → 72시간 1:1 채팅
+  → 매칭 성사 Canvas 파티클 애니메이션
 
-프론트: Tailwind CDN, HTMX 2.0, Alpine.js, Canvas (레이더)
-백엔드: Django 6, Django ORM (SQLite/PostgreSQL), Signals, Middleware
-앱:     accounts, verification, community, matching, chat
+프론트: Tailwind CDN, HTMX 2.0, Alpine.js, Canvas (레이더+파티클)
+백엔드: Django 6, Django ORM (SQLite), Signals, Middleware
+앱:     accounts, verification, community, matching, chat, points
+서비스: badge_service, board_access, matching_service, wallet_service
+Admin:  매칭 시뮬레이터 (3-Tier 결과 + 대시보드 통계 8개)
 디자인: Toss 디자인 시스템 (라이트)
-특수:   HTMX 부분교체, JSON폴링채팅, 대댓글, 뱃지CSS툴팁
+특수:   3-Tier 매칭, Elo 인기도, 포인트 월렛, 고스트 모드, 보낸/받은 관심
 ```
 
 ---

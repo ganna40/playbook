@@ -20,4 +20,4 @@
 | [human2](references/human2.md) | 페르소나 챗봇 | LLM+RAG+REDIS+DYNAMIC-PROMPT+TELEGRAM | - |
 | [dictionary](references/dictionary.md) | CLI 위자드 | Go+MySQL+VanillaJS+CSS Variables | 듀얼 |
 | [rackops](references/rackops.md) | DCIM 인프라관리 | Svelte+D3.js+FastAPI+Paramiko+PySNMP+MySQL | 다크 |
-| [hexalounge](references/hexalounge.md) | 커뮤니티 플랫폼 | Django+HTMX+Tailwind CDN+Alpine.js+Canvas RADAR | 라이트 |
+| [hexalounge](references/hexalounge.md) | 커뮤니티 플랫폼 | Django+HTMX+Tailwind CDN+Alpine.js+Canvas+3-Tier매칭+Elo | 라이트 |

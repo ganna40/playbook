@@ -165,9 +165,14 @@
 |------|------|
 | 뱃지 시스템 | 서류 업로드 → Admin 심사 → 자동 뱃지 부여 (Signal) |
 | 접근 제어 | 게시판별 조건 (티어/성별/인증) → Service 레이어 분리 |
-| 매칭 추천 | Management Command (Cron) → 점수 기반 추천 3명 |
+| 3-Tier 매칭 | Mirror(안정감) / Dream(상향) / Destiny(운명) 3명 추천 |
+| 인기도 Elo | Laplace smoothing `(좋아요+1)/(좋아요+패스+2)` |
+| UserInteraction | LIKE/PASS/MATCH 모든 상호작용 추적 → 인기도 실시간 갱신 |
+| Admin 시뮬레이터 | get_urls() 오버라이드 → 커스텀 뷰에서 매칭 결과 시뮬레이션 |
+| 포인트 월렛 | 충전/소비 트랜잭션 + 잔액 관리 (Service 레이어 분리) |
 | HTMX 부분 교체 | full page vs partial 분기 (`HX-Request` 헤더 감지) |
 | JSON 폴링 채팅 | 2초 간격 fetch → 새 메시지 append → bubble 애니메이션 |
+| Canvas 파티클 | 매칭 성사 시 하트/별/원 버스트 애니메이션 |
 
 **참고 레퍼런스:** [hexalounge](references/hexalounge.md) (Django+HTMX 인증 매칭 커뮤니티)
 
