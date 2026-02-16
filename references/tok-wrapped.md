@@ -65,6 +65,28 @@ tok-wrapped/
 └── sample.txt     # 테스트용 샘플 데이터
 ```
 
+## Web Worker 구조
+
+JS는 싱글 스레드라 무거운 파싱을 메인에서 돌리면 UI가 멈춤. Web Worker로 별도 스레드에서 처리.
+
+```
+메인 스레드 (app.js)              Worker 스레드 (worker.js)
+─────────────────────            ─────────────────────────
+UI 렌더링, 버튼, 애니메이션        파싱 + 통계 + MBTI + 관계유형
+        │                                  │
+        ├── postMessage(file) ──────────▶  │  파일 받아서 처리
+        │  ◀──── postMessage(progress) ────┤  "32% ㅋㅋㅋ 세는 중..."
+        │  ◀──── postMessage(complete) ────┤  결과 객체 전달
+   카드 렌더링 시작                     worker.terminate()
+```
+
+| 특징 | 설명 |
+|------|------|
+| 별도 스레드 | 메인 UI 안 멈춤, 로딩 애니메이션 계속 동작 |
+| postMessage 통신 | 메인↔Worker 간 메시지로만 데이터 주고받음 |
+| DOM 접근 불가 | Worker에서 document, window 사용 못함 |
+| 서버 불필요 | 브라우저 내장 기능, 백엔드 없이 동작 |
+
 ## MBTI 추정 엔진 구조
 
 ### 4레이어 스코어링 (worker.js)
