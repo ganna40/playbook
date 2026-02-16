@@ -133,9 +133,9 @@ const RE_MOBILE = /^(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일\s+(오전|오후)\s
 const RE_PC = /^\[(.+?)\]\s*\[(오전|오후)\s*(\d{1,2}):(\d{2})\]\s*(.+)/;
 ```
 
-## 관계 유형 추정 엔진 (8계층 신호)
+## 관계 유형 추정 엔진
 
-### 5종 관계 유형
+### 1:1 대화 — 8계층 신호, 5종 유형
 
 | 코드 | 한글 | 핵심 구분자 |
 |------|------|------------|
@@ -145,8 +145,7 @@ const RE_PC = /^\[(.+?)\]\s*\[(오전|오후)\s*(\d{1,2}):(\d{2})\]\s*(.+)/;
 | FAMILY | 가족 | 가족 호칭 + 존댓말 비대칭 + 식사/안전 체크 루틴 |
 | WORK | 직장 | 양방향 존댓말 + 업무 키워드 + 9-18시 시간대 집중 |
 
-### 8계층 신호 + 가중치
-
+**8계층 가중치:**
 ```
                 L1존대 L2호칭 L3의례 L4친밀 L5시간 L6역학 L7언어 L8진화
 LOVER:            5     20     15     20     10     10     10     10
@@ -156,41 +155,59 @@ FAMILY:          20     25     20     10     10      5      5      5
 WORK:            25     20     15      5     20      5      5      5
 ```
 
+### 그룹채팅 — 5개 신호, 3종 유형
+
+| 코드 | 한글 | 핵심 구분자 |
+|------|------|------------|
+| FRIEND | 친구 모임 | 반말 + "야" 호칭 + 비속어 허용 + 심야대화 |
+| FAMILY | 가족방 | 가족 호칭(엄마/아빠) + 식사체크 + 존댓말 혼재 |
+| WORK | 직장 단톡 | 님 호칭 + 존댓말 높음 + 업무 키워드 + 9-18시 집중 |
+
+**5개 신호 가중치:**
+```
+              S1존대  S2호칭  S3의례  S4시간  S5언어
+FRIEND:        10     20     10     20     40
+FAMILY:        25     30     25     10     10
+WORK:          30     25     15     25      5
+```
+
 ### 핵심 알고리즘
 
 ```javascript
+// === 1:1 (computeRelationship) ===
 // 1. 메시지 1회 순회로 8계층 데이터 동시 수집
 // L1: 존대법 비대칭 — /(요|니다|세요|시오)[\s.!?~…ㅋㅎ]*$/
-// L2: 호칭 분석 — 문두 12자에서 로맨틱/가족/직장/친구 호칭 + 하트이모지
-// L3: 대화 의례 — 굿모닝(6-9시)/굿나잇(22-2시) 주당빈도, 식사/안전/뭐해/업무
-// L4: 친밀도 계층 — L5(사랑해,결혼) > L4(보고싶) > L3(힘들었어) + 신체+질투
+// L2: 호칭 분석 — 문두 12자 startsWith 로맨틱/가족/직장/친구 호칭 + 하트(주당빈도)
+// L3: 대화 의례 — 굿모닝/굿나잇 주당빈도, 식사/안전/뭐해/업무 (인티머시 게이트)
+// L4: 친밀도 계층 — 존재 신호(0.5) + 주당빈도 보너스 (사랑해 1번 = 강한 신호)
 // L5: 시간대 지문 — 24h분포 코사인유사도 vs 유형별 이상프로필 + 주말/심야
 // L6: 상호작용 역학 — 메시지량/길이 균형 + 120분+세션 비율 + 일평균 세션
-// L7: 언어 허용 — 비속어(친구) / 돈(가족) / 애정디스(연인) / 전부낮음(직장)
+// L7: 언어 허용 — 비속어(친구) / 돈(가족) / 애정디스(연인)
 // L8: 관계 진화 — 3등분 페이즈별 존댓말·친밀도 변화 추적
-
 // 2. 각 계층 0~1 스코어 → 유형별 가중치 적용 → 0~100 최종 점수
-// 3. 로맨틱 신호 부재 시 LOVER 0.6x 감쇠 (L2+L4 핵심지표 없으면 연인 불가)
-// 4. LOVER L3 인티머시 게이트 (의례만으로 연인 과대평가 방지)
+// 3. 교차 감쇠: 로맨틱 신호 부재 → LOVER 0.6x / 로맨틱 신호 존재 → WORK 0.4x
+
+// === 그룹 (computeGroupRelationship) ===
+// 메시지 1회 순회 → 존대법 비율, 호칭, 의례, 시간대 코사인유사도, 언어 수집
+// 3종(FRIEND/FAMILY/WORK) 가중합산 → 0~100 점수
 ```
 
 ### 출력 구조
 
 ```javascript
+// 1:1
 deepAnalysis.relationshipType = {
-  type: 'LOVER',          // 최고 점수 유형
-  label: '연인',
-  confidence: 60,          // 0-100
-  scores: { LOVER: 60, FLIRT: 33, FRIEND: 52, FAMILY: 23, WORK: 37 },
-  signals: {
-    honorific: { A, B, asymmetry, decay },
-    address: { romantic, family, friend, work },
-    rituals: { morningPerWeek, nightPerWeek, mealPerWeek, ... },
-    intimacy: { L5, L4, L3, body, jealous, hearts },
-    dynamics: { msgBalance, lengthBalance, sessionsPerDay, longSessionPct },
-    language: { profanity, money, affectionDiss },
-  },
-  evolution: { intimacyTrend, honorificTrend },  // increasing|stable|decreasing
+  type: 'LOVER', label: '연인', confidence: 63,
+  scores: { LOVER: 63, FLIRT: 34, FRIEND: 52, FAMILY: 22, WORK: 13 },
+  signals: { honorific, address, rituals, intimacy, dynamics, language },
+  evolution: { intimacyTrend, honorificTrend },
+}
+// 그룹
+deepAnalysis.relationshipType = {
+  type: 'FRIEND', label: '친구 모임', confidence: 58,
+  scores: { FRIEND: 58, FAMILY: 30, WORK: 22 },
+  signals: { honorific: { rate }, address, rituals, dynamics: { participants, sessionsPerDay }, language },
+  evolution: null,
 }
 ```
 
