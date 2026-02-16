@@ -33,6 +33,7 @@
   * [HTMX - 서버 렌더링 인터랙션](catalog/htmx.md)
   * [PORTONE - PG 결제](catalog/portone.md)
   * [PILLOW-OG - 동적 OG 이미지](catalog/pillow-og.md)
+  * [REL-TYPE - 관계 유형 추정](catalog/rel-type.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
 
 * **레퍼런스 (실제 앱)**

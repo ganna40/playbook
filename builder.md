@@ -215,7 +215,7 @@
 
 ```
 뼈대: BASE + SCREEN
-두뇌: Web Worker (파싱) + 룰기반 스코어링 (캐릭터 판정)
+두뇌: Web Worker (파싱) + 룰기반 스코어링 (캐릭터 판정) + REL-TYPE (관계 추정)
 얼굴: STYLE-DARK + REVEAL (slamIn+confetti) + CALC (숫자 카운트업)
 입출력: SHARE (html2canvas 이미지 저장 + 클립보드 복사)
 기억: 없음 (100% 브라우저 로컬, 서버 전송 없음)
@@ -229,7 +229,15 @@
 | 정규식 파서 | 파일 포맷별 정규식으로 구조화 데이터 추출 |
 | 룰기반 캐릭터 판정 | 통계 → 임계값 스코어링 → 최고점 캐릭터 선정 (AI 없이) |
 | Wrapped 카드 시퀀스 | 전체화면 카드별 그라데이션, 탭 전환, 숫자 카운트업 애니메이션 |
+| 관계 유형 추정 (REL-TYPE) | 8계층 신호 가중합산으로 연인/썸/친구/가족/직장 판정 |
 | 100% 정적 | 백엔드 없음, 서버 비용 ₩0, GitHub Pages 배포 가능 |
+
+**옵션 부품:**
+
+| 원하는 기능 | 부품 추가 |
+|------------|----------|
+| 관계 유형 추정 | + REL-TYPE |
+| MBTI 추정 | 직접 구현 (tok-wrapped 참고) |
 
 **참고 레퍼런스:** [tok-wrapped](references/tok-wrapped.md) (카카오톡 대화 Wrapped 분석기)
 
@@ -267,6 +275,7 @@
 | [HTMX](catalog/htmx.md) | 서버 HTML 부분 교체 | SPA 같은 UX |
 | [PORTONE](catalog/portone.md) | PG 결제 | 상품 결제 |
 | [PILLOW-OG](catalog/pillow-og.md) | 동적 OG 이미지 | 개인화 공유 썸네일 |
+| [REL-TYPE](catalog/rel-type.md) | 관계 유형 추정 | 채팅 관계 분석 |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 | 서버에 올리기 |
 
 ---

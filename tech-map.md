@@ -271,6 +271,7 @@
 | 시간축 행동 패턴 분석 | | | | | | | | | | | | | | | | | ✅ |
 | 한국어 언어 깊이 분석 | | | | | | | | | | | | | | | | | ✅ |
 | 정밀 분석 리포트 (멤버별) | | | | | | | | | | | | | | | | | ✅ |
+| 관계유형 추정 (8계층 REL-TYPE) | | | | | | | | | | | | | | | | | ✅ |
 | Wrapped 카드 시퀀스 (13장) | | | | | | | | | | | | | | | | | ✅ |
 | **테마** | | | | | | | | | | | | | | | | | |
 | 라이트 | ✅ | | ✅ | ✅ | ✅ | | | | ✅ | | | | ✅ | | ✅ | ✅ | |
@@ -590,7 +591,7 @@ DB:     SQLite (QuestionCategory, Question, Choice, DiagnosisSession, Consulting
 ```
 유형: 파일 분석기 (Wrapped 스타일)
 URL:  (GitHub Pages 배포 예정)
-조합: BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker + MBTI추정엔진
+조합: BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker + MBTI추정엔진 + REL-TYPE
 
 카카오톡 .txt 내보내기 파일 업로드
   → Web Worker로 메인 스레드 보호하며 파싱

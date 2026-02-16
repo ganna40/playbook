@@ -35,6 +35,7 @@
 | [HTMX](catalog/htmx.md) | 서버 렌더링 인터랙션 | 서버 (Django/Flask) |
 | [PORTONE](catalog/portone.md) | PG 결제 (PortOne/아임포트) | 서버 (Django/Flask) |
 | [PILLOW-OG](catalog/pillow-og.md) | 서버사이드 OG 이미지 동적 생성 | 서버 + Pillow |
+| [REL-TYPE](catalog/rel-type.md) | 관계 유형 추정 (8계층 신호) | 없음 |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 
 ## 조합 예시
@@ -101,5 +102,5 @@ DJANGO + HTMX + Tailwind CDN + Alpine.js + RADAR + GRADE + PILLOW-OG + PORTONE +
 
 ### "파일 분석기 Wrapped" (tok-wrapped 같은)
 ```
-BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker + MBTI추정엔진
+BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker + MBTI추정엔진 + REL-TYPE
 ```
