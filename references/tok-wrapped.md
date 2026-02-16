@@ -16,7 +16,7 @@
 ## 모듈 조합
 
 ```
-BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker
+BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker + MBTI추정엔진
 ```
 
 ## 특수 기능
@@ -26,7 +26,12 @@ BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWo
 | **카카오톡 .txt 파싱** | 모바일+PC 내보내기 포맷 정규식 파싱, 멀티라인 처리, UTF-8 BOM 제거, 오전/오후→24시 변환 |
 | **Web Worker 파싱** | 대용량 파일 메인 스레드 블로킹 방지, 프로그레스 보고 |
 | **16캐릭터 룰기반 판정** | 통계 기반 스코어링으로 AI 없이 캐릭터 유형 결정 |
-| **8장 Wrapped 카드** | 전체화면 카드별 그라데이션, 탭 전환, 숫자 카운트업 애니메이션 |
+| **MBTI 4축 추정 엔진** | 사전+패턴+행동지표+심층신호 4레이어 스코어링, 그룹 평균 대비 상대 비교 |
+| **대화 맥락 분석** | 60분 갭 기준 대화 분리, 공감반응 패턴 감지 (T/F 킬러), 연속발송/폭발메시지/주도권 |
+| **시간축 행동 패턴** | 응답시간 분산(J/P 킬러), 요일 균일도, 에너지 기울기, 잠수→복귀 속도, 야간 감정 밀도 |
+| **언어 깊이 분석** | 과거형/미래형 비율(S/N 킬러), 문장 복잡도, 완충어, 감정 세밀도, 의성어/의태어 |
+| **정밀 분석 리포트** | 멤버별 MBTI 타입+4축 바 차트+레이더+역할+캐릭터+통계를 한 페이지에 |
+| **13장 Wrapped 카드** | 전체화면 카드별 그라데이션, 탭 전환, 숫자 카운트업 애니메이션 |
 | **컨페티 + slamIn** | 캐릭터 결과 카드에서 극적 공개 연출 |
 | **100% 정적** | 백엔드 없음, 서버 비용 ₩0, GitHub Pages 배포 가능 |
 | **100% 브라우저 로컬** | 대화 내용이 서버에 전송되지 않음 |
@@ -39,7 +44,12 @@ BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWo
 |------|------|
 | Web Worker | 대용량 .txt 파싱 (메인 스레드 보호) |
 | 정규식 파서 | 카카오톡 모바일/PC 내보내기 포맷 파싱 |
-| 룰 기반 스코어링 | 16개 캐릭터 유형 판정 (AI 없이) |
+| 룰 기반 MBTI 추정 | 4축 스코어링 (E/I, S/N, T/F, J/P) — 사전+패턴+행동+심층 4레이어 |
+| 대화 분리 알고리즘 | 60분 갭 기준 conversations[] 배열, memberConvIndex 사전 |
+| 공감반응 분석 | 상대 감정메시지에 공감(F) vs 해결(T) 반응 패턴 감지 |
+| 한국어 언어 깊이 | 과거형/미래형 어미, 접속사 복잡도, 완충어, 의성어/의태어, 세밀감정 |
+| 시간축 행동 분석 | 응답시간 표준편차, 요일 엔트로피, 에너지 기울기, 잠수-복귀 패턴 |
+| 룰 기반 캐릭터 판정 | 16개 캐릭터 유형 판정 (AI 없이) |
 | html2canvas | 결과 카드 스크린샷 저장 |
 | Pretendard Variable | 한글 웹폰트 (CDN) |
 
@@ -47,10 +57,68 @@ BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWo
 
 ```
 tok-wrapped/
-├── index.html     # HTML + 인라인 CSS (다크 Wrapped 테마, 8가지 그라데이션)
-├── app.js         # 16캐릭터 + 8카드 렌더링 + 공유 + 애니메이션
-├── worker.js      # KakaoTalk .txt 파서 + 통계 추출
+├── index.html     # HTML + 인라인 CSS (다크 Wrapped 테마, 그라데이션)
+├── app.js         # 16캐릭터 + 카드 렌더링 + 정밀분석 + 공유 + 애니메이션
+├── worker.js      # KakaoTalk .txt 파서 + 통계 추출 + MBTI 추정 엔진
 └── sample.txt     # 테스트용 샘플 데이터
+```
+
+## MBTI 추정 엔진 구조
+
+### 4레이어 스코어링 (worker.js)
+
+```
+Layer 1: 사전 매칭 (T_WORDS, F_WORDS, E_WORDS, I_WORDS, S_WORDS, N_WORDS, J_WORDS, P_WORDS)
+Layer 2: 패턴 매칭 (정규식 — 문장 구조, 표현 방식)
+Layer 3: 행동 지표 (이모지 비율, ㅋㅋ 빈도, 단답 비율, 대화 시작률 등)
+Layer 4: 심층 신호 (대화 맥락 + 시간축 + 언어 깊이) ← v2.0 추가
+```
+
+### 심층 신호 18개 필드
+
+| 카테고리 | 필드 | MBTI 축 | 설명 |
+|----------|------|---------|------|
+| **언어 깊이** | pastTenseRatio | S | ~했어, ~봤어, ~었어 (과거 경험 서술) |
+| | futureTenseRatio | N | ~할게, ~겠어, ~해볼 (미래/가정 사고) |
+| | concreteDetailRatio | S | 숫자+단위 포함 메시지 (3시, 5개, 2만원) |
+| | abstractImpressionRatio | N | 추상어 (느낌, 분위기, 바이브, 영감) |
+| | emotionGranularity | F | 세밀감정 / (세밀감정+ㅋㅋ단독) |
+| | sentenceComplexity | N | 접속사/종속절 마커 개수 / 메시지 |
+| | hedgingSoftenerRatio | F | ~것같, 아마, 혹시 (완충어 비율) |
+| | onomatopoeiaRatio | F | 두근두근, 사르르 (의성어/의태어) |
+| **대화 맥락** | conversationEnderRatio | I | 대화 마지막 메시지 보낸 비율 |
+| | doubleTextRatio | E | 답장 없이 2+연속 발송 비율 |
+| | burstRatio | E | 1분내 3+연속 발송 비율 |
+| | topicDriverRatio | E | 5분+ 침묵 후 첫 발언 비율 |
+| | empathyResponseScore | **T/F 킬러** | 상대 감정메시지에 공감(+1) vs 해결(-1) |
+| **시간축** | responseTimeStdDev | P | 응답시간 표준편차 (불규칙=P) |
+| | weekdayConsistency | J | 요일별 메시지 분포 균일도 (엔트로피) |
+| | energyCurveSlope | I | 대화 내 메시지 길이 감소=에너지 소진 |
+| | silenceReturnSpeed | E | 24h+ 잠수 후 복귀 시간 (빠름=E) |
+| | nightEmotionality | P | 야간 감정밀도/주간 감정밀도 (>1.5면 P) |
+
+### 핵심 알고리즘
+
+```javascript
+// 1. 대화 분리 (60분 갭 기준, O(n) 1회)
+const conversations = []; // { start, end, starter, ender }
+// 감정 메시지 태깅: messages[i]._isEmotional
+
+// 2. 멤버별 대화 인덱스 (공유 데이터)
+const memberConvIndex = {}; // { "민수": [0,1,3,...] }
+
+// 3. 공감반응 분석 (T/F 킬러)
+// 상대가 감정메시지 → 내 반응이 F_WORDS면 empathy+, T_WORDS면 solution+
+// empathyResponseScore = (empathy - solution) / total → -1~1
+
+// 4. 요일 균일도 (정규화 엔트로피, 1=균일=J, 0=편중=P)
+// entropy = -Σ(p * log2(p)) / log2(7)
+
+// 5. 에너지 기울기 (대화 전반부 vs 후반부 메시지 길이 비교)
+// slope = (avg후반 - avg전반) / avg전반 → 음수=에너지소진=I
+
+// 6. 가중치: 기존 3레이어 ~60% + 심층 신호 ~40%
+// 데이터 부족(mc<20) 시 심층 신호 가중치 0.2로 감쇠
 ```
 
 ## 카카오톡 파싱 정규식
@@ -84,19 +152,6 @@ const RE_PC = /^\[(.+?)\]\s*\[(오전|오후)\s*(\d{1,2}):(\d{2})\]\s*(.+)/;
 | 15 | 아침형 인간 🌅 | 5~12시 비율 > 30% |
 | 16 | 톡 홀릭 🔥 | 일평균 100+ 메시지 |
 
-## 8장 Wrapped 카드 시퀀스
-
-| 카드 | 내용 | 배경 그라데이션 |
-|------|------|----------------|
-| 1 | 총 메시지 + 기간 + 일평균 | 딥 네이비 |
-| 2 | 시간대 히트맵 + 유형(올빼미/아침형) | 남보라 |
-| 3 | TOP 5 단어 랭킹 | 핫 핑크 |
-| 4 | ㅋㅋㅋ 횟수 + 평균 길이 | 골드→오렌지 |
-| 5 | 먼저 말 건 비율 + 대화 주도권 | 그린→민트 |
-| 6 | TOP 이모지 + 사용 횟수 | 핑크→퍼플 |
-| 7 | 캐릭터 유형 (클라이맥스, 컨페티) | 퍼플 그라데이션 |
-| 8 | 공유 (이미지 저장 / 링크 복사) | 핑크 그라데이션 |
-
 ## AI에게 비슷한 거 만들게 하려면
 
 ```
@@ -104,4 +159,5 @@ playbook의 tok-wrapped 레퍼런스를 보고
 "___" 파일 분석기를 만들어줘.
 BASE + SCREEN + GRADE + REVEAL + SHARE + STYLE-DARK + WebWorker 조합.
 파일을 브라우저에서 파싱하고 Wrapped 카드 시퀀스로 결과를 보여주는 형태.
+MBTI 추정이 필요하면 4레이어 스코어링(사전+패턴+행동+심층) 구조를 참고.
 ```
