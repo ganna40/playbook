@@ -1,7 +1,7 @@
 # PLAYBOOK FOR CLAUDE — 압축 레퍼런스
 > 이 파일은 playbook 전체(26 모듈, 16 레퍼런스, 7 레시피, 5 삽질방지)를 Claude가 매 세션 읽을 수 있도록 압축한 것.
 > 원본: C:\Users\ganna\Downloads\playbook | 웹: https://ganna40.github.io/playbook
-> 마지막 동기화: 2026-02-16
+> 마지막 동기화: 2026-02-16 (tok-wrapped 추가)
 
 ---
 
@@ -277,6 +277,7 @@ scp -i key.pem -r ./project/* ubuntu@IP:/var/www/프로젝트명/
 | 14 | **rackops** | DCIM | Svelte+Vite+Tailwind+D3.js+FastAPI+Paramiko+PySNMP | 커스텀 | 비주얼랙42U, SSH/SNMP모니터링, 네트워크토폴로지 |
 | 15 | **hexalounge** | 매칭커뮤니티 | Django6+HTMX+Tailwind CDN+Alpine.js | DJANGO+HTMX+RADAR+GRADE | 6인증, 3Tier매칭, Elo인기도, 양방향좋아요 |
 | 16 | **hexaconsulting** | 세일즈퍼널 | Django6+HTMX+Pillow+PortOne | DJANGO+HTMX+RADAR+PILLOW-OG+PORTONE | 20문항HTMX파셜, 수능등급, 동적OG, PG결제, FOMO |
+| 17 | **tok-wrapped** | 파일분석기 | Vanilla+Pretendard+WebWorker | BASE+SCREEN+GRADE+REVEAL+SHARE+STYLE-DARK | 카카오톡.txt파싱, 16캐릭터룰기반판정, 8장Wrapped카드, 컨페티, 100%정적(백엔드없음) |
 
 ---
 
@@ -292,6 +293,7 @@ scp -i key.pem -r ./project/* ubuntu@IP:/var/www/프로젝트명/
 | **업무 도구** | Flask+POCKETBASE+Bootstrap5+Chart.js+FullCalendar | ★★★ |
 | **커뮤니티** | DJANGO+HTMX+Tailwind CDN+Alpine.js+RADAR+GRADE | ★★★ |
 | **세일즈 퍼널** | DJANGO+HTMX+RADAR+PILLOW-OG+PORTONE+SHARE | ★★☆ |
+| **파일 분석기** | BASE+SCREEN+GRADE+REVEAL+SHARE+STYLE-DARK+WebWorker | ★☆☆ |
 
 ---
 

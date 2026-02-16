@@ -98,3 +98,8 @@ DJANGO + HTMX + Tailwind CDN + Alpine.js + Canvas RADAR + GRADE
 ```
 DJANGO + HTMX + Tailwind CDN + Alpine.js + RADAR + GRADE + PILLOW-OG + PORTONE + SHARE + DEPLOY
 ```
+
+### "파일 분석기 Wrapped" (tok-wrapped 같은)
+```
+BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker
+```
