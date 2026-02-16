@@ -16,7 +16,7 @@
 ## 모듈 조합
 
 ```
-BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker + MBTI추정엔진
+BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker + MBTI추정엔진 + 관계유형추정엔진
 ```
 
 ## 특수 기능
@@ -36,6 +36,7 @@ BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWo
 | **100% 정적** | 백엔드 없음, 서버 비용 ₩0, GitHub Pages 배포 가능 |
 | **100% 브라우저 로컬** | 대화 내용이 서버에 전송되지 않음 |
 | **참가자 자동 감지** | 1:1은 헤더에서 자동 판별, 그룹은 선택 UI |
+| **관계 유형 추정 엔진** | 8계층 신호(존대법·호칭·의례·친밀도·시간대·역학·언어·진화) 가중합산 → 5종(연인/썸/친구/가족/직장) 추정 |
 | **이미지 저장** | html2canvas로 결과 카드 PNG 저장 |
 
 ## 핵심 기술
@@ -50,6 +51,7 @@ BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWo
 | 한국어 언어 깊이 | 과거형/미래형 어미, 접속사 복잡도, 완충어, 의성어/의태어, 세밀감정 |
 | 시간축 행동 분석 | 응답시간 표준편차, 요일 엔트로피, 에너지 기울기, 잠수-복귀 패턴 |
 | 룰 기반 캐릭터 판정 | 16개 캐릭터 유형 판정 (AI 없이) |
+| 관계 유형 추정 (8계층) | 메시지 1회 순회로 8개 신호 동시 수집, 코사인 유사도+가중합산 |
 | html2canvas | 결과 카드 스크린샷 저장 |
 | Pretendard Variable | 한글 웹폰트 (CDN) |
 
@@ -59,7 +61,7 @@ BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWo
 tok-wrapped/
 ├── index.html     # HTML + 인라인 CSS (다크 Wrapped 테마, 그라데이션)
 ├── app.js         # 16캐릭터 + 카드 렌더링 + 정밀분석 + 공유 + 애니메이션
-├── worker.js      # KakaoTalk .txt 파서 + 통계 추출 + MBTI 추정 엔진
+├── worker.js      # KakaoTalk .txt 파서 + 통계 추출 + MBTI 추정 + 관계유형 추정 엔진
 └── sample.txt     # 테스트용 샘플 데이터
 ```
 
@@ -131,6 +133,67 @@ const RE_MOBILE = /^(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일\s+(오전|오후)\s
 const RE_PC = /^\[(.+?)\]\s*\[(오전|오후)\s*(\d{1,2}):(\d{2})\]\s*(.+)/;
 ```
 
+## 관계 유형 추정 엔진 (8계층 신호)
+
+### 5종 관계 유형
+
+| 코드 | 한글 | 핵심 구분자 |
+|------|------|------------|
+| LOVER | 연인 | 로맨틱 호칭 + 하트이모지 + 굿모닝/나잇 루틴 + 친밀도 L5 |
+| FLIRT | 썸 | 존댓말 소멸 추이 + "뭐해" 폭격 + L4 있지만 L5 없음 |
+| FRIEND | 친구 | 비속어 허용 + 불규칙 패턴 + 로맨틱 신호 부재 |
+| FAMILY | 가족 | 가족 호칭 + 존댓말 비대칭 + 식사/안전 체크 루틴 |
+| WORK | 직장 | 양방향 존댓말 + 업무 키워드 + 9-18시 시간대 집중 |
+
+### 8계층 신호 + 가중치
+
+```
+                L1존대 L2호칭 L3의례 L4친밀 L5시간 L6역학 L7언어 L8진화
+LOVER:            5     20     15     20     10     10     10     10
+FLIRT:           15     10     20     15     10     15      5     10
+FRIEND:          10     15      5     10     15     10     25     10
+FAMILY:          20     25     20     10     10      5      5      5
+WORK:            25     20     15      5     20      5      5      5
+```
+
+### 핵심 알고리즘
+
+```javascript
+// 1. 메시지 1회 순회로 8계층 데이터 동시 수집
+// L1: 존대법 비대칭 — /(요|니다|세요|시오)[\s.!?~…ㅋㅎ]*$/
+// L2: 호칭 분석 — 문두 12자에서 로맨틱/가족/직장/친구 호칭 + 하트이모지
+// L3: 대화 의례 — 굿모닝(6-9시)/굿나잇(22-2시) 주당빈도, 식사/안전/뭐해/업무
+// L4: 친밀도 계층 — L5(사랑해,결혼) > L4(보고싶) > L3(힘들었어) + 신체+질투
+// L5: 시간대 지문 — 24h분포 코사인유사도 vs 유형별 이상프로필 + 주말/심야
+// L6: 상호작용 역학 — 메시지량/길이 균형 + 120분+세션 비율 + 일평균 세션
+// L7: 언어 허용 — 비속어(친구) / 돈(가족) / 애정디스(연인) / 전부낮음(직장)
+// L8: 관계 진화 — 3등분 페이즈별 존댓말·친밀도 변화 추적
+
+// 2. 각 계층 0~1 스코어 → 유형별 가중치 적용 → 0~100 최종 점수
+// 3. 로맨틱 신호 부재 시 LOVER 0.6x 감쇠 (L2+L4 핵심지표 없으면 연인 불가)
+// 4. LOVER L3 인티머시 게이트 (의례만으로 연인 과대평가 방지)
+```
+
+### 출력 구조
+
+```javascript
+deepAnalysis.relationshipType = {
+  type: 'LOVER',          // 최고 점수 유형
+  label: '연인',
+  confidence: 60,          // 0-100
+  scores: { LOVER: 60, FLIRT: 33, FRIEND: 52, FAMILY: 23, WORK: 37 },
+  signals: {
+    honorific: { A, B, asymmetry, decay },
+    address: { romantic, family, friend, work },
+    rituals: { morningPerWeek, nightPerWeek, mealPerWeek, ... },
+    intimacy: { L5, L4, L3, body, jealous, hearts },
+    dynamics: { msgBalance, lengthBalance, sessionsPerDay, longSessionPct },
+    language: { profanity, money, affectionDiss },
+  },
+  evolution: { intimacyTrend, honorificTrend },  // increasing|stable|decreasing
+}
+```
+
 ## 16 캐릭터 유형 (룰 기반 판정)
 
 | # | 캐릭터 | 판정 기준 |
@@ -160,4 +223,5 @@ playbook의 tok-wrapped 레퍼런스를 보고
 BASE + SCREEN + GRADE + REVEAL + SHARE + STYLE-DARK + WebWorker 조합.
 파일을 브라우저에서 파싱하고 Wrapped 카드 시퀀스로 결과를 보여주는 형태.
 MBTI 추정이 필요하면 4레이어 스코어링(사전+패턴+행동+심층) 구조를 참고.
+관계 유형 분석이 필요하면 8계층 신호(존대법·호칭·의례·친밀도·시간대·역학·언어·진화) 가중합산 구조를 참고.
 ```
