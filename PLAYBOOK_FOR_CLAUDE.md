@@ -1,7 +1,7 @@
 # PLAYBOOK FOR CLAUDE — 압축 레퍼런스
-> 이 파일은 playbook 전체(26 모듈, 16 레퍼런스, 7 레시피, 5 삽질방지)를 Claude가 매 세션 읽을 수 있도록 압축한 것.
+> 이 파일은 playbook 전체(26 모듈, 18 레퍼런스, 7 레시피, 5 삽질방지)를 Claude가 매 세션 읽을 수 있도록 압축한 것.
 > 원본: C:\Users\ganna\Downloads\playbook | 웹: https://ganna40.github.io/playbook
-> 마지막 동기화: 2026-02-16 (tok-wrapped 추가)
+> 마지막 동기화: 2026-02-17 (vibejob 추가)
 
 ---
 
@@ -257,7 +257,7 @@ scp -i key.pem -r ./project/* ubuntu@IP:/var/www/프로젝트명/
 
 ---
 
-## 2. 레퍼런스 프로젝트 (16개) — 프로필 카드
+## 2. 레퍼런스 프로젝트 (18개) — 프로필 카드
 
 | # | 프로젝트 | 유형 | 스택 | 모듈 조합 | 특수 기능 |
 |---|----------|------|------|-----------|-----------|
@@ -278,6 +278,7 @@ scp -i key.pem -r ./project/* ubuntu@IP:/var/www/프로젝트명/
 | 15 | **hexalounge** | 매칭커뮤니티 | Django6+HTMX+Tailwind CDN+Alpine.js | DJANGO+HTMX+RADAR+GRADE | 6인증, 3Tier매칭, Elo인기도, 양방향좋아요 |
 | 16 | **hexaconsulting** | 세일즈퍼널 | Django6+HTMX+Pillow+PortOne | DJANGO+HTMX+RADAR+PILLOW-OG+PORTONE | 20문항HTMX파셜, 수능등급, 동적OG, PG결제, FOMO |
 | 17 | **tok-wrapped** | 파일분석기 | Vanilla+Pretendard+WebWorker | BASE+SCREEN+GRADE+REVEAL+SHARE+STYLE-DARK | 카카오톡.txt파싱, 16캐릭터룰기반판정, 8장Wrapped카드, 컨페티, 100%정적(백엔드없음) |
+| 18 | **vibejob** | 프리랜서매칭 | Next.js15+React19+Prisma+NextAuth+Tailwind v4+shadcn/ui | 커스텀(풀스택) | AI견적(Claude), 에스크로결제, 등급시스템, 채팅, S3파일업로드, 코드리뷰카테고리 |
 
 ---
 
@@ -294,6 +295,7 @@ scp -i key.pem -r ./project/* ubuntu@IP:/var/www/프로젝트명/
 | **커뮤니티** | DJANGO+HTMX+Tailwind CDN+Alpine.js+RADAR+GRADE | ★★★ |
 | **세일즈 퍼널** | DJANGO+HTMX+RADAR+PILLOW-OG+PORTONE+SHARE | ★★☆ |
 | **파일 분석기** | BASE+SCREEN+GRADE+REVEAL+SHARE+STYLE-DARK+WebWorker | ★☆☆ |
+| **프리랜서 매칭** | Next.js15+React19+Prisma+NextAuth+Tailwind v4+shadcn/ui+S3 | ★★★ |
 
 ---
 
