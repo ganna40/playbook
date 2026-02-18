@@ -108,29 +108,112 @@ search("Django")     → Django 관련 모든 매칭
 
 `tech-map.md` 전체 반환. 모든 기술이 어디에 쓰이는지 한눈에.
 
+## 이렇게 말하면 됩니다
+
+MCP 도구는 **별도 명령어 없이 자연어로 요청**하면 Claude가 알아서 호출합니다.
+
+### 전체 목록 보기 → `list_items()`
+
+```
+"플레이북 뭐 있어?"
+"모듈 목록 보여줘"
+"어떤 레퍼런스가 있지?"
+"플레이북 전체 목록"
+```
+
+### 모듈 조회 → `get_module(name)`
+
+```
+"QUIZ 모듈 보여줘"
+"BASE 모듈 어떻게 생겼어?"
+"레이더 차트 모듈 가져와"
+"카카오 공유 모듈 참고해줘"
+```
+
+### 레퍼런스 조회 → `get_reference(name)`
+
+```
+"pong 레퍼런스 보여줘"
+"pong이랑 비슷하게 만들어줘"
+"salary 프로젝트 구조 참고해"
+"hexalounge는 어떻게 만들었어?"
+```
+
+### 레시피 조회 → `get_recipe(name)`
+
+```
+"Flask 대시보드 레시피 보여줘"
+"React+Vite+Tailwind 세팅 방법"
+"Django HTMX 레시피 참고해줘"
+"서버에서 GitHub 올리는 법"
+```
+
+### 삽질방지 조회 → `get_gotcha(name)`
+
+```
+"Tailwind 삽질 뭐 있었지?"
+"CSS 오버플로우 해결법"
+"EC2 OOM 문제 어떻게 해결해?"
+"Cloudflare 배포 삽질 방지"
+```
+
+### 키워드 검색 → `search(query)`
+
+```
+"플레이북에서 Redis 관련 내용 찾아줘"
+"카카오 관련 모듈이 뭐가 있어?"
+"Django 쓰는 프로젝트 어떤 게 있지?"
+"Tailwind가 어디어디에서 쓰이는지 찾아봐"
+```
+
+### 기술 지도 → `get_tech_map()`
+
+```
+"기술 지도 보여줘"
+"어떤 기술이 어디에 쓰이는지 한눈에 보고 싶어"
+"tech-map 불러와"
+```
+
 ## 사용 시나리오
 
 ### 새 프로젝트 시작 시
 
+> "바이럴 테스트 앱 만들어줘"
+
+Claude가 알아서 이 순서로 호출:
 ```
-1. list_items()         ← 어떤 모듈이 있는지 파악
-2. get_tech_map()       ← 기술 조합 확인
-3. get_module("base")   ← 필요한 모듈만 조회
+1. list_items()          ← 어떤 모듈이 있는지 파악
+2. get_tech_map()        ← 기술 조합 확인
+3. get_module("base")    ← 필요한 모듈만 조회
 4. get_reference("pong") ← 비슷한 레퍼런스 참고
+```
+
+### 기존 프로젝트 참고할 때
+
+> "pong이랑 비슷하게 만들어줘"
+
+```
+1. get_reference("pong")  ← pong 구조 파악
+2. get_module("quiz")     ← 퀴즈 엔진 참고
+3. get_module("grade")    ← 등급 시스템 참고
 ```
 
 ### 특정 기술 찾을 때
 
+> "Redis 캐싱 어떻게 하는지 알려줘"
+
 ```
-1. search("Redis")          ← 키워드로 검색
-2. get_module("redis")      ← 매칭된 모듈 조회
+1. search("Redis")        ← 키워드로 검색
+2. get_module("redis")    ← 매칭된 모듈 조회
 ```
 
 ### 삽질 해결할 때
 
+> "Tailwind 패딩이 안 먹혀"
+
 ```
 1. search("overflow")           ← 증상 키워드 검색
-2. get_gotcha("css-overflow")   ← 해결 가이드 조회
+2. get_gotcha("tailwind-v4")    ← 해결 가이드 조회
 ```
 
 ## 토큰 절감 효과
