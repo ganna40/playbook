@@ -52,3 +52,22 @@ scp -o StrictHostKeyChecking=no -i key.pem ...
 
 도메인이 Cloudflare에 있으면 `nslookup domain.com`으로 나오는 IP는 CDN IP임.
 SSH는 실제 서버 퍼블릭 IP로 접속해야 함 (AWS 콘솔에서 확인).
+
+## 6. PEM 파일 경로에 공백 있을 때
+
+`"eyeom40 (1).pem"` 처럼 공백이 있으면 SSH/SCP 명령에서 인식 실패.
+
+```powershell
+# 공백 없는 경로로 복사 (PowerShell)
+Copy-Item -LiteralPath "C:\Users\ganna\Downloads\eyeom40 (1).pem" `
+          -Destination "C:\Users\ganna\eyeom40.pem"
+```
+
+그 다음 공백 없는 경로로 SSH/SCP 사용:
+
+```bash
+ssh -i "C:\Users\ganna\eyeom40.pem" ubuntu@3.x.x.x
+scp -i "C:\Users\ganna\eyeom40.pem" file.html ubuntu@3.x.x.x:/var/www/
+```
+
+> `-LiteralPath` 필수: 일반 `-Path`는 괄호를 와일드카드로 해석해서 실패함.
