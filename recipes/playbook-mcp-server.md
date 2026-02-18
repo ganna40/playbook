@@ -17,34 +17,61 @@ MCP(Model Context Protocol) 서버를 통해 Claude가 플레이북 내용을 **
 
 ## 설치
 
-### 1. mcp 패키지 설치
+### 방법 A: uvx로 설치 (추천 — 아무 PC에서든 한줄)
 
-```bash
-pip install mcp
+PyPI에 배포된 패키지를 사용. 파일 다운로드 필요 없음.
+
+`~/.claude/settings.json`에 추가:
+
+```json
+{
+  "mcpServers": {
+    "playbook": {
+      "command": "uvx",
+      "args": ["playbook-mcp"]
+    }
+  }
+}
 ```
 
-### 2. Claude Code 설정에 등록
+끝. Claude Code 재시작하면 자동으로 다운로드 → 설치 → 실행.
 
-`~/.claude/settings.json`의 `mcpServers`에 추가:
+### 방법 B: 수동 설치 (로컬 파일)
+
+```bash
+# 1. 패키지 설치
+pip install mcp httpx
+
+# 2. server.py 다운로드 (이것만 있으면 됨)
+mkdir playbook-mcp && cd playbook-mcp
+curl -O https://raw.githubusercontent.com/ganna40/playbook/main/mcp-server/server.py
+
+# 3. settings.json에 등록
+```
+
+`~/.claude/settings.json`에 추가:
 
 ```json
 {
   "mcpServers": {
     "playbook": {
       "command": "python",
-      "args": ["C:\\Users\\ganna\\Downloads\\playbook\\mcp-server\\server.py"]
+      "args": ["/path/to/server.py"]
     }
   }
 }
 ```
 
-### 3. Claude Code 재시작
+### 확인
 
 ```bash
-# 재시작 후 확인
+# Claude Code 재시작 후
 /mcp
 # → playbook 서버가 connected 상태인지 확인
 ```
+
+> 서버는 GitHub에서 데이터를 가져오므로 로컬에 playbook 클론 불필요.
+> `_secrets.md`는 자동 차단.
 
 ## 도구 목록 (7개)
 
