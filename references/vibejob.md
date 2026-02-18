@@ -51,10 +51,15 @@
 - **Zod** — API 입력 스키마 검증
 
 ### AI
-- **Anthropic Claude SDK** — 프로젝트 카테고리/예산/일정 자동 분석, 코드 리뷰 견적
+- **Ollama (로컬 LLM)** — 프로젝트 카테고리/예산/일정 자동 분석, 코드 리뷰 견적
+- (Anthropic SDK 제거 → Ollama 전환)
 
 ### 파일
 - **AWS S3** — Presigned URL 기반 파일 업로드 (이미지, 문서)
+
+### 보안
+- **Redis Rate Limiting** — AI 엔드포인트 IP당 5회/분 제한
+- **crypto.randomUUID()** — 결제 merchantUid 보안 강화
 
 ---
 
@@ -68,10 +73,14 @@
 - 카테고리 자동 추천, 예산 범위, 예상 일정, 필요 스킬 도출
 - 카테고리별 기본값(minPrice/maxPrice/minDays/maxDays) 폴백
 
-### 개발자 등급 시스템
+### 개발자 등급 시스템 (7티어)
 ```
-ROOKIE (신입)  → SILVER (실버)  → GOLD (골드)  → MASTER (마스터)
-avgRating 기반, completedCount 가중
+ROOKIE(루키,40%) → SILVER(실버,35%) → GOLD(골드,30%) → PLATINUM(플래티넘,25%)
+→ DIAMOND(다이아몬드,20%) → MASTER(마스터,15%) → GRANDMASTER(그랜드마스터,10%)
+
+승급 조건: avgRating + completedCount + 뱃지 가중
+수수료: 등급 올라갈수록 플랫폼 수수료 감소 (40% → 10%)
+신규 개발자 매칭 부스트: completedCount < 3이면 기본 10점 부여
 ```
 
 ### 에스크로 결제
@@ -93,13 +102,14 @@ PENDING → HELD (에스크로 보관) → RELEASED (정산) or REFUNDED (환불
 ## 페이지 구조
 
 ### 공개 페이지
-- `/` — 랜딩 (카테고리 목록 + AI 견적 CTA)
+- `/` — 홈 (카테고리 목록 + AI 견적 CTA)
+- `/about` — 회사소개 랜딩 (히어로 RotatingText + 스크롤 리빌 + 등급바 + 마키)
 - `/projects` — 프로젝트 목록 (카테고리/상태 필터)
 - `/projects/[id]` — 프로젝트 상세 + 제안하기
 - `/developers` — 개발자 목록 (스킬/등급 필터)
 - `/developers/[id]` — 개발자 공개 프로필
 - `/code-review` — 코드 리뷰 서비스 소개 + AI 견적
-- `/guide`, `/faq`, `/contact`
+- `/guide`, `/faq`, `/contact`, `/privacy`, `/terms`
 
 ### 의뢰자 (Client)
 - `/client/dashboard` — 프로젝트 현황 + 최근 알림
@@ -119,6 +129,11 @@ PENDING → HELD (에스크로 보관) → RELEASED (정산) or REFUNDED (환불
 - `/admin/users` — 유저 관리 (역할 필터 + 검색)
 - `/admin/projects` — 프로젝트 관리 (상태 필터 + 검색)
 - `/admin/payments` — 결제 관리 (상태 필터 + 합계)
+- `/admin/applications` — 개발자 지원 심사
+- `/admin/disputes` — 분쟁 관리 (환불/정산)
+- `/admin/reviews` — 리뷰 관리
+- `/admin/content` — 카테고리 관리
+- `/admin/settings` — 플랫폼 설정 (수수료율, 시스템 통계)
 
 ---
 
@@ -178,3 +193,58 @@ export async function GET(request: NextRequest) {
 
 ### shadcn/ui 컴포넌트
 Card, Badge, Button, Avatar, Dialog, DropdownMenu, Select, Tabs, Toast, Progress, Tooltip, ScrollArea
+
+---
+
+## 랜딩페이지 (/about) 인터랙션
+
+### 히어로
+- **RotatingText**: 단어 타이핑(70ms/char) → 2.2초 정지 → 삭제(35ms/char) → 다음 단어 루프
+  - "현실이 됩니다." → "서비스가 됩니다." → "사업이 시작됩니다."
+- **Staggered entrance**: CSS `hero-line` 클래스 + `animation-delay` (0~700ms)
+- **마우스 패럴랙스**: 그라데이션 orb가 마우스 따라 이동 (`mousemove` 이벤트)
+- **블링킹 커서**: `.animate-cursor-blink` (0.8초 주기)
+- **그라데이션 언더라인**: 타이핑 진행률에 따라 width 애니메이션
+
+### 스크롤 리빌 (4종)
+- `.scroll-reveal` — 아래→위 fadeUp
+- `.scroll-reveal-left` — 왼쪽→오른쪽 슬라이드
+- `.scroll-reveal-right` — 오른쪽→왼쪽 슬라이드
+- `.scroll-reveal-scale` — 축소→확대
+- `data-delay="100~400"` — 자식 시차 애니메이션
+- 단일 IntersectionObserver로 모든 요소 감시 → `.is-visible` 클래스 토글
+
+### 인터랙티브 컴포넌트
+- **Counter**: 숫자 카운트업 애니메이션 (IntersectionObserver 트리거)
+- **GradeBar**: 7개 등급 프로그레스 바 (호버 시 색상 변경)
+- **AnimatedEstimate**: AI 견적 목업 3단계 애니메이션
+- **AnimatedMilestones**: 에스크로 마일스톤 체크 애니메이션
+- **Marquee**: AI 도구 무한 스크롤 (30초 주기, 호버 시 정지)
+
+---
+
+## UX 인프라
+
+### Toast 시스템
+- Radix UI `@radix-ui/react-toast` 기반
+- `useToast()` hook → `toast({ title, description, variant })`
+- 성공/에러/경고 3종 variant
+
+### Error Boundary
+- 4개: `/error.tsx` (root), `/admin/error.tsx`, `/client/error.tsx`, `/developer/error.tsx`
+- "오류가 발생했습니다" + 재시도 버튼
+
+### 분쟁 처리 시스템
+- 클라이언트: `POST /api/projects/[id]/dispute` → DISPUTED 전환
+- 관리자: `POST /api/admin/disputes` → 환불(refund) 또는 정산(release)
+
+---
+
+## AI에게 비슷한 거 만들게 하려면
+
+```
+playbook의 vibejob 레퍼런스를 보고
+"새 매칭 플랫폼"을 만들어줘.
+Next.js 15 + React 19 + Prisma + NextAuth + Tailwind v4 조합.
+7티어 등급 시스템, 에스크로 결제, AI 견적, 스크롤 리빌 랜딩페이지.
+```

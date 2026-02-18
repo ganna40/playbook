@@ -46,14 +46,13 @@
 | **Web Worker** | 백그라운드 스레드 파일 파싱 | tok-wrapped |
 | **PortOne (iamport)** | PG 결제 (카드/간편결제) | hexaconsulting |
 | **Pillow (PIL)** | 서버사이드 이미지 생성 (동적 OG) | hexaconsulting |
-| **Ollama** | 로컬 LLM (gemma3, exaone3.5 등) | tarot, psycho-bot, error-automation, human2 |
+| **Ollama** | 로컬 LLM (gemma3, exaone3.5 등) | tarot, psycho-bot, error-automation, human2, vibejob |
 | **OpenAI API** | GPT-4o/4o-mini 직접 호출 | psycho-bot |
 | **OpenRouter** | 클라우드 LLM API (gpt-4o-mini 등) | tarot |
 | **sentence-transformers** | 로컬 임베딩 (E5-large 1024d, ko-sroberta 768d) | psycho-bot, human2 |
 | **python-telegram-bot** | 텔레그램 봇 프레임워크 | psycho-bot, telbot, error-automation, human2 |
 | **Twilio SDK** | 전화(TTS)/SMS 발송 | telbot, error-automation |
 | **GitHub REST API** | repo 생성/관리 | git-uploader |
-| **Anthropic Claude SDK** | AI 텍스트 분석 (견적/코드리뷰) | vibejob |
 | **AWS S3 Presigned URLs** | 서버리스 파일 업로드 | vibejob |
 | **Zod** | TypeScript 스키마 검증 | vibejob |
 
@@ -71,7 +70,7 @@
 | **Gunicorn** | Python WSGI HTTP 서버 | hexaconsulting |
 | **Apache (Reverse Proxy)** | 리버스 프록시 + 정적 파일 서빙 | hexaconsulting |
 | **Go (net/http)** | Go 표준 라이브러리 HTTP 서버 | dictionary |
-| **Redis** | 캐시 서버 (임베딩/RAG/대화기억) | psycho-bot, human2 |
+| **Redis** | 캐시 서버 (임베딩/RAG/대화기억/rate limit) | psycho-bot, human2, vibejob |
 | **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot |
 | **PocketBase** | BaaS (DB+인증+파일+API) | collab-tool |
 | **APScheduler** | 백그라운드 주기적 스케줄러 | rackops |
@@ -153,7 +152,7 @@
 | Kakao 공유 | ✅ | ✅ | ✅ | ✅ | | | | | | | | | | | | ✅ | | |
 | Kakao Local API | | | | | ✅ | | | | | | | | | | | | | |
 | Geolocation API | | | | | ✅ | | | | | | | | | | | | | |
-| Ollama (로컬 LLM) | | | | | | ✅ | ✅ | | | | ✅ | ✅ | | | | | | |
+| Ollama (로컬 LLM) | | | | | | ✅ | ✅ | | | | ✅ | ✅ | | | | | | ✅ |
 | OpenAI API (직접) | | | | | | | ✅ | | | | | | | | | | | |
 | OpenRouter (클라우드 LLM) | | | | | | ✅ | | | | | | | | | | | | |
 | sentence-transformers | | | | | | | ✅ | | | | | ✅ | | | | | | |
@@ -163,7 +162,6 @@
 | Web Share API | ✅ | ✅ | ✅ | ✅ | | | | | | | | | | | | | | |
 | PortOne (iamport) | | | | | | | | | | | | | | | | ✅ | | |
 | Pillow (PIL) | | | | | | | | | | | | | | | | ✅ | | |
-| Anthropic Claude SDK | | | | | | | | | | | | | | | | | | ✅ |
 | AWS S3 Presigned URLs | | | | | | | | | | | | | | | | | | ✅ |
 | Zod (스키마 검증) | | | | | | | | | | | | | | | | | | ✅ |
 | **백엔드** | | | | | | | | | | | | | | | | | | |
@@ -175,7 +173,7 @@
 | PostgreSQL + pgvector | | | | | | ✅ | ✅ | | | | | ✅ | | | | | | |
 | MySQL/MariaDB | | | | | | | | | | | | | ✅ | ✅ | | | | |
 | SQLite | | | | | | | | | | | ✅ | | | | ✅ | ✅ | | |
-| Redis | | | | | | | ✅ | | | | | ✅ | | | | | | |
+| Redis | | | | | | | ✅ | | | | | ✅ | | | | | | ✅ |
 | Django ORM | | | | | | | | | | | | | | | ✅ | ✅ | | |
 | Django Signals | | | | | | | | | | | | | | | ✅ | | | |
 | Django Admin | | | | | | | | | | | | | | | ✅ | ✅ | | |
@@ -296,11 +294,17 @@
 | 정밀 분석 리포트 (멤버별) | | | | | | | | | | | | | | | | | ✅ | |
 | 관계유형 추정 (8계층 REL-TYPE) | | | | | | | | | | | | | | | | | ✅ | |
 | Wrapped 카드 시퀀스 (13장) | | | | | | | | | | | | | | | | | ✅ | |
-| AI 견적 분석 (Claude) | | | | | | | | | | | | | | | | | | ✅ |
+| AI 견적 분석 (Ollama) | | | | | | | | | | | | | | | | | | ✅ |
 | 에스크로 결제 | | | | | | | | | | | | | | | | | | ✅ |
-| 개발자 등급 (4단계) | | | | | | | | | | | | | | | | | | ✅ |
+| 개발자 등급 (7티어) | | | | | | | | | | | | | | | | | | ✅ |
 | 마일스톤 관리 | | | | | | | | | | | | | | | | | | ✅ |
 | 1:1 웹 채팅 | | | | | | | | | | | | | | | | | | ✅ |
+| 스크롤 리빌 (4종) | | | | | | | | | | | | | | | | | | ✅ |
+| RotatingText 히어로 | | | | | | | | | | | | | | | | | | ✅ |
+| Rate Limiting (Redis) | | | | | | | | | | | | | | | | | | ✅ |
+| 분쟁 처리 시스템 | | | | | | | | | | | | | | | | | | ✅ |
+| Error Boundary (4영역) | | | | | | | | | | | | | | | | | | ✅ |
+| Toast 알림 (Radix) | | | | | | | | | | | | | | | | | | ✅ |
 | **테마** | | | | | | | | | | | | | | | | | | |
 | 라이트 | ✅ | | ✅ | ✅ | ✅ | | | | ✅ | | | | ✅ | | ✅ | ✅ | | ✅ |
 | 다크 | | ✅ | | | | ✅ | | | ✅ | | | | ✅ | ✅ | | | ✅ | |
@@ -646,19 +650,22 @@ URL:  (GitHub Pages 배포 예정)
 URL:  (개발 중)
 스택: Next.js 15 (App Router) + React 19 + Prisma 6 + NextAuth 5 + Tailwind v4 + shadcn/ui
 
-의뢰자: 프로젝트 등록 → AI(Claude) 카테고리/예산/일정 분석
+의뢰자: 프로젝트 등록 → AI(Ollama) 카테고리/예산/일정 분석
       → 개발자 제안 수신 → 매칭 → 에스크로 결제 → 마일스톤 관리 → 검수 → 리뷰
-개발자: 프로필(포트폴리오/스킬) → 프로젝트 탐색/제안 → 등급 시스템(ROOKIE~MASTER)
+개발자: 프로필(포트폴리오/스킬) → 프로젝트 탐색/제안
+      → 7티어 등급(ROOKIE~GRANDMASTER, 수수료 40%→10%)
       → 정산(월렛) → 코드 리뷰/유지보수 카테고리
-관리자: 유저/프로젝트/결제 관리 대시보드
+관리자: 유저/프로젝트/결제/분쟁/리뷰/카테고리/설정 대시보드
 
 프론트: React 19, Tailwind CSS v4 (@theme 커스텀), shadcn/ui (Radix UI + CVA), Lucide-React
 백엔드: Next.js 15 App Router (API Routes), NextAuth.js 5 (Credentials + Prisma Adapter)
-DB:     PostgreSQL + Prisma ORM 6
-AI:     Anthropic Claude SDK (견적 분석, 코드 리뷰 견적)
+DB:     PostgreSQL + Prisma ORM 6 + Redis (rate limiting)
+AI:     Ollama (견적 분석, 코드 리뷰 견적)
 파일:   AWS S3 Presigned URLs (이미지/파일 업로드)
 검증:   Zod (스키마 검증)
-특수:   에스크로 결제, 개발자 4등급, 마일스톤, 1:1채팅, 알림 시스템
+보안:   Redis rate limiting, crypto.randomUUID, Error Boundary 4개
+특수:   에스크로 결제, 7티어 등급, 마일스톤, 1:1채팅, 알림, 분쟁 처리
+랜딩:   /about — RotatingText 히어로, 스크롤 리빌(4종), 등급바, AI견적 애니메이션, 마키
 디자인: 라이트 테마 (커스텀 디자인 시스템)
 속도:   서버→클라이언트 사이드 fetch 전환 (즉시 네비게이션)
 ```
