@@ -1,7 +1,7 @@
 # PLAYBOOK FOR CLAUDE — 압축 레퍼런스
 > 이 파일은 playbook 전체(26 모듈, 18 레퍼런스, 7 레시피, 5 삽질방지)를 Claude가 매 세션 읽을 수 있도록 압축한 것.
 > 원본: C:\Users\ganna\Downloads\playbook | 웹: https://ganna40.github.io/playbook
-> 마지막 동기화: 2026-02-17 (vibejob 추가)
+> 마지막 동기화: 2026-02-18 (poli 추가)
 
 ---
 
@@ -257,7 +257,7 @@ scp -i key.pem -r ./project/* ubuntu@IP:/var/www/프로젝트명/
 
 ---
 
-## 2. 레퍼런스 프로젝트 (18개) — 프로필 카드
+## 2. 레퍼런스 프로젝트 (19개) — 프로필 카드
 
 | # | 프로젝트 | 유형 | 스택 | 모듈 조합 | 특수 기능 |
 |---|----------|------|------|-----------|-----------|
@@ -279,6 +279,7 @@ scp -i key.pem -r ./project/* ubuntu@IP:/var/www/프로젝트명/
 | 16 | **hexaconsulting** | 세일즈퍼널 | Django6+HTMX+Pillow+PortOne | DJANGO+HTMX+RADAR+PILLOW-OG+PORTONE | 20문항HTMX파셜, 수능등급, 동적OG, PG결제, FOMO |
 | 17 | **tok-wrapped** | 파일분석기 | Vanilla+Pretendard+WebWorker | BASE+SCREEN+GRADE+REVEAL+SHARE+STYLE-DARK | 카카오톡.txt파싱, 16캐릭터룰기반판정, 8장Wrapped카드, 컨페티, 100%정적(백엔드없음) |
 | 18 | **vibejob** | 프리랜서매칭 | Next.js15+React19+Prisma+NextAuth+Tailwind v4+shadcn/ui | 커스텀(풀스택) | AI견적(Claude), 에스크로결제, 등급시스템, 채팅, S3파일업로드, 코드리뷰카테고리 |
+| 19 | **poli** | 정치성향테스트 | Vanilla+Pretendard+Canvas+Python http.server+SQLite | BASE+SCREEN+QUIZ+TIMER+GRADE+RADAR+REVEAL+SHARE+OG+URL-ENCODE+CALC+STYLE-DARK | 12문항5축양방향채점, 7단계강도, 20초타이머, URL결과공유, 고유IP카운터(SHA256), Pillow OG이미지, Cloudflare+Apache배포 |
 
 ---
 

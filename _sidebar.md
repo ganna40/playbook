@@ -56,6 +56,7 @@
   * [hexaconsulting - 연애컨설팅퍼널](references/hexaconsulting.md)
   * [tok-wrapped - 카톡Wrapped분석기](references/tok-wrapped.md)
   * [vibejob - 프리랜서매칭플랫폼](references/vibejob.md)
+  * [poli - 정치성향테스트](references/poli.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)
