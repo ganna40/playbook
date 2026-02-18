@@ -113,6 +113,9 @@
 | **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food, rackops |
 | **Flask (Python)** | 웹 프레임워크 (Blueprint) | git-uploader, collab-tool |
 | **Git Credential Manager** | GitHub 토큰 자동 추출 | git-uploader |
+| **Gradio** | Python ML 웹 UI (드래그&드롭+진행률) | whisper-script |
+| **faster-whisper** | CTranslate2 Whisper 추론 (GPU fp16) | whisper-script |
+| **imageio-ffmpeg** | FFmpeg 내장 바이너리 | whisper-script |
 | **Docsify** | 마크다운 → 웹사이트 | playbook |
 
 ---
@@ -121,13 +124,13 @@
 
 > ✅ = 사용함
 
-| 기술 | salary | pong | mz | amlife | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-auto | human2 | dictionary | rackops | hexalounge | hexaconsulting | tok-wrapped | vibejob | poli |
-|------|:------:|:----:|:--:|:------:|:----:|:-----:|:----------:|:------:|:-----------:|:---------:|:----------:|:------:|:----------:|:-------:|:----------:|:-------------:|:-----------:|:-------:|:-------:|
+| 기술 | salary | pong | mz | amlife | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-auto | human2 | dictionary | rackops | hexalounge | hexaconsulting | tok-wrapped | vibejob | poli | whisper |
+|------|:------:|:----:|:--:|:------:|:----:|:-----:|:----------:|:------:|:-----------:|:---------:|:----------:|:------:|:----------:|:-------:|:----------:|:-------------:|:-----------:|:-------:|:----:|:-------:|
 | **프론트엔드** | | | | | | | | | | | | | | | | | | | |
 | Tailwind CDN | ✅ | | | | | | | | | | | | | | ✅ | ✅ | | |  |
 | Tailwind v3 빌드 | | | | | ✅ | | | | | | | | | ✅ | | | | |  |
 | CSS Variables | | ✅ | ✅ | | | ✅ | | | ✅ | | | | ✅ | | | | | | ✅ |
-| Pretendard 폰트 | ✅ | | ✅ | | | | | | | | | | | | | | ✅ | | ✅ |
+| Pretendard 폰트 | ✅ | | ✅ | | | | | | | | | | | | | | ✅ | | ✅ | ✅ |
 | Noto Sans KR | | | | | ✅ | ✅ | | | ✅ | | | | | | | | | |  |
 | Orbitron 폰트 | | | | | | | | | ✅ | | | | | | | | | |  |
 | HTMX 2.0 | | | | | | | | | | | | | | | ✅ | ✅ | | |  |
@@ -211,7 +214,8 @@
 | 커뮤니티 플랫폼 (인증+매칭) | | | | | | | | | | | | | | | ✅ | | | |  |
 | 세일즈 퍼널 (진단→결제) | | | | | | | | | | | | | | | | ✅ | | |  |
 | 파일 분석기 (Wrapped) | | | | | | | | | | | | | | | | | ✅ | |  |
-| 프리랜서 매칭 플랫폼 | | | | | | | | | | | | | | | | | | ✅ |  |
+| 프리랜서 매칭 플랫폼 | | | | | | | | | | | | | | | | | | ✅ | |
+| 스크립트 추출기 (음성→텍스트) | | | | | | | | | | | | | | | | | | | | ✅ |
 | **특수 기능** | | | | | | | | | | | | | | | | | | | |
 | 질문 타이머 (15초) | | ✅ | ✅ | ✅ | | | | | | | | | | | | | | | ✅ |
 | 결과 공개 연출 | | ✅ | ✅ | ✅ | ✅ | ✅ | | | | | | | | | | | ✅ | | ✅ |
@@ -306,7 +310,7 @@
 | Error Boundary (4영역) | | | | | | | | | | | | | | | | | | ✅ |  |
 | Toast 알림 (Radix) | | | | | | | | | | | | | | | | | | ✅ |  |
 | **테마** | | | | | | | | | | | | | | | | | | | |
-| 라이트 | ✅ | | ✅ | ✅ | ✅ | | | | ✅ | | | | ✅ | | ✅ | ✅ | | ✅ |  |
+| 라이트 | ✅ | | ✅ | ✅ | ✅ | | | | ✅ | | | | ✅ | | ✅ | ✅ | | ✅ | | ✅ |
 | 다크 | | ✅ | | | | ✅ | | | ✅ | | | | ✅ | ✅ | | | ✅ | | ✅ |
 
 ---
@@ -695,6 +699,29 @@ OG:       Pillow 1200×630 동적 이미지, ?v=1 캐시버스팅
 디자인:  다크 테마 (블루↔레드 그라데이션), Pretendard Variable
 ```
 
+### whisper-script - 동영상 자막 추출기
+```
+유형: 스크립트 추출기 (동영상 → 자막/텍스트)
+URL:  http://127.0.0.1:7860 (로컬 전용)
+스택: Python + Gradio + faster-whisper (CTranslate2) + CUDA fp16 + imageio-ffmpeg
+
+로직: 동영상 드래그&드롭 → FFmpeg 오디오 추출 → Whisper large-v3 추론 → SRT/VTT/TXT 출력
+     _clean/ 폴더에 필러 제거 + 중복 제거된 AI 요약용 텍스트 자동 생성
+
+배치 처리: 여러 동영상 동시 업로드, 순차 처리 + 큐/진행률 표시
+다중 포맷: TXT (순수 텍스트) + SRT (자막) + VTT (웹 자막)
+모델 선택: tiny ~ large-v3 (5단계, 품질 vs 속도)
+다국어:   한국어/영어/일본어/중국어/자동감지
+
+AI 전처리: clean_text() / clean_srt() — 필러(음,어,네,그쵸 등) + SRT 포맷 + 중복 제거
+          원본 대비 토큰 ~65% 절감 → Haiku 모델 사용 시 비용 ~3.5%
+
+삽질:    FFmpeg PATH 충돌 → imageio-ffmpeg 내장 바이너리로 해결 (별도 설치 불필요)
+         large-v3 첫 실행 시 ~3GB 다운로드 (이후 캐싱)
+         GPU OOM 시 medium 모델로 변경 (품질 약간↓, 속도 2배↑)
+디자인:  라이트 테마 (Toss 스타일), Pretendard Variable (CDN)
+```
+
 ---
 
 ## AI에게 줄 때
@@ -704,10 +731,10 @@ OG:       Pillow 1200×630 동적 이미지, ?v=1 캐시버스팅
 ```
 위 기술지도를 참고해서 "___" 앱을 만들어줘.
 
-타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트]
+타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트 | whisper-script처럼 스크립트추출기]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
-참고 레퍼런스: [pong | mz | amlife | salary | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | vibejob | poli]
+참고 레퍼런스: [pong | mz | amlife | salary | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | vibejob | poli | whisper-script]
 
 추가 요구:
 - ...

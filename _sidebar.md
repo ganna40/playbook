@@ -57,6 +57,7 @@
   * [tok-wrapped - 카톡Wrapped분석기](references/tok-wrapped.md)
   * [vibejob - 프리랜서매칭플랫폼](references/vibejob.md)
   * [poli - 정치성향테스트](references/poli.md)
+  * [whisper-script - 동영상자막추출기](references/whisper-script.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)
@@ -66,6 +67,7 @@
   * [React+Vite+Tailwind v4](recipes/react-vite-tailwind.md)
   * [GitHub 업로드 가이드](recipes/github-upload.md)
   * [Django+HTMX+Tailwind](recipes/django-htmx-tailwind.md)
+  * [AI 요약 최적화](recipes/ai-summary-optimization.md)
 
 * **삽질 방지**
   * [Tailwind CSS v4](gotchas/tailwind-v4.md)
