@@ -15,13 +15,33 @@ MCP(Model Context Protocol) 서버를 통해 Claude가 플레이북 내용을 **
 | **통신** | stdio (Claude Code 표준) |
 | **보안** | `_secrets.md` 자동 차단 |
 
-## 설치
+## 새 PC에서 설치하기 (복붙용)
 
-### 방법 A: uvx로 설치 (추천 — 아무 PC에서든 한줄)
+### Step 1: uv 설치 (Python 패키지 실행 도구)
 
-PyPI에 배포된 패키지를 사용. 파일 다운로드 필요 없음.
+```bash
+pip install uv
+```
 
-`~/.claude/settings.json`에 추가:
+> 이미 있으면 스킵.
+
+### Step 2: settings.json에 붙여넣기
+
+Claude Code 설정 파일을 연다:
+
+- **Windows**: `C:\Users\{유저명}\.claude\settings.json`
+- **Mac/Linux**: `~/.claude/settings.json`
+
+`mcpServers` 안에 아래를 붙여넣기:
+
+```json
+"playbook": {
+  "command": "uvx",
+  "args": ["playbook-mcp"]
+}
+```
+
+전체 예시 (다른 MCP 서버가 없는 경우):
 
 ```json
 {
@@ -34,44 +54,17 @@ PyPI에 배포된 패키지를 사용. 파일 다운로드 필요 없음.
 }
 ```
 
-끝. Claude Code 재시작하면 자동으로 다운로드 → 설치 → 실행.
-
-### 방법 B: 수동 설치 (로컬 파일)
+### Step 3: Claude Code 재시작 → 확인
 
 ```bash
-# 1. 패키지 설치
-pip install mcp httpx
-
-# 2. server.py 다운로드 (이것만 있으면 됨)
-mkdir playbook-mcp && cd playbook-mcp
-curl -O https://raw.githubusercontent.com/ganna40/playbook/main/mcp-server/server.py
-
-# 3. settings.json에 등록
-```
-
-`~/.claude/settings.json`에 추가:
-
-```json
-{
-  "mcpServers": {
-    "playbook": {
-      "command": "python",
-      "args": ["/path/to/server.py"]
-    }
-  }
-}
-```
-
-### 확인
-
-```bash
-# Claude Code 재시작 후
 /mcp
-# → playbook 서버가 connected 상태인지 확인
+# → playbook 서버가 connected 상태면 성공
 ```
 
-> 서버는 GitHub에서 데이터를 가져오므로 로컬에 playbook 클론 불필요.
-> `_secrets.md`는 자동 차단.
+끝. `uvx`가 PyPI에서 자동으로 다운로드 → 설치 → 실행합니다.
+로컬에 playbook 파일 없어도 됨. 데이터는 GitHub에서 가져옴.
+
+> `_secrets.md`는 자동 차단됨.
 
 ## 도구 목록 (7개)
 
