@@ -59,6 +59,7 @@
   * [poli - 정치성향테스트](references/poli.md)
   * [whisper-script - 동영상자막추출기](references/whisper-script.md)
   * [realtime-stt - 실시간음성전사기](references/realtime-stt.md)
+  * [wp-mcp - WordPress SEO MCP](references/wp-mcp.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)

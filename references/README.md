@@ -25,3 +25,4 @@
 | [tok-wrapped](references/tok-wrapped.md) | 파일 분석기 | BASE+SCREEN+GRADE+REVEAL+SHARE+STYLE-DARK+WebWorker | 다크 |
 | [poli](references/poli.md) | 정치성향 테스트 | BASE+SCREEN+QUIZ+TIMER+GRADE+RADAR+REVEAL+SHARE+OG+URL-ENCODE+CALC+STYLE-DARK+고유IP카운터 | 다크 |
 | [whisper-script](references/whisper-script.md) | 스크립트 추출기 | Python+Gradio+faster-whisper+CUDA+STYLE-LIGHT | 라이트 |
+| [wp-mcp](references/wp-mcp.md) | MCP 서버 | FastMCP+WordPress REST API+RankMath+Pexels | - |
