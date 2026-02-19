@@ -91,7 +91,7 @@ function custom_compute_seo_score($request) {
     }
 
     // 단락 길이
-    preg_match_all('/<p[^>]*>(.*?)<\/p>/si', $post->post_content, $p_matches);
+    preg_match_all('/<p\b[^>]*>(.*?)<\/p>/si', $post->post_content, $p_matches);
     $long_p = 0;
     foreach ($p_matches[1] as $p) {
         if (mb_strlen(wp_strip_all_tags($p)) > 300) $long_p++;

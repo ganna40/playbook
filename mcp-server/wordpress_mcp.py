@@ -793,7 +793,7 @@ def wp_seo_check(content: str, focus_keyword: str, seo_title: str = "", meta_des
         check(f"메타 설명 길이 ({md_len}자)", 120 <= md_len <= 160, 1, "RankMath 기준: 120~160자")
 
     # 17. 짧은 단락 (RankMath: 120단어 이하 단락)
-    paragraphs = re.findall(r"<p[^>]*>(.*?)</p>", content, re.DOTALL | re.IGNORECASE)
+    paragraphs = re.findall(r"<p\b[^>]*>(.*?)</p>", content, re.DOTALL | re.IGNORECASE)
     long_paragraphs = [p for p in paragraphs if len(re.sub(r"<[^>]+>", "", p).strip()) > 300]
     check(f"짧은 단락 ({len(long_paragraphs)}개 > 300자)", len(long_paragraphs) == 0, 1, "긴 단락 분리 권장")
 
@@ -1429,7 +1429,7 @@ def wp_seo_optimize(post_id: int) -> str:
 
     # (C) short_paragraphs — 300자 이상 문단 자동 분리
     if "short_paragraphs" in failed:
-        p_pattern = re.compile(r'(<p[^>]*>)(.*?)(</p>)', re.DOTALL | re.IGNORECASE)
+        p_pattern = re.compile(r'(<p\b[^>]*>)(.*?)(</p>)', re.DOTALL | re.IGNORECASE)
         split_count = 0
 
         def _split_long_p(m):
@@ -1578,6 +1578,7 @@ def wp_seo_optimize(post_id: int) -> str:
         "content_length": "본문 2500자 이상으로 늘리세요.",
         "keyword_in_content": f"본문에 '{focus_kw}'를 추가하세요.",
         "internal_links": "내부 링크 1개 이상 추가하세요. wp_find_internal_links 사용.",
+        "seo_title_set": f"SEO 제목을 설정하세요. wp_update_post(post_id={post_id}, seo_title='제목') 사용.",
         "title_length": "SEO 제목을 60자 이하로 줄이세요.",
         "title_starts_with_kw": f"SEO 제목을 '{focus_kw}'로 시작하세요.",
         "title_has_number": "제목에 숫자를 포함시키세요 (예: 7가지, 5단계).",
