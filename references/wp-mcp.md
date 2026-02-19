@@ -18,7 +18,7 @@
 FastMCP + WordPress REST API + RankMath REST API + Pexels API + Code Snippets REST API
 ```
 
-## 15개 MCP 도구
+## 16개 MCP 도구
 
 | 도구 | 용도 |
 |------|------|
@@ -37,6 +37,7 @@ FastMCP + WordPress REST API + RankMath REST API + Pexels API + Code Snippets RE
 | `wp_review_draft` | 초안 종합 리뷰 (서버사이드 SEO 점수) |
 | `wp_schedule_draft` | 예약 발행 (ISO 8601 날짜) |
 | `wp_publish_pipeline` | 이미지→글생성→리뷰 통합 파이프라인 |
+| `wp_seo_optimize` | 기존 글 SEO 자동 최적화 (슬러그, 이미지, 문단 분리, H2 구조) |
 
 ## 핵심 API/기술
 
@@ -56,7 +57,7 @@ FastMCP + WordPress REST API + RankMath REST API + Pexels API + Code Snippets RE
 ```
 Claude Code
   ↓ (MCP 프로토콜)
-wordpress_mcp.py (FastMCP 서버, 15개 도구)
+wordpress_mcp.py (FastMCP 서버, 16개 도구)
   ↓ (HTTP)
 WordPress REST API (/wp-json/wp/v2/)
 RankMath REST API (/wp-json/rankmath/v1/)

@@ -1326,6 +1326,312 @@ def wp_publish_pipeline(
     return "\n".join(lines)
 
 
+# ── 도구 16: SEO 자동 최적화 ─────────────────────────────
+
+@mcp.tool()
+def wp_seo_optimize(post_id: int) -> str:
+    """기존 글의 SEO 점수를 분석하고 자동 수정 가능한 항목을 즉시 적용합니다.
+
+    자동 수정:
+    - 슬러그에 포커스 키워드 삽입 (keyword_in_url)
+    - 이미지 없으면 Pexels 검색→업로드→본문 삽입 (has_images)
+    - 300자 이상 문단 자동 분리 (short_paragraphs)
+    - H2 9개 이상이면 뒤쪽 H2를 H3으로 변환 (h2_structure)
+
+    분석 후 Claude에게 지시:
+    - 키워드 밀도 조정 (어떤 문장의 키워드를 교체할지 구체 지시)
+    - 메타 설명 길이 조정 (현재 길이와 목표 범위)
+    - 외부 링크 추가 (필요 시)
+    - 소제목에 키워드 추가 (필요 시)
+
+    Args:
+        post_id: 최적화할 글 ID
+    """
+    lines = [f"## SEO 최적화 리포트 (Post {post_id})\n"]
+
+    # ── 1단계: 현재 상태 수집 ──
+    try:
+        r = httpx.get(
+            f"{API_BASE}/posts/{post_id}",
+            params={"context": "edit"},
+            headers=_auth_header(), timeout=TIMEOUT, follow_redirects=True,
+        )
+        if r.status_code != 200:
+            return f"❌ 글 조회 실패: HTTP {r.status_code}"
+        post = r.json()
+    except Exception as e:
+        return f"❌ 글 조회 실패: {e}"
+
+    content = post["content"]["raw"]
+    title = post["title"]["raw"]
+    slug = post["slug"]
+    meta = post.get("meta", {})
+    focus_kw = meta.get("rank_math_focus_keyword", "")
+    seo_title = meta.get("rank_math_title", "")
+    meta_desc = meta.get("rank_math_description", "")
+    featured = post.get("featured_media", 0)
+
+    if not focus_kw:
+        return "❌ 포커스 키워드가 설정되지 않았습니다. wp_update_post로 먼저 설정하세요."
+
+    # SEO 점수 가져오기
+    seo_data = _compute_seo_score(post_id)
+    if not seo_data:
+        return "❌ SEO 점수 계산 실패. 서버사이드 SEO endpoint를 확인하세요."
+
+    before_score = seo_data["score"]
+    failed = {c["name"]: c for c in seo_data.get("checks", []) if not c["passed"]}
+    passed = {c["name"]: c for c in seo_data.get("checks", []) if c["passed"]}
+    density = seo_data.get("density", 0)
+
+    lines.append(f"### 수정 전: {before_score}/100 (실패 {len(failed)}개)\n")
+
+    if not failed:
+        lines.append("✅ 모든 SEO 항목 통과! 수정할 것이 없습니다.")
+        return "\n".join(lines)
+
+    auto_fixed = []
+    manual_needed = []
+    content_changed = False
+    meta_updates = {}  # WP REST API meta로 업데이트할 필드
+    post_updates = {}  # WP REST API post로 업데이트할 필드
+
+    # ── 2단계: 자동 수정 ──
+
+    # (A) keyword_in_url — 슬러그에 키워드 삽입
+    if "keyword_in_url" in failed:
+        new_slug = _keyword_to_slug(focus_kw)
+        post_updates["slug"] = new_slug
+        auto_fixed.append(f"슬러그 변경: `{slug}` → `{new_slug}`")
+
+    # (B) has_images — 이미지 검색→업로드→본문 삽입
+    if "has_images" in failed:
+        img_result = wp_find_image(focus_kw, upload=True, focus_keyword=focus_kw)
+        if "미디어 ID:" in img_result:
+            id_match = re.search(r"미디어 ID: (\d+)", img_result)
+            url_match = re.search(r"URL: (https?://\S+)", img_result)
+            if id_match and url_match:
+                media_id = int(id_match.group(1))
+                img_url = url_match.group(1)
+                post_updates["featured_media"] = media_id
+                # 본문에 이미지 삽입
+                if "<img" not in content.lower():
+                    img_tag = f'\n<img src="{img_url}" alt="{focus_kw}" width="800" />\n'
+                    first_p = content.find("</p>")
+                    if first_p != -1:
+                        content = content[:first_p + 4] + img_tag + content[first_p + 4:]
+                    else:
+                        content = img_tag + content
+                    content_changed = True
+                auto_fixed.append(f"이미지 업로드 + 본문 삽입 (ID: {media_id})")
+        else:
+            manual_needed.append(("이미지 추가", "wp_find_image로 이미지를 검색하고 본문에 삽입하세요."))
+
+    # (C) short_paragraphs — 300자 이상 문단 자동 분리
+    if "short_paragraphs" in failed:
+        p_pattern = re.compile(r'(<p[^>]*>)(.*?)(</p>)', re.DOTALL | re.IGNORECASE)
+        split_count = 0
+
+        def _split_long_p(m):
+            nonlocal split_count
+            open_tag, inner, close_tag = m.group(1), m.group(2), m.group(3)
+            text = re.sub(r'<[^>]+>', '', inner)
+            if len(text) <= 300:
+                return m.group(0)
+            # 문장 단위로 분리 (. 다음 공백)
+            sentences = re.split(r'(?<=[.!?다요죠함됩])\s+', inner)
+            if len(sentences) < 2:
+                return m.group(0)
+            # 절반 지점에서 분리
+            mid = len(sentences) // 2
+            part1 = ' '.join(sentences[:mid])
+            part2 = ' '.join(sentences[mid:])
+            split_count += 1
+            return f'{open_tag}{part1}{close_tag}\n\n{open_tag}{part2}{close_tag}'
+
+        new_content = p_pattern.sub(_split_long_p, content)
+        if split_count > 0:
+            content = new_content
+            content_changed = True
+            auto_fixed.append(f"긴 문단 {split_count}개 자동 분리 (300자 기준)")
+
+    # (D) h2_structure — H2가 9개 이상이면 뒤쪽을 H3으로 변환
+    if "h2_structure" in failed:
+        h2_matches = list(re.finditer(r'<h2([^>]*)>(.*?)</h2>', content, re.IGNORECASE))
+        h2_count = len(h2_matches)
+        if h2_count > 8:
+            # 뒤에서부터 H3으로 변환 (FAQ 제외, 기법 번호가 있는 것 우선)
+            converted = 0
+            for m in reversed(h2_matches):
+                if h2_count - converted <= 8:
+                    break
+                h2_text = m.group(2)
+                # FAQ, 자주 묻는 질문은 유지
+                if '자주 묻는' in h2_text or 'FAQ' in h2_text.upper():
+                    continue
+                # 포커스 키워드가 포함된 H2는 유지 (최소 1개)
+                if focus_kw.lower() in h2_text.lower() and converted == 0:
+                    continue
+                old = m.group(0)
+                new = f'<h3{m.group(1)}>{h2_text}</h3>'
+                content = content.replace(old, new, 1)
+                converted += 1
+            if converted > 0:
+                content_changed = True
+                auto_fixed.append(f"H2 {converted}개 → H3으로 변환 ({h2_count}개 → {h2_count - converted}개)")
+        elif h2_count < 3:
+            manual_needed.append(("H2 소제목 추가", f"현재 H2가 {h2_count}개입니다. 3개 이상으로 늘려주세요."))
+
+    # ── 3단계: 자동 수정 적용 ──
+
+    if content_changed:
+        post_updates["content"] = content
+
+    if post_updates:
+        try:
+            httpx.post(
+                f"{API_BASE}/posts/{post_id}",
+                headers={**_auth_header(), "Content-Type": "application/json"},
+                json=post_updates, timeout=TIMEOUT, follow_redirects=True,
+            )
+        except Exception as e:
+            lines.append(f"⚠️ 자동 수정 적용 실패: {e}")
+
+    if meta_updates:
+        try:
+            httpx.post(
+                f"{API_BASE}/posts/{post_id}",
+                headers={**_auth_header(), "Content-Type": "application/json"},
+                json={"meta": meta_updates}, timeout=TIMEOUT, follow_redirects=True,
+            )
+        except Exception as e:
+            lines.append(f"⚠️ 메타 업데이트 실패: {e}")
+
+    # ── 4단계: 수동 수정 지시 생성 ──
+
+    # (E) keyword_density — 키워드 밀도 분석 + 교체 지시
+    if "keyword_density" in failed:
+        content_text = re.sub(r'<[^>]+>', '', content)
+        kw_lower = focus_kw.lower()
+        kw_count = content_text.lower().count(kw_lower)
+        char_count = len(content_text)
+        current_density = (kw_count * len(kw_lower)) / char_count * 100 if char_count else 0
+
+        # 목표: 밀도 1.5~2.0%
+        target_count = int(char_count * 0.018 / len(kw_lower))  # 1.8% 타겟
+        remove_count = max(0, kw_count - target_count)
+
+        # 키워드가 포함된 문장 목록 (교체 후보)
+        sentences_with_kw = []
+        for line in content.split('\n'):
+            text = re.sub(r'<[^>]+>', '', line).strip()
+            if kw_lower in text.lower() and len(text) > 10:
+                # H2 태그 안의 키워드는 별도 표시
+                is_heading = bool(re.search(r'<h[2-4]', line))
+                sentences_with_kw.append((text[:80], is_heading))
+
+        instruction = (
+            f"키워드 밀도 조정 필요: 현재 {current_density:.1f}% ({kw_count}회) → 목표 0.5~2.5%\n"
+            f"  **{remove_count}회 제거** 필요. 아래 문장에서 '{focus_kw}'를 동의어로 교체:\n"
+            f"  동의어 예시: '이 도구', '이 기술', '이 시스템', '해당 방법' 등\n"
+        )
+        for text, is_h in sentences_with_kw:
+            tag = "[H2]" if is_h else "[본문]"
+            instruction += f"  {tag} {text}...\n"
+
+        manual_needed.append(("키워드 밀도 조정", instruction))
+
+    # (F) meta_desc_length — 메타 설명 길이
+    if "meta_desc_length" in failed:
+        md_len = len(meta_desc) if meta_desc else 0
+        direction = "늘려" if md_len < 120 else "줄여"
+        manual_needed.append((
+            "메타 설명 길이 조정",
+            f"현재 {md_len}자 → 120~160자로 {direction}주세요.\n"
+            f"  현재: {meta_desc}\n"
+            f"  wp_update_post(post_id={post_id}, meta_description='새 설명') 으로 업데이트\n"
+            f"  ⚠️ 또는 WP REST API meta 필드로 직접 업데이트 (더 확실)"
+        ))
+
+    # (G) external_links
+    if "external_links" in failed:
+        manual_needed.append((
+            "외부 링크 추가",
+            f"본문에 관련 외부 링크 1개 이상 추가하세요.\n"
+            f"  예: 공식 문서, 위키피디아, 논문 등\n"
+            f"  wp_update_post(post_id={post_id}, content='수정된 HTML') 으로 업데이트"
+        ))
+
+    # (H) keyword_in_headings
+    if "keyword_in_headings" in failed:
+        manual_needed.append((
+            "소제목에 키워드 추가",
+            f"H2~H4 소제목 중 최소 1개에 '{focus_kw}' 포함시켜주세요.\n"
+            f"  예: '<h2>{focus_kw} — 핵심 개념</h2>'"
+        ))
+
+    # (I) 기타 실패 항목
+    other_checks = {
+        "keyword_in_seo_title": f"SEO 제목에 '{focus_kw}' 포함시키세요.",
+        "keyword_in_meta_desc": f"메타 설명에 '{focus_kw}' 포함시키세요.",
+        "keyword_in_intro": f"본문 첫 10%에 '{focus_kw}'를 추가하세요.",
+        "content_length": "본문 2500자 이상으로 늘리세요.",
+        "keyword_in_content": f"본문에 '{focus_kw}'를 추가하세요.",
+        "internal_links": "내부 링크 1개 이상 추가하세요. wp_find_internal_links 사용.",
+        "title_length": "SEO 제목을 60자 이하로 줄이세요.",
+        "title_starts_with_kw": f"SEO 제목을 '{focus_kw}'로 시작하세요.",
+        "title_has_number": "제목에 숫자를 포함시키세요 (예: 7가지, 5단계).",
+        "faq_schema": "FAQ JSON-LD 스키마를 추가하세요.",
+        "url_length": "URL 슬러그를 75자 이하로 줄이세요 (한국어 인코딩 주의).",
+    }
+    for name, instruction in other_checks.items():
+        if name in failed and name not in ["keyword_in_url", "has_images", "short_paragraphs", "h2_structure", "keyword_density", "meta_desc_length", "external_links", "keyword_in_headings"]:
+            manual_needed.append((name, instruction))
+
+    # ── 5단계: 재점수 ──
+    seo_after = _compute_seo_score(post_id)
+    after_score = seo_after["score"] if seo_after else "?"
+    after_failed = [c for c in seo_after.get("checks", []) if not c["passed"]] if seo_after else []
+
+    # ── 리포트 출력 ──
+    if auto_fixed:
+        lines.append("### ✅ 자동 수정 완료")
+        for f in auto_fixed:
+            lines.append(f"- {f}")
+        lines.append("")
+
+    lines.append(f"### 점수: {before_score} → {after_score}/100\n")
+
+    if manual_needed:
+        lines.append("### 📋 Claude가 수정할 항목")
+        lines.append("아래 항목을 순서대로 수정하고 `wp_update_post`로 업데이트하세요.\n")
+        for i, (name, instruction) in enumerate(manual_needed, 1):
+            lines.append(f"**{i}. {name}**")
+            lines.append(f"{instruction}\n")
+
+    if after_failed:
+        check_labels = {
+            'keyword_in_seo_title': '키워드→SEO제목', 'keyword_in_meta_desc': '키워드→메타설명',
+            'keyword_in_url': '키워드→URL', 'keyword_in_intro': '키워드→도입부',
+            'content_length': '본문길이', 'keyword_in_content': '키워드→본문',
+            'keyword_in_headings': '키워드→소제목', 'keyword_density': '키워드밀도',
+            'has_images': '이미지', 'url_length': 'URL길이', 'internal_links': '내부링크',
+            'external_links': '외부링크', 'title_length': '제목길이',
+            'title_starts_with_kw': '제목키워드시작', 'title_has_number': '제목숫자',
+            'meta_desc_length': '메타설명길이', 'short_paragraphs': '문단길이',
+            'faq_schema': 'FAQ스키마', 'h2_structure': 'H2구조',
+        }
+        lines.append("### 남은 실패 항목")
+        for c in after_failed:
+            label = check_labels.get(c["name"], c["name"])
+            lines.append(f"  ❌ {label} (w:{c['weight']})")
+
+    if not manual_needed and not after_failed:
+        lines.append("🎉 모든 SEO 항목 통과!")
+
+    return "\n".join(lines)
+
+
 # ── 엔트리포인트 ─────────────────────────────────────────
 
 def main():
