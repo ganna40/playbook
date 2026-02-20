@@ -62,6 +62,7 @@
   * [hexalounge - 인증매칭커뮤니티](references/hexalounge.md)
   * [hexaconsulting - 연애컨설팅퍼널](references/hexaconsulting.md)
   * [tok-wrapped - 카톡Wrapped분석기](references/tok-wrapped.md)
+  * [tok-iq - 카톡IQ분석기](references/tok-iq.md)
   * [vibejob - 프리랜서매칭플랫폼](references/vibejob.md)
   * [poli - 정치성향테스트](references/poli.md)
   * [whisper-script - 동영상자막추출기](references/whisper-script.md)
