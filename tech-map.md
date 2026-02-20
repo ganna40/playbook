@@ -742,33 +742,36 @@ GitHub: github.com/ganna40/wp-generation-mcp
 로컬:  C:\Users\ganna\Downloads\wp-generation-mcp
 스택:  Python + FastMCP + httpx + WordPress REST API + RankMath API + Pexels API
 
-Claude Code에서 블로그 글 작성 → SEO 최적화 → 예약 발행 자동화
-  15개 MCP 도구:
-    wp_check_connection   — 연결 + 인증 + RankMath 확인
-    wp_keyword_research   — Google 자동완성 키워드 리서치
+Claude Code에서 블로그 글 작성 → SEO 최적화 → 스타일 체크 → 예약 발행 자동화
+  17개 MCP 도구:
+    wp_check_connection    — 연결 + 인증 + RankMath 확인
+    wp_keyword_research    — Google 자동완성 키워드 리서치
     wp_check_cannibalization — 기존 글 키워드 중복 체크
-    wp_create_post        — 글 생성 (SEO 메타 자동 설정, 슬러그 자동)
-    wp_update_post        — 글 수정
-    wp_list_posts         — 글 목록
-    wp_get_post           — 글 상세 조회
-    wp_list_drafts        — 초안/예약 글 목록
-    wp_seo_check          — RankMath 기준 SEO 분석 (20개 항목)
-    wp_find_image         — Pexels/Unsplash/Pixabay 이미지 검색 + WP 업로드
-    wp_upload_media       — URL → WP 미디어 업로드
-    wp_find_internal_links — 내부 링크 후보 추천
-    wp_review_draft       — 초안 종합 리뷰 (서버사이드 SEO 점수)
-    wp_schedule_draft     — 예약 발행 (ISO 8601)
-    wp_publish_pipeline   — 이미지→글생성→리뷰 통합 파이프라인
+    wp_create_post         — 글 생성 (SEO 메타 자동 설정, 슬러그 자동)
+    wp_update_post         — 글 수정
+    wp_list_posts          — 글 목록
+    wp_get_post            — 글 상세 조회
+    wp_list_drafts         — 초안/예약 글 목록
+    wp_seo_check           — SEO 분석 + 구체적 수정 제안 (실패 항목별 액션)
+    wp_find_image          — Pexels/Unsplash/Pixabay 이미지 검색 + WP 업로드
+    wp_upload_media        — URL → WP 미디어 업로드
+    wp_find_internal_links — 3단계 유사도 매칭 내부 링크 추천
+    wp_review_draft        — 초안 종합 리뷰 (서버사이드 SEO 점수)
+    wp_schedule_draft      — 예약 발행 (ISO 8601)
+    wp_publish_pipeline    — 이미지→글생성→리뷰 통합 파이프라인
+    wp_seo_optimize        — 기존 글 SEO 자동 최적화
+    wp_style_check         — AI 문체 패턴 감지 (문단/1인칭/구어체/여담)
 
 파이프라인:
   키워드 리서치 → 카니발리제이션 체크
     → 이미지 검색 + WP 업로드 + 본문 자동 삽입
     → 글 생성 (draft) + RankMath SEO 메타 설정
+    → SEO 체크 (수정 제안 포함) + 스타일 체크 (AI 패턴 감지)
     → 서버사이드 SEO 점수 계산 (PHP endpoint)
     → 종합 리뷰 → 사용자 확인 후 예약 발행
 
-WordPress 필수: RankMath SEO + Code Snippets (서버사이드 SEO endpoint)
-특수: 포커스 키워드 자동 슬러그, 서버사이드 SEO 점수, 이미지 자동 삽입
+WordPress 필수: RankMath SEO + Code Snippets (SEO + posts-keywords endpoint)
+특수: SEO 수정 제안, 3단계 내부링크 매칭, AI 문체 감지, 포커스 키워드 슬러그
 ```
 
 ---
