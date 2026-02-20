@@ -42,6 +42,7 @@
 | [CAPTURE](catalog/capture.md) | 결과 이미지 캡처 (html2canvas) | 없음 |
 | [SOUND](catalog/sound.md) | 효과음 (Web Audio API) | 없음 |
 | [HAPTIC](catalog/haptic.md) | 햅틱 피드백 (Vibration API) | 없음 |
+| [TOURNAMENT](catalog/tournament.md) | 토너먼트 월드컵 엔진 (N강 대결) | BASE, SCREEN |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 
 ## 조합 예시
@@ -109,6 +110,11 @@ DJANGO + HTMX + Tailwind CDN + Alpine.js + RADAR + GRADE + PILLOW-OG + PORTONE +
 ### "혼합 질문 타입 테스트" (love 같은)
 ```
 BASE + DATA + SCREEN + QUIZ + SWIPE + SPECTRUM + DRAG-RANK + TIMER + GRADE + RADAR + REVEAL + CAPTURE + SOUND + HAPTIC + URL-ENCODE + SHARE + GA + STYLE-DARK
+```
+
+### "이상형 월드컵" (ideal 같은)
+```
+BASE + SCREEN + TOURNAMENT + CAPTURE + SOUND + HAPTIC + SHARE + OG + STYLE-DARK
 ```
 
 ### "파일 분석기 Wrapped" (tok-wrapped 같은)

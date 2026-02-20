@@ -40,6 +40,7 @@
   * [CAPTURE - 결과 이미지 캡처](catalog/capture.md)
   * [SOUND - 효과음 (Web Audio)](catalog/sound.md)
   * [HAPTIC - 햅틱 피드백](catalog/haptic.md)
+  * [TOURNAMENT - 토너먼트 월드컵](catalog/tournament.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
 
 * **레퍼런스 (실제 앱)**
@@ -67,6 +68,7 @@
   * [realtime-stt - 실시간음성전사기](references/realtime-stt.md)
   * [wp-mcp - WordPress SEO MCP](references/wp-mcp.md)
   * [love - 연애유형테스트](references/love.md)
+  * [ideal - 이상형월드컵](references/ideal.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)
