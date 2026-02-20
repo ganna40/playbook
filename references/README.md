@@ -26,3 +26,4 @@
 | [poli](references/poli.md) | 정치성향 테스트 | BASE+SCREEN+QUIZ+TIMER+GRADE+RADAR+REVEAL+SHARE+OG+URL-ENCODE+CALC+STYLE-DARK+고유IP카운터 | 다크 |
 | [whisper-script](references/whisper-script.md) | 스크립트 추출기 | Python+Gradio+faster-whisper+CUDA+STYLE-LIGHT | 라이트 |
 | [wp-mcp](references/wp-mcp.md) | MCP 서버 | FastMCP+WordPress REST API+RankMath+Pexels | - |
+| [love](references/love.md) | 연애유형 테스트 | BASE+QUIZ+SWIPE+SPECTRUM+DRAG-RANK+TIMER+RADAR+REVEAL+CAPTURE+SOUND+HAPTIC+URL-ENCODE+SHARE+STYLE-DARK | 다크 |

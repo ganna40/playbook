@@ -34,6 +34,12 @@
   * [PORTONE - PG 결제](catalog/portone.md)
   * [PILLOW-OG - 동적 OG 이미지](catalog/pillow-og.md)
   * [REL-TYPE - 관계 유형 추정](catalog/rel-type.md)
+  * [SWIPE - 스와이프 답변](catalog/swipe.md)
+  * [SPECTRUM - 슬라이더 답변](catalog/spectrum.md)
+  * [DRAG-RANK - 드래그 순위](catalog/drag-rank.md)
+  * [CAPTURE - 결과 이미지 캡처](catalog/capture.md)
+  * [SOUND - 효과음 (Web Audio)](catalog/sound.md)
+  * [HAPTIC - 햅틱 피드백](catalog/haptic.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
 
 * **레퍼런스 (실제 앱)**
@@ -60,6 +66,7 @@
   * [whisper-script - 동영상자막추출기](references/whisper-script.md)
   * [realtime-stt - 실시간음성전사기](references/realtime-stt.md)
   * [wp-mcp - WordPress SEO MCP](references/wp-mcp.md)
+  * [love - 연애유형테스트](references/love.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)

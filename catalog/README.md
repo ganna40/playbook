@@ -36,6 +36,12 @@
 | [PORTONE](catalog/portone.md) | PG 결제 (PortOne/아임포트) | 서버 (Django/Flask) |
 | [PILLOW-OG](catalog/pillow-og.md) | 서버사이드 OG 이미지 동적 생성 | 서버 + Pillow |
 | [REL-TYPE](catalog/rel-type.md) | 관계 유형 추정 (8계층 신호) | 없음 |
+| [SWIPE](catalog/swipe.md) | 스와이프 답변 (Tinder식 좌/우) | BASE |
+| [SPECTRUM](catalog/spectrum.md) | 슬라이더 답변 (0~100 스펙트럼) | BASE |
+| [DRAG-RANK](catalog/drag-rank.md) | 드래그 순위 매기기 | BASE |
+| [CAPTURE](catalog/capture.md) | 결과 이미지 캡처 (html2canvas) | 없음 |
+| [SOUND](catalog/sound.md) | 효과음 (Web Audio API) | 없음 |
+| [HAPTIC](catalog/haptic.md) | 햅틱 피드백 (Vibration API) | 없음 |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 
 ## 조합 예시
@@ -98,6 +104,11 @@ DJANGO + HTMX + Tailwind CDN + Alpine.js + Canvas RADAR + GRADE
 ### "세일즈 퍼널" (hexaconsulting 같은)
 ```
 DJANGO + HTMX + Tailwind CDN + Alpine.js + RADAR + GRADE + PILLOW-OG + PORTONE + SHARE + DEPLOY
+```
+
+### "혼합 질문 타입 테스트" (love 같은)
+```
+BASE + DATA + SCREEN + QUIZ + SWIPE + SPECTRUM + DRAG-RANK + TIMER + GRADE + RADAR + REVEAL + CAPTURE + SOUND + HAPTIC + URL-ENCODE + SHARE + GA + STYLE-DARK
 ```
 
 ### "파일 분석기 Wrapped" (tok-wrapped 같은)

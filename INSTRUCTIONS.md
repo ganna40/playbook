@@ -54,6 +54,12 @@ playbook/
 │   ├── ga.md           # Google Analytics
 │   ├── style-dark.md   # 다크 테마
 │   ├── style-light.md  # 라이트 테마
+│   ├── swipe.md        # 스와이프 답변 (Tinder식)
+│   ├── spectrum.md     # 슬라이더 답변 (0~100)
+│   ├── drag-rank.md    # 드래그 순위 매기기
+│   ├── capture.md      # 결과 이미지 캡처 (html2canvas)
+│   ├── sound.md        # 효과음 (Web Audio API)
+│   ├── haptic.md       # 햅틱 피드백 (Vibration API)
 │   └── deploy.md       # EC2 배포
 │
 ├── references/         # 실제 만든 앱 분석
@@ -61,7 +67,8 @@ playbook/
 │   ├── salary.md       # 월급계산기
 │   ├── pong.md         # 퐁퐁측정기
 │   ├── mz.md           # MZ력측정기
-│   └── amlife.md       # 엠생력측정기
+│   ├── amlife.md       # 엠생력측정기
+│   └── love.md         # 연애유형테스트
 │
 ├── recipes/            # 기술별 How-to
 │   ├── flask-dashboard.md
