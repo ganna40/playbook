@@ -18,7 +18,7 @@
 FastMCP + WordPress REST API + RankMath REST API + Pexels API + Code Snippets REST API
 ```
 
-## 17개 MCP 도구
+## 18개 MCP 도구
 
 | 도구 | 용도 |
 |------|------|
@@ -38,6 +38,7 @@ FastMCP + WordPress REST API + RankMath REST API + Pexels API + Code Snippets RE
 | `wp_schedule_draft` | 예약 발행 (ISO 8601 날짜) |
 | `wp_publish_pipeline` | 이미지→글생성→리뷰 통합 파이프라인 |
 | `wp_seo_optimize` | 기존 글 SEO 자동 최적화 (슬러그, 이미지, 문단 분리, H2 구조) |
+| `wp_extract_style_dna` | **스타일 DNA 추출** (프로필 + 가이드 + few-shot 샘플) |
 | `wp_style_check` | **AI 문체 패턴 감지** (문단 다양성, 1인칭, 구어체, 여담) |
 
 ## 핵심 강화 도구 상세
@@ -72,6 +73,23 @@ FastMCP + WordPress REST API + RankMath REST API + Pexels API + Code Snippets RE
 결과: 점수별 등급 (🔴 8+ / 🟡 4+ / ⚪) + 양방향 링크 제안
 ```
 
+### wp_extract_style_dna — 스타일 DNA 추출 + few-shot 프롬프팅
+
+기존 발행 글 N개를 분석하여 **스타일 가이드 + few-shot 샘플**을 자동 생성:
+
+| 출력 섹션 | 내용 |
+|---|---|
+| 문체 프로필 | 문단 길이/변동계수, 문장 길이, 1인칭/구어체/여담 빈도, 전환어 통계 |
+| 스타일 가이드 | 분석에서 도출된 9개 규칙 (문단 구조, 어투, 소제목 수, 글 길이 등) |
+| Few-shot 샘플 | 1인칭+구어체 점수 높은 대표 문단 3개 (다른 글에서 1개씩) |
+
+```
+사용법:
+1. wp_extract_style_dna(count=5) 호출
+2. 반환된 스타일 가이드 + 샘플을 글 작성 프롬프트에 주입
+3. wp_style_check()로 결과 검증
+```
+
 ### wp_style_check — AI 문체 패턴 감지
 
 | 체크 항목 | 기준 |
@@ -101,7 +119,7 @@ FastMCP + WordPress REST API + RankMath REST API + Pexels API + Code Snippets RE
 ```
 Claude Code
   ↓ (MCP 프로토콜)
-wordpress_mcp.py (FastMCP 서버, 17개 도구)
+wordpress_mcp.py (FastMCP 서버, 18개 도구)
   ↓ (HTTP)
 WordPress REST API (/wp-json/wp/v2/)
 RankMath REST API (/wp-json/rankmath/v1/)
@@ -116,7 +134,8 @@ Google Autocomplete (키워드 리서치)
 
 ```
 키워드 리서치 → 카니발리제이션 체크
-  → 이미지 검색 + WP 업로드 + 본문 자동 삽입
+  → 스타일 DNA 추출 (기존 글 분석 → 스타일 가이드 + few-shot 샘플)
+  → 글 작성 (스타일 가이드 주입) + 이미지 검색/업로드
   → 글 생성 (draft) + RankMath SEO 메타 설정
   → SEO 체크 (수정 제안 포함)
   → 스타일 체크 (AI 패턴 감지)
