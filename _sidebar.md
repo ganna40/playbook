@@ -42,6 +42,11 @@
   * [HAPTIC - 햅틱 피드백](catalog/haptic.md)
   * [TOURNAMENT - 토너먼트 월드컵](catalog/tournament.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
+  * [JSPDF - PDF 생성](catalog/jspdf.md)
+  * [PWA - 프로그레시브 웹 앱](catalog/pwa.md)
+  * [VIEW-TRANSITIONS - 화면 전환](catalog/view-transitions.md)
+  * [CONFETTI - 축하 효과](catalog/confetti.md)
+  * [LOTTIE - 벡터 애니메이션](catalog/lottie.md)
 
 * **레퍼런스 (실제 앱)**
   * [레퍼런스 총정리](references/README.md)
@@ -70,6 +75,7 @@
   * [wp-mcp - WordPress SEO MCP](references/wp-mcp.md)
   * [love - 연애유형테스트](references/love.md)
   * [ideal - 이상형월드컵](references/ideal.md)
+  * [quit-calculator - 퇴사타이밍계산기](references/quit-calculator.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)

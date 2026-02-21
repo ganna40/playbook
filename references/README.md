@@ -29,3 +29,4 @@
 | [wp-mcp](references/wp-mcp.md) | MCP 서버 | FastMCP+WordPress REST API+RankMath+Pexels | - |
 | [love](references/love.md) | 연애유형 테스트 | BASE+QUIZ+SWIPE+SPECTRUM+DRAG-RANK+TIMER+RADAR+REVEAL+CAPTURE+SOUND+HAPTIC+URL-ENCODE+SHARE+STYLE-DARK | 다크 |
 | [ideal](references/ideal.md) | 이상형 월드컵 | BASE+SCREEN+TOURNAMENT+CAPTURE+SOUND+HAPTIC+SHARE+OG+STYLE-DARK | 다크 |
+| [quit-calculator](references/quit-calculator.md) | 퇴직금 계산기 | BASE+CALC+GRADE+SHARE+CAPTURE+JSPDF+PWA+VIEW-TRANSITIONS+CONFETTI+LOTTIE+STYLE-LIGHT | 라이트 |

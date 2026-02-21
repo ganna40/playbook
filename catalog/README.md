@@ -44,6 +44,11 @@
 | [HAPTIC](catalog/haptic.md) | 햅틱 피드백 (Vibration API) | 없음 |
 | [TOURNAMENT](catalog/tournament.md) | 토너먼트 월드컵 엔진 (N강 대결) | BASE, SCREEN |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
+| [JSPDF](catalog/jspdf.md) | PDF 생성 (jsPDF + html2canvas) | 없음 |
+| [PWA](catalog/pwa.md) | 프로그레시브 웹 앱 (SW + manifest) | 없음 |
+| [VIEW-TRANSITIONS](catalog/view-transitions.md) | View Transitions API 화면 전환 | 없음 |
+| [CONFETTI](catalog/confetti.md) | 축하 컨페티 효과 (canvas-confetti) | 없음 |
+| [LOTTIE](catalog/lottie.md) | 벡터 애니메이션 (lottie-web) | 없음 |
 
 ## 조합 예시
 
@@ -120,4 +125,9 @@ BASE + SCREEN + TOURNAMENT + CAPTURE + SOUND + HAPTIC + SHARE + OG + STYLE-DARK
 ### "파일 분석기 Wrapped" (tok-wrapped 같은)
 ```
 BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker + MBTI추정엔진 + REL-TYPE
+```
+
+### "퇴직금 계산기 + PWA" (quit-calculator 같은)
+```
+BASE + CALC + GRADE + SHARE + CAPTURE + JSPDF + PWA + VIEW-TRANSITIONS + CONFETTI + LOTTIE + STYLE-LIGHT
 ```
