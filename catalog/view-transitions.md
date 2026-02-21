@@ -1,7 +1,8 @@
 # [VIEW-TRANSITIONS] 화면 전환 — View Transitions API
 
-> 입력 → 결과 화면 전환 시 네이티브 앱 같은 애니메이션.
-> `document.startViewTransition()`으로 DOM 변경을 감싸면 자동 전환 효과.
+> 화면이 바뀔 때 "슬라이드" 하듯 부드럽게 넘어가게 해주는 기술.
+> 원래 웹사이트는 화면이 갑자기 "뚝" 바뀌는데, 이걸 쓰면 앱처럼 자연스럽게 전환된다.
+> 코드 한 줄(`document.startViewTransition()`)만 감싸면 브라우저가 알아서 애니메이션을 넣어준다.
 
 ## 핵심 로직
 
