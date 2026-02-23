@@ -41,6 +41,8 @@
   * [SOUND - 효과음 (Web Audio)](catalog/sound.md)
   * [HAPTIC - 햅틱 피드백](catalog/haptic.md)
   * [TOURNAMENT - 토너먼트 월드컵](catalog/tournament.md)
+  * [REACT-FLOW - 다이어그램 캔버스](catalog/react-flow.md)
+  * [DND-KIT - 드래그 앤 드롭](catalog/dnd-kit.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
   * [JSPDF - PDF 생성](catalog/jspdf.md)
   * [PWA - 프로그레시브 웹 앱](catalog/pwa.md)
@@ -76,6 +78,7 @@
   * [love - 연애유형테스트](references/love.md)
   * [ideal - 이상형월드컵](references/ideal.md)
   * [quit-calculator - 퇴사타이밍계산기](references/quit-calculator.md)
+  * [infra-quote - 인프라견적서빌더](references/infra-quote.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)

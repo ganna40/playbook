@@ -43,6 +43,8 @@
 | [SOUND](catalog/sound.md) | 효과음 (Web Audio API) | 없음 |
 | [HAPTIC](catalog/haptic.md) | 햅틱 피드백 (Vibration API) | 없음 |
 | [TOURNAMENT](catalog/tournament.md) | 토너먼트 월드컵 엔진 (N강 대결) | BASE, SCREEN |
+| [REACT-FLOW](catalog/react-flow.md) | 노드 기반 다이어그램 캔버스 (@xyflow/react) | React |
+| [DND-KIT](catalog/dnd-kit.md) | 드래그 앤 드롭 툴킷 (@dnd-kit/core) | React |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 | [JSPDF](catalog/jspdf.md) | PDF 생성 (jsPDF + html2canvas) | 없음 |
 | [PWA](catalog/pwa.md) | 프로그레시브 웹 앱 (SW + manifest) | 없음 |
@@ -120,6 +122,11 @@ BASE + DATA + SCREEN + QUIZ + SWIPE + SPECTRUM + DRAG-RANK + TIMER + GRADE + RAD
 ### "이상형 월드컵" (ideal 같은)
 ```
 BASE + SCREEN + TOURNAMENT + CAPTURE + SOUND + HAPTIC + SHARE + OG + STYLE-DARK
+```
+
+### "인프라 견적서 빌더" (infra-quote 같은)
+```
+REACT-FLOW + DND-KIT + React 19 + Vite + Tailwind CSS v4 + Lucide-React + Express (JSON DB)
 ```
 
 ### "파일 분석기 Wrapped" (tok-wrapped 같은)
