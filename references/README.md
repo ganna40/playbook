@@ -31,3 +31,4 @@
 | [ideal](references/ideal.md) | 이상형 월드컵 | BASE+SCREEN+TOURNAMENT+CAPTURE+SOUND+HAPTIC+SHARE+OG+STYLE-DARK | 다크 |
 | [quit-calculator](references/quit-calculator.md) | 퇴직금 계산기 | BASE+CALC+GRADE+SHARE+CAPTURE+JSPDF+PWA+VIEW-TRANSITIONS+CONFETTI+LOTTIE+STYLE-LIGHT | 라이트 |
 | [infra-quote](references/infra-quote.md) | 인프라 견적서 빌더 | REACT-FLOW+DND-KIT+React19+Vite+TailwindV4+Lucide-React+Express(JSON DB) | 다크 |
+| [saju](references/saju.md) | 사주팔자 AI풀이 | FastAPI+LLM(Ollama/EXAONE)+DYNAMIC-PROMPT+lunar_python+STYLE-DARK | 다크 |

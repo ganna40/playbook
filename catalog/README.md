@@ -129,6 +129,11 @@ BASE + SCREEN + TOURNAMENT + CAPTURE + SOUND + HAPTIC + SHARE + OG + STYLE-DARK
 REACT-FLOW + DND-KIT + React 19 + Vite + Tailwind CSS v4 + Lucide-React + Express (JSON DB)
 ```
 
+### "사주 AI 풀이 대시보드" (saju 같은)
+```
+FastAPI + LLM(Ollama) + DYNAMIC-PROMPT + lunar_python + CSS Variables (다크)
+```
+
 ### "파일 분석기 Wrapped" (tok-wrapped 같은)
 ```
 BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWorker + MBTI추정엔진 + REL-TYPE
