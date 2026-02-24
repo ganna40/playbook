@@ -922,21 +922,27 @@ URL:  (로컬 전용)
 
 ### saju - 사주팔자 AI 풀이 대시보드
 ```
-유형: AI 풀이 대시보드 (만세력→격국분석→LLM해석)
+유형: AI 풀이 대시보드 (만세력→격국분석→전문분석엔진→사전해석→LLM다듬기)
 URL:  http://localhost:8888 (로컬 전용)
-스택: Python + FastAPI + lunar_python + Ollama (EXAONE 3.5)
+스택: Python + FastAPI + lunar_python + Ollama (EXAONE 3.5 7.8B)
 
 생년월일시 입력 → 만세력(팔자+대운+세운) 자동 계산
   → 자평진전 16규칙 격국 판별 + 신강/신약 + 용신/희기신
-  → 12운성 + 도화살 + 십신분포 + 배우자궁 분석
-  → 대운 클릭 시 세운 그리드 토글 (용신/기신 색상 강조)
+  → 6개 전문 분석 모듈:
+    · 신살 12종 (괴강살/화개살/역마살/양인살/천을귀인 등)
+    · 합충형파해 (육합/삼합/육충/형/파/해 + 길흉)
+    · 재물그릇 v2 (9항목 100점, 재고/종격/합충 포함)
+    · 인생이벤트 타임라인 (전성기/시련기/결혼/직업변동)
+    · 6축 운세 레이더 (재물/직업/학문/연애/건강/대인)
+  → 사전해석 엔진 (규칙기반 deterministic 초안 생성, 15개 복합규칙)
+  → EXAONE이 초안의 팩트를 유지하면서 문체만 다듬기
   → AI 9탭 해석 (종합/성격/직업운/대운/재물운/배우자운/연애운/건강운/세운풀이)
 
 프론트: Vanilla JS + CSS Variables (금/적색 다크 테마)
-백엔드: FastAPI (단일 파일 dashboard.py), Ollama EXAONE 3.5 (7.8B)
+백엔드: FastAPI (dashboard.py + server/services/ 7개 모듈)
 데이터: lunar_python 런타임 계산 (DB 없음)
 폰트:   Noto Serif KR + Nanum Myeongjo (Google Fonts)
-특수:   자평진전 격국 엔진(16규칙), 구체적 단정형 프롬프트 9종
+특수:   사전해석 엔진(pre_interpretation.py), temp=0.3 일관성 튜닝
 ```
 
 ---
