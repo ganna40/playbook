@@ -16,8 +16,8 @@
 | **CSS Variables** | `:root`로 테마 색상 관리 | pong, mz, tarot, dictionary |
 | **Pretendard 폰트** | 한글 웹폰트 (CDN) | salary, mz, tok-wrapped, tok-iq |
 | **Noto Sans KR** | Google Fonts 한글 웹폰트 | food, tarot |
-| **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife, dictionary, hexalounge, infra-quote |
-| **Tailwind CSS v4 (@theme)** | PostCSS 빌드, @theme 커스텀 색상 | vibejob, infra-quote |
+| **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife, dictionary, hexalounge, infra-quote, life-sim-rpg |
+| **Tailwind CSS v4 (@theme)** | PostCSS 빌드, @theme 커스텀 색상 | vibejob, infra-quote, life-sim-rpg |
 | **shadcn/ui (Radix UI)** | Headless 컴포넌트 (CVA + Tailwind) | vibejob |
 | **Svelte 5** | 컴포넌트 기반 UI 프레임워크 | food, rackops |
 | **D3.js** | 데이터 시각화 (Force Graph, 토폴로지) | rackops |
@@ -26,9 +26,9 @@
 | **@xyflow/react (React Flow v12)** | 노드 기반 다이어그램 캔버스 (줌/팬/미니맵/커스텀노드) | infra-quote |
 | **@dnd-kit/core** | 드래그 앤 드롭 툴킷 (패널→캔버스) | infra-quote |
 | **React 18** | 컴포넌트 기반 UI 프레임워크 | tarot |
-| **React 19** | 최신 React (App Router SSR/CSR) | vibejob, infra-quote |
+| **React 19** | 최신 React (App Router SSR/CSR) | vibejob, infra-quote, life-sim-rpg |
 | **Framer Motion** | React 애니메이션 라이브러리 | tarot |
-| **Canvas API** | 레이더 차트 그리기 | mz, amlife, hexalounge, hexaconsulting |
+| **Canvas API** | 레이더 차트, 2D 렌더링 | mz, amlife, hexalounge, hexaconsulting, life-sim-rpg |
 | **html2canvas** | DOM → 이미지 캡처 | salary, pong, mz, amlife, hexaconsulting, tok-wrapped, tok-iq, quit-calculator |
 | **jsPDF** | PDF 생성 (html2canvas 이미지 삽입) | quit-calculator |
 | **canvas-confetti** | Canvas 기반 컨페티 효과 | quit-calculator |
@@ -111,7 +111,8 @@
 | **OpenPyXL** | 엑셀 비주얼 리포트 (셀 병합, 색상) | rackops | |
 | **Prisma ORM 6** | TypeScript ORM (스키마→마이그레이션→클라이언트) | vibejob | |
 | **PostgreSQL (Prisma)** | 관계형 DB (Prisma 통해 접근) | vibejob | |
-| **localStorage** | 히스토리 저장 (대시보드) | git-uploader, dictionary | |
+| **localStorage** | 히스토리 저장 (대시보드) | git-uploader, dictionary, life-sim-rpg | |
+| **Zustand 5** | React 상태 관리 (경량 Redux 대안) | life-sim-rpg | |
 
 ### 🎨 UI 프레임워크
 
@@ -127,7 +128,7 @@
 
 | 기술 | 설명 | 사용처 |
 |------|------|--------|
-| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food, rackops, infra-quote |
+| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food, rackops, infra-quote, life-sim-rpg |
 | **Express (JSON DB)** | JSON 파일 CRUD API 서버 (port 8000) | infra-quote |
 | **Flask (Python)** | 웹 프레임워크 (Blueprint) | git-uploader, collab-tool | |
 | **Git Credential Manager** | GitHub 토큰 자동 추출 | git-uploader | |
@@ -945,6 +946,40 @@ URL:  http://localhost:8888 (로컬 전용)
 특수:   사전해석 엔진(pre_interpretation.py), temp=0.3 일관성 튜닝
 ```
 
+### life-sim-rpg - 인생 시뮬레이션 RPG
+```
+유형: 인생 시뮬레이션 게임 (브라우저 RPG)
+URL:  (로컬 개발)
+스택: React 19 + TypeScript + Vite 7 + Tailwind CSS v4 + Zustand 5 + Canvas 2D
+
+출생부터 사망까지 인생을 시뮬레이션하는 아이소메트릭 2D RPG.
+  → 아이소메트릭 타일맵 + 픽셀아트 캐릭터 (12나이대)
+  → 능력치 레벨링 (Lv.1-999, 성장 확률 + 감쇠)
+  → 33개 업적 시스템
+  → 20개 엔진 시스템:
+    · TimeSystem (속도 조절) + GameLoop (rAF)
+    · StatLevelSystem (effectiveStat + modifyStat)
+    · CareerSystem (30+ 직업, 승진, 월급)
+    · EducationSystem (초등~대학, 수능, 전공)
+    · SocialSystem (NPC 호감도, 결혼)
+    · AssetSystem (부동산/차량) + InvestmentSystem (주식/예금)
+    · EventManager (100+ 랜덤 이벤트, 선택지 분기)
+    · StressSystem + MilitarySystem + ChildSystem
+    · SuperpowerSystem + LicenseSystem + RivalSystem
+    · EconomyEngine (경기 순환)
+  → 치트 콘솔 (money/maxstats/skipto/level/immortal)
+  → 세이브/로드 (localStorage 3슬롯 + 자동저장)
+  → 사망 시 인생 리포트
+
+프론트: React 19, Tailwind CSS v4 (@theme 커스텀), Zustand 5, Canvas 2D
+렌더러: IsometricRenderer (타일맵+빌딩+플레이어+카메라)
+엔진:   순수 TypeScript (UI 의존 없음, EventEmitter 기반)
+데이터: TypeScript 인라인 (careers, events, licenses, properties 등)
+폰트:   시스템 폰트
+테마:   다크 (Lineage 스타일 금/검정)
+특수:   능력치 레벨링(log2 곡선), 부모 재산 시스템, 12나이대 외형, 직업 악세서리
+```
+
 ---
 
 ## AI에게 줄 때
@@ -954,10 +989,10 @@ URL:  http://localhost:8888 (로컬 전용)
 ```
 위 기술지도를 참고해서 "___" 앱을 만들어줘.
 
-타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | quit-calculator처럼 퇴직금계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | tok-iq처럼 IQ분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트 | whisper-script처럼 스크립트추출기 | wp-mcp처럼 MCP서버 | ideal처럼 이상형월드컵 | infra-quote처럼 견적서빌더 | saju처럼 사주AI풀이]
+타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | quit-calculator처럼 퇴직금계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | tok-iq처럼 IQ분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트 | whisper-script처럼 스크립트추출기 | wp-mcp처럼 MCP서버 | ideal처럼 이상형월드컵 | infra-quote처럼 견적서빌더 | saju처럼 사주AI풀이 | life-sim-rpg처럼 인생시뮬레이션]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
-참고 레퍼런스: [pong | mz | amlife | salary | quit-calculator | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | tok-iq | vibejob | poli | whisper-script | wp-mcp | love | ideal | infra-quote | saju]
+참고 레퍼런스: [pong | mz | amlife | salary | quit-calculator | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | tok-iq | vibejob | poli | whisper-script | wp-mcp | love | ideal | infra-quote | saju | life-sim-rpg]
 
 추가 요구:
 - ...

@@ -32,3 +32,4 @@
 | [quit-calculator](references/quit-calculator.md) | 퇴직금 계산기 | BASE+CALC+GRADE+SHARE+CAPTURE+JSPDF+PWA+VIEW-TRANSITIONS+CONFETTI+LOTTIE+STYLE-LIGHT | 라이트 |
 | [infra-quote](references/infra-quote.md) | 인프라 견적서 빌더 | REACT-FLOW+DND-KIT+React19+Vite+TailwindV4+Lucide-React+Express(JSON DB) | 다크 |
 | [saju](references/saju.md) | 사주팔자 AI풀이 | FastAPI+LLM(Ollama/EXAONE)+DYNAMIC-PROMPT+lunar_python+STYLE-DARK | 다크 |
+| [life-sim-rpg](references/life-sim-rpg.md) | 인생 시뮬레이션 RPG | React19+TypeScript+Vite+TailwindV4+Zustand+Canvas2D(아이소메트릭) | 다크 |

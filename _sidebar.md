@@ -80,6 +80,7 @@
   * [quit-calculator - 퇴사타이밍계산기](references/quit-calculator.md)
   * [infra-quote - 인프라견적서빌더](references/infra-quote.md)
   * [saju - 사주팔자AI풀이](references/saju.md)
+  * [life-sim-rpg - 인생시뮬레이션RPG](references/life-sim-rpg.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)
