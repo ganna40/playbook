@@ -946,6 +946,26 @@ URL:  http://localhost:8888 (로컬 전용)
 특수:   사전해석 엔진(pre_interpretation.py), temp=0.3 일관성 튜닝
 ```
 
+### saju-mcp - 사주팔자 MCP 서버
+```
+유형: MCP 서버 (AI 사주 상담 도구)
+GitHub: https://github.com/ganna40/saju-mcp
+스택: Python + FastMCP 3.0 + Pydantic v2 + lunar_python
+
+saju-app의 MCP 서버 버전. Claude Code에서 직접 사주 상담 가능.
+  → 만세력 계산 → 격국/십신/합충/신살/재물/레이더 기본 분석
+  → Expert Engine (고도화):
+    · 교차 분석 (11개 패턴: 식상생재/관인상생/상관견관/편인도식/살인상생 등)
+    · 과거 역추적 (대운 전환점 사건 예측, 복음/반음 감지)
+    · 종합 서사 (한줄정의/성격/인생흐름/현재장/핵심3/조언)
+    · 전문 상담 (10개 카테고리: 이직/직업/사업/재물/연애/결혼/건강/올해/학업/일반)
+  → 11개 MCP 도구 (analyze/report/yearly/compatibility/sinsal/wealth/life_events/export/pdf/consult/knowledge)
+
+데이터: lunar_python 런타임 계산 + knowledge DB (인덱서/서처)
+모델:   28개 core 모듈, Pydantic v2 스키마
+특수:   LLM 불필요 (Claude가 직접 해석), saju-app 대비 교차분석+역추적+서사+상담 추가
+```
+
 ### life-sim-rpg - 인생 시뮬레이션 RPG
 ```
 유형: 인생 시뮬레이션 게임 (브라우저 RPG)
@@ -992,7 +1012,7 @@ URL:  (로컬 개발)
 타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | quit-calculator처럼 퇴직금계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | tok-iq처럼 IQ분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트 | whisper-script처럼 스크립트추출기 | wp-mcp처럼 MCP서버 | ideal처럼 이상형월드컵 | infra-quote처럼 견적서빌더 | saju처럼 사주AI풀이 | life-sim-rpg처럼 인생시뮬레이션]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
-참고 레퍼런스: [pong | mz | amlife | salary | quit-calculator | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | tok-iq | vibejob | poli | whisper-script | wp-mcp | love | ideal | infra-quote | saju | life-sim-rpg]
+참고 레퍼런스: [pong | mz | amlife | salary | quit-calculator | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | tok-iq | vibejob | poli | whisper-script | wp-mcp | love | ideal | infra-quote | saju | saju-mcp | life-sim-rpg]
 
 추가 요구:
 - ...
