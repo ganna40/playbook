@@ -34,3 +34,4 @@
 | [saju](references/saju.md) | 사주팔자 AI풀이 | FastAPI+LLM(Ollama/EXAONE)+DYNAMIC-PROMPT+lunar_python+STYLE-DARK | 다크 |
 | [saju-mcp](references/saju-mcp.md) | 사주 MCP서버 | FastMCP+Pydantic v2+lunar_python+ExpertEngine(교차분석/역추적/서사/상담) | - |
 | [life-sim-rpg](references/life-sim-rpg.md) | 인생 시뮬레이션 RPG | React19+TypeScript+Vite+TailwindV4+Zustand+Canvas2D(아이소메트릭) | 다크 |
+| [naver-monitor](references/naver-monitor.md) | 네이버 카페 모니터링 | FastAPI+SQLAlchemy(async)+MariaDB+Playwright+APScheduler+Slack+gspread | 다크 |

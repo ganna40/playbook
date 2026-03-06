@@ -45,6 +45,7 @@
 | [TOURNAMENT](catalog/tournament.md) | 토너먼트 월드컵 엔진 (N강 대결) | BASE, SCREEN |
 | [REACT-FLOW](catalog/react-flow.md) | 노드 기반 다이어그램 캔버스 (@xyflow/react) | React |
 | [DND-KIT](catalog/dnd-kit.md) | 드래그 앤 드롭 툴킷 (@dnd-kit/core) | React |
+| [PLAYWRIGHT-SCRAPE](catalog/playwright-scrape.md) | Playwright Stealth 크롤링 (SPA/iframe/봇탐지우회) | 없음 |
 | [DEPLOY](catalog/deploy.md) | EC2 배포 파이프라인 | 없음 |
 | [JSPDF](catalog/jspdf.md) | PDF 생성 (jsPDF + html2canvas) | 없음 |
 | [PWA](catalog/pwa.md) | 프로그레시브 웹 앱 (SW + manifest) | 없음 |

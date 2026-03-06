@@ -43,6 +43,7 @@
   * [TOURNAMENT - 토너먼트 월드컵](catalog/tournament.md)
   * [REACT-FLOW - 다이어그램 캔버스](catalog/react-flow.md)
   * [DND-KIT - 드래그 앤 드롭](catalog/dnd-kit.md)
+  * [PLAYWRIGHT-SCRAPE - Stealth 크롤링](catalog/playwright-scrape.md)
   * [DEPLOY - EC2 배포](catalog/deploy.md)
   * [JSPDF - PDF 생성](catalog/jspdf.md)
   * [PWA - 프로그레시브 웹 앱](catalog/pwa.md)
@@ -82,6 +83,7 @@
   * [saju - 사주팔자AI풀이](references/saju.md)
   * [saju-mcp - 사주MCP서버](references/saju-mcp.md)
   * [life-sim-rpg - 인생시뮬레이션RPG](references/life-sim-rpg.md)
+  * [naver-monitor - 네이버카페모니터링](references/naver-monitor.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)
@@ -92,6 +94,7 @@
   * [GitHub 업로드 가이드](recipes/github-upload.md)
   * [Django+HTMX+Tailwind](recipes/django-htmx-tailwind.md)
   * [AI 요약 최적화](recipes/ai-summary-optimization.md)
+  * [네이버 카페 댓글 크롤링](recipes/naver-cafe-comments.md)
   * [Playbook MCP Server](recipes/playbook-mcp-server.md)
 
 * **삽질 방지**
