@@ -17,7 +17,7 @@
 | **Pretendard 폰트** | 한글 웹폰트 (CDN) | salary, mz, tok-wrapped, tok-iq |
 | **Noto Sans KR** | Google Fonts 한글 웹폰트 | food, tarot |
 | **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife, dictionary, hexalounge, infra-quote, life-sim-rpg |
-| **Tailwind CSS v4 (@theme)** | PostCSS 빌드, @theme 커스텀 색상 | vibejob, infra-quote, life-sim-rpg |
+| **Tailwind CSS v4 (@theme)** | PostCSS 빌드, @theme 커스텀 색상 | vibejob, infra-quote, life-sim-rpg, naver-monitor |
 | **shadcn/ui (Radix UI)** | Headless 컴포넌트 (CVA + Tailwind) | vibejob |
 | **Svelte 5** | 컴포넌트 기반 UI 프레임워크 | food, rackops |
 | **D3.js** | 데이터 시각화 (Force Graph, 토폴로지) | rackops |
@@ -72,11 +72,8 @@
 | **Vibration API** | 모바일 햅틱 피드백 (graceful degradation) | love, tok-iq | |
 | **Touch Events** | 터치 스와이프 (touchstart/move/end) | love | |
 | **Service Worker (PWA)** | 오프라인 지원 + 홈 화면 설치 | quit-calculator |
-| **Playwright** | headless Chromium 브라우저 자동화/크롤링 (Stealth, iframe, SPA 대기) | naver-monitor |
-| **Naver Search API** | 네이버 검색 (cafearticle, 일 25,000건) | naver-monitor |
-| **Slack Webhook** | 슬랙 채널 알림 (상태 변경 푸시) | naver-monitor |
-| **gspread** | Google Sheets API (실시간 시트 연동) | naver-monitor |
-| **BeautifulSoup (lxml)** | HTML 파싱 (API 응답 태그 제거) | naver-monitor |
+| **Playwright** | headless Chromium 브라우저 자동화/크롤링 (API 인터셉트, 제목 매칭) | naver-monitor |
+| **Playwright API 인터셉트** | `page.on("response")`로 댓글 API 응답 캡처 (DOM 스크래핑 대체) | naver-monitor |
 
 ### 🖥️ 서버 / 인프라
 
@@ -94,7 +91,8 @@
 | **Go (net/http)** | Go 표준 라이브러리 HTTP 서버 | dictionary | |
 | **Redis** | 캐시 서버 (임베딩/RAG/대화기억/rate limit) | psycho-bot, human2, vibejob | |
 | **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot | |
-| **SQLAlchemy 2.0 (async)** | 비동기 ORM (aiomysql/asyncpg) | tarot, psycho-bot, naver-monitor | |
+| **SQLAlchemy 2.0 (async)** | 비동기 ORM (aiomysql/asyncpg) | tarot, psycho-bot |
+| **SQLAlchemy 2.0 (sync)** | 동기 ORM (PyMySQL) + JSON 컬럼 | naver-monitor | |
 | **PocketBase** | BaaS (DB+인증+파일+API) | collab-tool | |
 | **APScheduler** | 백그라운드 주기적 스케줄러 | rackops, naver-monitor | |
 | **Paramiko** | SSH 클라이언트 (원격 명령어 실행) | rackops | |
@@ -134,7 +132,7 @@
 
 | 기술 | 설명 | 사용처 |
 |------|------|--------|
-| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food, rackops, infra-quote, life-sim-rpg |
+| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food, rackops, infra-quote, life-sim-rpg, naver-monitor |
 | **Express (JSON DB)** | JSON 파일 CRUD API 서버 (port 8000) | infra-quote |
 | **Flask (Python)** | 웹 프레임워크 (Blueprint) | git-uploader, collab-tool | |
 | **Git Credential Manager** | GitHub 토큰 자동 추출 | git-uploader | |
@@ -1017,25 +1015,25 @@ URL:  (로컬 개발)
 특수:   능력치 레벨링(log2 곡선), 부모 재산 시스템, 12나이대 외형, 직업 악세서리
 ```
 
-### naver-monitor - 네이버 카페 키워드 모니터링
+### naver-monitor - 네이버 카페 키워드 모니터링 + 정산
 ```
-유형: 백엔드 모니터링 도구
-로컬: C:\Users\ganna\Downloads\naver-monitor
-조합: FastAPI + SQLAlchemy(async) + MariaDB + Playwright + APScheduler
+유형: 풀스택 모니터링 + 결재/정산 시스템
+GitHub: https://github.com/ganna40/navercafe_monitoring
+로컬: C:\Users\ganna\Downloads\cafe-monitor
+조합: FastAPI + SQLAlchemy(sync/PyMySQL) + MariaDB + Playwright + TypeScript SPA
 
-키워드 등록 → 수동 노출확인(순위/URL) → 24H 후 자동 검증
-  → 통합검색 진입 → 카페 게시글 전체 → ?art= JWT 토큰으로 접속
-  → cafe_main iframe 내 Vue SPA 렌더링 대기
-  → .comment_text_box .text_comment 셀렉터로 댓글 추출
-  → 댓글에서 brand_name 매칭 → 건바이 성공/미노출AS/판단불가
-  → 수동 정산 이관 → 입금완료
+캠페인 등록 → 검증 건 등록 → Playwright 검증 실행
+  → 네이버 검색 → 제목 best-match (70% ratio) → 게시글 접속
+  → page.on("response") API 인터셉트로 댓글 캡처 (DOM 스크래핑 X)
+  → 감지됨/미감지/미노출 판정
+  → 자동 재검증 (N초 간격, 최대 M회, 2회 연속 감지 → 자동 결재)
+  → 관리자 승인/반려 → 정산 처리
 
-백엔드: FastAPI, SQLAlchemy 2.0(async/aiomysql), MariaDB, APScheduler
-크롤링: Playwright (Stealth, iframe, Vue SPA 대기, 랜덤 딜레이)
-연동:   Naver Search API, Slack Webhook, Google Sheets (gspread)
-프론트: Vanilla JS SPA (다크 대시보드), GitHub 스타일 UI
-인증:   SessionMiddleware (Starlette)
-핵심:   ?art= JWT 토큰 → 로그인 없이 카페 댓글 크롤링
+백엔드: FastAPI, SQLAlchemy 2.0(sync/PyMySQL), MariaDB
+크롤링: Playwright (API 인터셉트, best-match 제목 매칭)
+프론트: TypeScript + Vite + Tailwind v4 (Vanilla SPA, 페이지네이션)
+권한:   개별 페이지 권한 부여 (permissions JSON), sessionStorage 세션
+핵심:   API 인터셉트로 비로그인 댓글 제한 우회
         subprocess 분리 (Windows uvicorn 이벤트 루프 우회)
 ```
 
