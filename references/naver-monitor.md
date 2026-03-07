@@ -131,6 +131,75 @@ cafe-monitor/
             └── login.ts          # 로그인/회원가입
 ```
 
+## Docker 배포 (원클릭 설치)
+
+> 로컬: C:\Users\ganna\Downloads\cafe-monitor-docker
+
+Docker Compose로 MariaDB + FastAPI + Vite 프론트엔드를 한 번에 띄우는 버전.
+Python, Node.js, MariaDB 설치 없이 Docker만 있으면 실행 가능.
+
+### 실행
+
+```bash
+# Windows — 더블클릭
+start.bat
+
+# Mac / Linux
+chmod +x start.sh && ./start.sh
+```
+
+Docker가 없으면 자동 설치 시도. 첫 실행 시 5~10분 (이미지 빌드), 이후 10초.
+
+### 구성
+
+```yaml
+# docker-compose.yml
+services:
+  db:        # MariaDB 11 — 포트 3306
+  backend:   # FastAPI + Playwright — 포트 8000
+  frontend:  # Vite dev server — 포트 3000 (프록시 → backend)
+```
+
+| 컨테이너 | 이미지 | 핵심 |
+|----------|--------|------|
+| db | mariadb:11 | root/cafe1234, DB: cafe_monitor |
+| backend | python:3.12-slim + Playwright chromium | wait-for-db.py로 DB 대기 후 uvicorn 실행 |
+| frontend | node:20 | API_URL=http://backend:8000, Vite 프록시 |
+
+### 폐쇄망 배포
+
+인터넷 PC에서 이미지를 빌드 → 파일로 저장 → USB로 이동:
+
+```bash
+# 인터넷 PC
+docker compose build
+docker save cafe-monitor-docker-backend cafe-monitor-docker-frontend mariadb:11 \
+  | gzip > cafe-monitor-images.tar.gz
+
+# 폐쇄망 PC (Docker만 설치되어 있으면 됨)
+docker load < cafe-monitor-images.tar.gz
+docker compose up -d    # --build 없이!
+```
+
+USB에 담을 것: Docker 설치파일(~500MB) + 이미지(~2-3GB) + docker-compose.yml
+
+### 파일 구조
+
+```
+cafe-monitor-docker/
+├── docker-compose.yml    # 3개 서비스 정의
+├── Dockerfile            # backend (Python 3.12 + Playwright)
+├── wait-for-db.py        # DB 연결 대기 (30회 폴링)
+├── start.bat             # Windows 원클릭 (Docker 설치+실행+compose up)
+├── start.sh              # Mac/Linux 원클릭
+├── database.py           # MariaDB 전용 (SQLite 없음)
+├── main.py / models.py / schemas.py / _crawl_worker.py
+├── requirements.txt
+└── frontend/
+    ├── Dockerfile        # Node 20 + npm install + vite
+    └── vite.config.ts    # API_URL 환경변수로 backend 연결
+```
+
 ## AI에게 비슷한 거 만들게 하려면
 
 ```
