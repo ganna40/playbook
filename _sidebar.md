@@ -84,6 +84,7 @@
   * [saju-mcp - 사주MCP서버](references/saju-mcp.md)
   * [life-sim-rpg - 인생시뮬레이션RPG](references/life-sim-rpg.md)
   * [naver-monitor - 네이버카페모니터링](references/naver-monitor.md)
+  * [naver-blog-analyzer - 블로그SEO+AI생성](references/naver-blog-analyzer.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)

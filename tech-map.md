@@ -17,7 +17,7 @@
 | **Pretendard 폰트** | 한글 웹폰트 (CDN) | salary, mz, tok-wrapped, tok-iq |
 | **Noto Sans KR** | Google Fonts 한글 웹폰트 | food, tarot |
 | **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife, dictionary, hexalounge, infra-quote, life-sim-rpg |
-| **Tailwind CSS v4 (@theme)** | PostCSS 빌드, @theme 커스텀 색상 | vibejob, infra-quote, life-sim-rpg, naver-monitor |
+| **Tailwind CSS v4 (@theme)** | PostCSS 빌드, @theme 커스텀 색상 | vibejob, infra-quote, life-sim-rpg, naver-monitor, naver-blog-analyzer |
 | **shadcn/ui (Radix UI)** | Headless 컴포넌트 (CVA + Tailwind) | vibejob |
 | **Svelte 5** | 컴포넌트 기반 UI 프레임워크 | food, rackops |
 | **D3.js** | 데이터 시각화 (Force Graph, 토폴로지) | rackops |
@@ -26,7 +26,7 @@
 | **@xyflow/react (React Flow v12)** | 노드 기반 다이어그램 캔버스 (줌/팬/미니맵/커스텀노드) | infra-quote |
 | **@dnd-kit/core** | 드래그 앤 드롭 툴킷 (패널→캔버스) | infra-quote |
 | **React 18** | 컴포넌트 기반 UI 프레임워크 | tarot |
-| **React 19** | 최신 React (App Router SSR/CSR) | vibejob, infra-quote, life-sim-rpg |
+| **React 19** | 최신 React (App Router SSR/CSR) | vibejob, infra-quote, life-sim-rpg, naver-blog-analyzer |
 | **Framer Motion** | React 애니메이션 라이브러리 | tarot |
 | **Canvas API** | 레이더 차트, 2D 렌더링 | mz, amlife, hexalounge, hexaconsulting, life-sim-rpg |
 | **html2canvas** | DOM → 이미지 캡처 | salary, pong, mz, amlife, hexaconsulting, tok-wrapped, tok-iq, quit-calculator |
@@ -52,7 +52,7 @@
 | **Web Worker** | 백그라운드 스레드 파일 파싱 | tok-wrapped, tok-iq | |
 | **PortOne (iamport)** | PG 결제 (카드/간편결제) | hexaconsulting | |
 | **Pillow (PIL)** | 서버사이드 이미지 생성 (동적 OG) | hexaconsulting | |
-| **Ollama** | 로컬 LLM (gemma3, exaone3.5 등) | tarot, psycho-bot, error-automation, human2, vibejob | |
+| **Ollama** | 로컬 LLM (gemma3, exaone3.5 등) | tarot, psycho-bot, error-automation, human2, vibejob, naver-blog-analyzer | |
 | **OpenAI API** | GPT-4o/4o-mini 직접 호출 | psycho-bot | |
 | **OpenRouter** | 클라우드 LLM API (gpt-4o-mini 등) | tarot | |
 | **sentence-transformers** | 로컬 임베딩 (E5-large 1024d, ko-sroberta 768d) | psycho-bot, human2 | |
@@ -72,7 +72,10 @@
 | **Vibration API** | 모바일 햅틱 피드백 (graceful degradation) | love, tok-iq | |
 | **Touch Events** | 터치 스와이프 (touchstart/move/end) | love | |
 | **Service Worker (PWA)** | 오프라인 지원 + 홈 화면 설치 | quit-calculator |
-| **Playwright** | headless Chromium 브라우저 자동화/크롤링 (API 인터셉트, 제목 매칭) | naver-monitor |
+| **Playwright** | headless Chromium 브라우저 자동화/크롤링 (API 인터셉트, 제목 매칭) | naver-monitor, naver-blog-analyzer |
+| **Anthropic API (Claude)** | Claude LLM API (글 생성) | naver-blog-analyzer |
+| **OpenAI API (GPT-4o)** | GPT-4o 글 생성 | naver-blog-analyzer |
+| **Google Gemini API** | Gemini 글 생성 | naver-blog-analyzer |
 | **Playwright API 인터셉트** | `page.on("response")`로 댓글 API 응답 캡처 (DOM 스크래핑 대체) | naver-monitor |
 
 ### 🖥️ 서버 / 인프라
@@ -85,7 +88,7 @@
 | **GitHub Pages** | Docsify 문서 호스팅 | playbook | |
 | **Docker Compose** | 컨테이너 오케스트레이션 | tarot, psycho-bot | |
 | **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot, telbot, error-automation, rackops, naver-monitor | |
-| **Django 6** | Python 풀스택 프레임워크 (ORM, Admin, Signal, Middleware) | hexalounge, hexaconsulting | |
+| **Django 6** | Python 풀스택 프레임워크 (ORM, Admin, Signal, Middleware) | hexalounge, hexaconsulting, naver-blog-analyzer | |
 | **Gunicorn** | Python WSGI HTTP 서버 | hexaconsulting | |
 | **Apache (Reverse Proxy)** | 리버스 프록시 + 정적 파일 서빙 | hexaconsulting | |
 | **Go (net/http)** | Go 표준 라이브러리 HTTP 서버 | dictionary | |
@@ -108,7 +111,8 @@
 | **JSON 파일** | 데이터 분리 (fetch) | salary, pong, amlife | |
 | **인라인 데이터** | JS 내 직접 임베딩 | mz | |
 | **URL 파라미터** | 결과 인코딩/디코딩 | mz, amlife | |
-| **PostgreSQL + pgvector** | 벡터 DB (임베딩 검색) | tarot, psycho-bot, human2 | |
+| **PostgreSQL + pgvector** | 벡터 DB (임베딩 검색) | tarot, psycho-bot, human2 |
+| **PostgreSQL (JSONB)** | 관계형 DB + JSONB 컬럼 (content_map, metadata) | naver-blog-analyzer |
 | **MySQL/MariaDB** | 관계형 DB (CRUD, 세션, 인증) | dictionary, rackops, naver-monitor | |
 | **SQLite** | 파일 기반 경량 DB | error-automation, hexaconsulting | |
 | **pandas + openpyxl** | 엑셀 데이터 분석/가공 | product-j | |
@@ -132,7 +136,7 @@
 
 | 기술 | 설명 | 사용처 |
 |------|------|--------|
-| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food, rackops, infra-quote, life-sim-rpg, naver-monitor |
+| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food, rackops, infra-quote, life-sim-rpg, naver-monitor, naver-blog-analyzer |
 | **Express (JSON DB)** | JSON 파일 CRUD API 서버 (port 8000) | infra-quote |
 | **Flask (Python)** | 웹 프레임워크 (Blueprint) | git-uploader, collab-tool | |
 | **Git Credential Manager** | GitHub 토큰 자동 추출 | git-uploader | |
@@ -1037,6 +1041,28 @@ GitHub: https://github.com/ganna40/navercafe_monitoring
         subprocess 분리 (Windows uvicorn 이벤트 루프 우회)
 ```
 
+### naver-blog-analyzer - 네이버 블로그 SEO 분석 + AI 글 생성
+```
+유형: 풀스택 SEO 분석 + AI 생성 도구 (블로그판 Cursor)
+GitHub: https://github.com/ganna40/naverbloganalyzer2
+로컬: C:\Users\ganna\naver-blog-analyzer-v2
+조합: Django + React19 + Vite + TailwindV4 + PostgreSQL(JSONB) + Playwright + SSE + LLM(EXAONE/Claude/GPT-4o/Gemini)
+
+키워드 입력 → Playwright 네이버 검색 → 상위 블로그 수집
+  → BeautifulSoup SE ONE HTML 파싱 → content_map (텍스트/이미지/비디오/헤딩)
+  → 글자수, 키워드밀도, 자연도, 문체, 안티패턴 분석 → PostgreSQL 저장
+  → 경쟁 분석 (권위 점수 → easy/medium/hard)
+  → AI 생성 (SSE 스트리밍 + 버퍼 플러시)
+  → 에디터 (이미지 배치 + 1위글 비교 + SEO 실시간 분석)
+
+백엔드: Django, PostgreSQL (JSONB), custom User (is_approved 승인제)
+크롤링: Playwright (headless Chromium, 네이버 검색 + 본문 수집)
+분석:   BeautifulSoup (lxml), SE ONE HTML → content_map
+LLM:    EXAONE(Ollama), Claude(Anthropic), GPT-4o(OpenAI), Gemini(Google)
+프론트: React 19 + Vite + Tailwind v4 (@theme 다크)
+패턴:   PageKeepAlive, WorkflowContext, keywordVersion 동기화, SSE 버퍼 플러시
+```
+
 ---
 
 ## AI에게 줄 때
@@ -1046,10 +1072,10 @@ GitHub: https://github.com/ganna40/navercafe_monitoring
 ```
 위 기술지도를 참고해서 "___" 앱을 만들어줘.
 
-타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | quit-calculator처럼 퇴직금계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | tok-iq처럼 IQ분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트 | whisper-script처럼 스크립트추출기 | wp-mcp처럼 MCP서버 | ideal처럼 이상형월드컵 | infra-quote처럼 견적서빌더 | saju처럼 사주AI풀이 | life-sim-rpg처럼 인생시뮬레이션 | naver-monitor처럼 키워드모니터링]
+타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | quit-calculator처럼 퇴직금계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | tok-iq처럼 IQ분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트 | whisper-script처럼 스크립트추출기 | wp-mcp처럼 MCP서버 | ideal처럼 이상형월드컵 | infra-quote처럼 견적서빌더 | saju처럼 사주AI풀이 | life-sim-rpg처럼 인생시뮬레이션 | naver-monitor처럼 키워드모니터링 | naver-blog-analyzer처럼 블로그SEO+AI생성]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
-참고 레퍼런스: [pong | mz | amlife | salary | quit-calculator | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | tok-iq | vibejob | poli | whisper-script | wp-mcp | love | ideal | infra-quote | saju | saju-mcp | life-sim-rpg | naver-monitor]
+참고 레퍼런스: [pong | mz | amlife | salary | quit-calculator | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | tok-iq | vibejob | poli | whisper-script | wp-mcp | love | ideal | infra-quote | saju | saju-mcp | life-sim-rpg | naver-monitor | naver-blog-analyzer]
 
 추가 요구:
 - ...
