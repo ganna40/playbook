@@ -16,8 +16,8 @@
 | **CSS Variables** | `:root`로 테마 색상 관리 | pong, mz, tarot, dictionary |
 | **Pretendard 폰트** | 한글 웹폰트 (CDN) | salary, mz, tok-wrapped, tok-iq |
 | **Noto Sans KR** | Google Fonts 한글 웹폰트 | food, tarot |
-| **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife, dictionary, hexalounge, infra-quote, life-sim-rpg, amazon-report-hub |
-| **Tailwind CSS v4 (@theme)** | PostCSS 빌드, @theme 커스텀 색상 | vibejob, infra-quote, life-sim-rpg, naver-monitor, naver-blog-analyzer, amazon-report-hub |
+| **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife, dictionary, hexalounge, infra-quote, life-sim-rpg, amazon-report-hub, the-gappun |
+| **Tailwind CSS v4 (@theme)** | PostCSS 빌드, @theme 커스텀 색상 | vibejob, infra-quote, life-sim-rpg, naver-monitor, naver-blog-analyzer, amazon-report-hub, the-gappun |
 | **shadcn/ui (Radix UI)** | Headless 컴포넌트 (CVA + Tailwind) | vibejob |
 | **Svelte 5** | 컴포넌트 기반 UI 프레임워크 | food, rackops |
 | **D3.js** | 데이터 시각화 (Force Graph, 토폴로지) | rackops |
@@ -26,7 +26,7 @@
 | **@xyflow/react (React Flow v12)** | 노드 기반 다이어그램 캔버스 (줌/팬/미니맵/커스텀노드) | infra-quote |
 | **@dnd-kit/core** | 드래그 앤 드롭 툴킷 (패널→캔버스) | infra-quote |
 | **React 18** | 컴포넌트 기반 UI 프레임워크 | tarot |
-| **React 19** | 최신 React (App Router SSR/CSR) | vibejob, infra-quote, life-sim-rpg, naver-blog-analyzer, amazon-report-hub |
+| **React 19** | 최신 React (App Router SSR/CSR) | vibejob, infra-quote, life-sim-rpg, naver-blog-analyzer, amazon-report-hub, the-gappun |
 | **Framer Motion** | React 애니메이션 라이브러리 | tarot |
 | **Canvas API** | 레이더 차트, 2D 렌더링 | mz, amlife, hexalounge, hexaconsulting, life-sim-rpg |
 | **html2canvas** | DOM → 이미지 캡처 | salary, pong, mz, amlife, hexaconsulting, tok-wrapped, tok-iq, quit-calculator |
@@ -87,7 +87,7 @@
 | **Cloudflare** | DNS + SSL + CDN | *.pearsoninsight.com | |
 | **GitHub Pages** | Docsify 문서 호스팅 | playbook | |
 | **Docker Compose** | 컨테이너 오케스트레이션 | tarot, psycho-bot | |
-| **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot, telbot, error-automation, rackops, naver-monitor | |
+| **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot, telbot, error-automation, rackops, naver-monitor, the-gappun | |
 | **Django 6** | Python 풀스택 프레임워크 (ORM, Admin, Signal, Middleware) | hexalounge, hexaconsulting, naver-blog-analyzer | |
 | **Gunicorn** | Python WSGI HTTP 서버 | hexaconsulting | |
 | **Apache (Reverse Proxy)** | 리버스 프록시 + 정적 파일 서빙 | hexaconsulting | |
@@ -96,9 +96,12 @@
 | **Embedded PostgreSQL** | fergusstrange/embedded-postgres (설치 불필요, 자동 시작/종료) | amazon-report-hub | |
 | **pgx (PostgreSQL)** | Go PostgreSQL 드라이버 (배치 쿼리) | amazon-report-hub | |
 | **Redis** | 캐시 서버 (임베딩/RAG/대화기억/rate limit) | psycho-bot, human2, vibejob | |
-| **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot | |
-| **SQLAlchemy 2.0 (async)** | 비동기 ORM (aiomysql/asyncpg) | tarot, psycho-bot |
+| **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot, the-gappun | |
+| **SQLAlchemy 2.0 (async)** | 비동기 ORM (aiomysql/asyncpg) | tarot, psycho-bot, the-gappun |
 | **SQLAlchemy 2.0 (sync)** | 동기 ORM (PyMySQL) + JSON 컬럼 | naver-monitor | |
+| **asyncpg** | PostgreSQL 비동기 드라이버 | the-gappun | |
+| **python-jose (JWT)** | JWT 토큰 생성/검증 (HS256) | the-gappun | |
+| **uvicorn** | ASGI 서버 (FastAPI 실행) | tarot, psycho-bot, rackops, naver-monitor, the-gappun | |
 | **PocketBase** | BaaS (DB+인증+파일+API) | collab-tool | |
 | **APScheduler** | 백그라운드 주기적 스케줄러 | rackops, naver-monitor | |
 | **Paramiko** | SSH 클라이언트 (원격 명령어 실행) | rackops | |
@@ -116,13 +119,15 @@
 | **URL 파라미터** | 결과 인코딩/디코딩 | mz, amlife | |
 | **PostgreSQL + pgvector** | 벡터 DB (임베딩 검색) | tarot, psycho-bot, human2 |
 | **PostgreSQL (JSONB)** | 관계형 DB + JSONB 컬럼 (스키마리스 저장, GIN 인덱스) | naver-blog-analyzer, amazon-report-hub |
+| **PostgreSQL 17** | 관계형 DB (asyncpg 직접 접속) | the-gappun |
 | **MySQL/MariaDB** | 관계형 DB (CRUD, 세션, 인증) | dictionary, rackops, naver-monitor | |
 | **SQLite** | 파일 기반 경량 DB | error-automation, hexaconsulting | |
 | **pandas + openpyxl** | 엑셀 데이터 분석/가공 | product-j | |
 | **OpenPyXL** | 엑셀 비주얼 리포트 (셀 병합, 색상) | rackops | |
 | **Prisma ORM 6** | TypeScript ORM (스키마→마이그레이션→클라이언트) | vibejob | |
 | **PostgreSQL (Prisma)** | 관계형 DB (Prisma 통해 접근) | vibejob | |
-| **localStorage** | 히스토리 저장 (대시보드) | git-uploader, dictionary, life-sim-rpg | |
+| **localStorage** | 히스토리 저장 (대시보드) | git-uploader, dictionary, life-sim-rpg, the-gappun |
+| **React Context** | React 상태 관리 (장바구니/인증) | the-gappun | |
 | **Zustand 5** | React 상태 관리 (경량 Redux 대안) | life-sim-rpg | |
 
 ### 🎨 UI 프레임워크
@@ -139,7 +144,7 @@
 
 | 기술 | 설명 | 사용처 |
 |------|------|--------|
-| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food, rackops, infra-quote, life-sim-rpg, naver-monitor, naver-blog-analyzer, amazon-report-hub |
+| **Vite 7** | 프론트엔드 빌드 + 개발 서버 + API 프록시 | food, rackops, infra-quote, life-sim-rpg, naver-monitor, naver-blog-analyzer, amazon-report-hub, the-gappun |
 | **Express (JSON DB)** | JSON 파일 CRUD API 서버 (port 8000) | infra-quote |
 | **Flask (Python)** | 웹 프레임워크 (Blueprint) | git-uploader, collab-tool | |
 | **Git Credential Manager** | GitHub 토큰 자동 추출 | git-uploader | |
@@ -1078,6 +1083,29 @@ LLM:    EXAONE(Ollama), Claude(Anthropic), GPT-4o(OpenAI), Gemini(Google)
 ### amazon-report-hub - Amazon 셀러 리포트 데이터 허브
 
 
+### the-gappun - 건강기능식품 리뷰/쇼핑 플랫폼 (더 가뿐)
+```
+유형: 풀스택 쇼핑몰 (화해 클론)
+GitHub: github.com/ganna40/the_gappun
+조합: FastAPI + SQLAlchemy 2.0 (async/asyncpg) + PostgreSQL 17 + Alembic + JWT
+      + React 19 + TypeScript + Vite 7 + Tailwind CSS v4 + React Context (Cart/Auth)
+
+건강기능식품 리뷰·랭킹·주문·MBTI 이벤트 플랫폼 (13개 도메인)
+  → JWT 인증 (access 30분 + refresh 7일)
+  → 장바구니(프론트 Context+localStorage) → 결제 → 쿠폰 할인 적용
+  → MBTI 12문항 퀴즈 → 성격별 영양제 추천 + 자동 쿠폰 발급
+  → 16 MBTI × N상품 = 차등 할인율 매트릭스 (3~20%)
+  → 리뷰/별점/랭킹/찜하기/배너 캐러셀
+
+프론트: React 19, Tailwind CSS v4 (@theme 커스텀), React Context (Cart/Auth)
+백엔드: FastAPI, uvicorn, SQLAlchemy 2.0 async (Mapped 타입), Alembic, asyncpg
+DB:     PostgreSQL 17 (25+ 테이블)
+인증:   python-jose (JWT HS256) + bcrypt
+폰트:   시스템 폰트 (Apple SD Gothic Neo, Malgun Gothic)
+테마:   라이트 (화해 스타일, 녹색 프라이머리)
+특수:   도메인 기반 모듈 구조, MBTI 쿠폰 시스템, 주문 취소 시 쿠폰 복원
+```
+
 ---
 
 ## AI에게 줄 때
@@ -1087,7 +1115,7 @@ LLM:    EXAONE(Ollama), Claude(Anthropic), GPT-4o(OpenAI), Gemini(Google)
 ```
 위 기술지도를 참고해서 "___" 앱을 만들어줘.
 
-타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | quit-calculator처럼 퇴직금계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | tok-iq처럼 IQ분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트 | whisper-script처럼 스크립트추출기 | wp-mcp처럼 MCP서버 | ideal처럼 이상형월드컵 | infra-quote처럼 견적서빌더 | saju처럼 사주AI풀이 | life-sim-rpg처럼 인생시뮬레이션 | naver-monitor처럼 키워드모니터링 | naver-blog-analyzer처럼 블로그SEO+AI생성 | amazon-report-hub처럼 데이터리포트허브]
+타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | quit-calculator처럼 퇴직금계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | tok-iq처럼 IQ분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트 | whisper-script처럼 스크립트추출기 | wp-mcp처럼 MCP서버 | ideal처럼 이상형월드컵 | infra-quote처럼 견적서빌더 | saju처럼 사주AI풀이 | life-sim-rpg처럼 인생시뮬레이션 | naver-monitor처럼 키워드모니터링 | naver-blog-analyzer처럼 블로그SEO+AI생성 | amazon-report-hub처럼 데이터리포트허브 | the-gappun처럼 리뷰쇼핑몰]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
 참고 레퍼런스: [pong | mz | amlife | salary | quit-calculator | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | tok-iq | vibejob | poli | whisper-script | wp-mcp | love | ideal | infra-quote | saju | saju-mcp | life-sim-rpg | naver-monitor | naver-blog-analyzer | amazon-report-hub]

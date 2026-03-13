@@ -37,3 +37,4 @@
 | [naver-monitor](references/naver-monitor.md) | 네이버 카페 모니터링 | FastAPI+SQLAlchemy(async)+MariaDB+Playwright+APScheduler+Slack+gspread | 다크 |
 | [naver-blog-analyzer](references/naver-blog-analyzer.md) | 블로그 SEO+AI생성 | Django+React19+Vite+TailwindV4+PostgreSQL+Playwright+SSE+LLM(EXAONE/Claude/GPT-4o/Gemini) | 다크 |
 | [amazon-report-hub](references/amazon-report-hub.md) | 데이터 리포트 허브 | Go(chi)+React19+Vite+TailwindV4+PostgreSQL(JSONB)+Embedded-PostgreSQL+go:embed+excelize | 다크 |
+| [the-gappun](references/the-gappun.md) | 건강기능식품 쇼핑몰 | FastAPI+SQLAlchemy2.0(async/asyncpg)+PostgreSQL17+Alembic+JWT+React19+Vite7+TailwindV4 | 라이트 |

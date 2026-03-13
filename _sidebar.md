@@ -50,6 +50,9 @@
   * [VIEW-TRANSITIONS - 화면 전환](catalog/view-transitions.md)
   * [CONFETTI - 축하 효과](catalog/confetti.md)
   * [LOTTIE - 벡터 애니메이션](catalog/lottie.md)
+  * [FASTAPI - Python 비동기 REST API](catalog/fastapi.md)
+  * [ALEMBIC - DB 마이그레이션](catalog/alembic.md)
+  * [JWT-AUTH - JWT 인증](catalog/jwt-auth.md)
 
 * **레퍼런스 (실제 앱)**
   * [레퍼런스 총정리](references/README.md)
@@ -86,6 +89,7 @@
   * [naver-monitor - 네이버카페모니터링](references/naver-monitor.md)
   * [naver-blog-analyzer - 블로그SEO+AI생성](references/naver-blog-analyzer.md)
   * [amazon-report-hub - Amazon리포트허브](references/amazon-report-hub.md)
+  * [the-gappun - 건강기능식품쇼핑몰](references/the-gappun.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)
@@ -99,6 +103,7 @@
   * [네이버 카페 댓글 크롤링](recipes/naver-cafe-comments.md)
   * [Playbook MCP Server](recipes/playbook-mcp-server.md)
   * [Go 단일 바이너리 배포](recipes/go-single-binary.md)
+  * [FastAPI+SQLAlchemy async](recipes/fastapi-sqlalchemy-async.md)
 
 * **삽질 방지**
   * [Tailwind CSS v4](gotchas/tailwind-v4.md)
@@ -107,3 +112,4 @@
   * [EC2 OOM Kill + Swap + MySQL](gotchas/ec2-oom-swap.md)
   * [EC2 보안 (feroxbuster 차단)](gotchas/ec2-security.md)
   * [Cloudflare + Apache 배포](gotchas/cloudflare-apache.md)
+  * [FastAPI+SQLAlchemy async](gotchas/fastapi-sqlalchemy-async.md)

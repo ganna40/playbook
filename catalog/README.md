@@ -52,6 +52,9 @@
 | [VIEW-TRANSITIONS](catalog/view-transitions.md) | View Transitions API 화면 전환 | 없음 |
 | [CONFETTI](catalog/confetti.md) | 축하 컨페티 효과 (canvas-confetti) | 없음 |
 | [LOTTIE](catalog/lottie.md) | 벡터 애니메이션 (lottie-web) | 없음 |
+| [FASTAPI](catalog/fastapi.md) | Python 비동기 REST API 서버 | 없음 |
+| [ALEMBIC](catalog/alembic.md) | SQLAlchemy DB 마이그레이션 | FASTAPI |
+| [JWT-AUTH](catalog/jwt-auth.md) | JWT 인증 (python-jose + bcrypt) | FASTAPI |
 
 ## 조합 예시
 
@@ -148,4 +151,9 @@ BASE + CALC + GRADE + SHARE + CAPTURE + JSPDF + PWA + VIEW-TRANSITIONS + CONFETT
 ### "데이터 리포트 허브" (amazon-report-hub 같은)
 ```
 Go(chi) + React 19 + Vite + Tailwind CSS v4 + PostgreSQL(JSONB) + Embedded-PostgreSQL + go:embed + excelize(XLSX) + STYLE-DARK
+```
+
+### "건강기능식품 리뷰/쇼핑몰" (the-gappun 같은)
+```
+FASTAPI + ALEMBIC + JWT-AUTH + React 19 + Vite + Tailwind CSS v4 + React Context (Cart/Auth) + PostgreSQL
 ```
