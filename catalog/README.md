@@ -144,3 +144,8 @@ BASE + SCREEN + GRADE + REVEAL + SHARE + CALC(숫자애니) + STYLE-DARK + WebWo
 ```
 BASE + CALC + GRADE + SHARE + CAPTURE + JSPDF + PWA + VIEW-TRANSITIONS + CONFETTI + LOTTIE + STYLE-LIGHT
 ```
+
+### "데이터 리포트 허브" (amazon-report-hub 같은)
+```
+Go(chi) + React 19 + Vite + Tailwind CSS v4 + PostgreSQL(JSONB) + Embedded-PostgreSQL + go:embed + excelize(XLSX) + STYLE-DARK
+```

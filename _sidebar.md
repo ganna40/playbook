@@ -85,6 +85,7 @@
   * [life-sim-rpg - 인생시뮬레이션RPG](references/life-sim-rpg.md)
   * [naver-monitor - 네이버카페모니터링](references/naver-monitor.md)
   * [naver-blog-analyzer - 블로그SEO+AI생성](references/naver-blog-analyzer.md)
+  * [amazon-report-hub - Amazon리포트허브](references/amazon-report-hub.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)
@@ -97,6 +98,7 @@
   * [AI 요약 최적화](recipes/ai-summary-optimization.md)
   * [네이버 카페 댓글 크롤링](recipes/naver-cafe-comments.md)
   * [Playbook MCP Server](recipes/playbook-mcp-server.md)
+  * [Go 단일 바이너리 배포](recipes/go-single-binary.md)
 
 * **삽질 방지**
   * [Tailwind CSS v4](gotchas/tailwind-v4.md)

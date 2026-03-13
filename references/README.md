@@ -36,3 +36,4 @@
 | [life-sim-rpg](references/life-sim-rpg.md) | 인생 시뮬레이션 RPG | React19+TypeScript+Vite+TailwindV4+Zustand+Canvas2D(아이소메트릭) | 다크 |
 | [naver-monitor](references/naver-monitor.md) | 네이버 카페 모니터링 | FastAPI+SQLAlchemy(async)+MariaDB+Playwright+APScheduler+Slack+gspread | 다크 |
 | [naver-blog-analyzer](references/naver-blog-analyzer.md) | 블로그 SEO+AI생성 | Django+React19+Vite+TailwindV4+PostgreSQL+Playwright+SSE+LLM(EXAONE/Claude/GPT-4o/Gemini) | 다크 |
+| [amazon-report-hub](references/amazon-report-hub.md) | 데이터 리포트 허브 | Go(chi)+React19+Vite+TailwindV4+PostgreSQL(JSONB)+Embedded-PostgreSQL+go:embed+excelize | 다크 |
