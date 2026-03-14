@@ -104,6 +104,7 @@
   * [Playbook MCP Server](recipes/playbook-mcp-server.md)
   * [Go 단일 바이너리 배포](recipes/go-single-binary.md)
   * [FastAPI+SQLAlchemy async](recipes/fastapi-sqlalchemy-async.md)
+  * [네이버 블로그 AI Humanizer](recipes/naver-blog-ai-humanizer.md)
 
 * **삽질 방지**
   * [Tailwind CSS v4](gotchas/tailwind-v4.md)
