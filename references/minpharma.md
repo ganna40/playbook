@@ -148,3 +148,13 @@ React 19 + Vite + Tailwind v4 (프론트)
 + FastAPI + SQLAlchemy async + MySQL (백엔드).
 블로그 CMS(TipTap 에디터) + 관리자 JWT 인증 + 문의 메일(SMTP).
 ```
+
+## 삽질 방지
+
+| 문제 | 원인 | 해결 |
+|------|------|------|
+| **한글 제목 → slug "untitled"** | `generate_slug`가 ASCII 인코딩으로 한글 전부 제거 | 한글 문자(가-힣) 보존, 빈 결과면 `post-{timestamp}` |
+| **수정 시 slug 중복 에러** | PUT endpoint에 slug 중복 체크 없음 | `BlogPost.id != post_id` 조건으로 자기 제외 중복 체크 |
+| **pydantic Settings extra fields** | .env에 Settings에 정의 안 된 변수 있으면 에러 | `class Config: extra = "ignore"` |
+| **TipTap 수정 모드 빈 에디터** | useEditor가 비동기 fetch 전 빈 content로 초기화 | `fetching` 상태로 에디터 마운트를 데이터 로딩 후로 지연 |
+| **Apache + FastAPI SPA** | React Router 경로가 404 반환 | `RewriteRule ^ /index.html [L]` (파일 아닌 요청은 index.html) |
