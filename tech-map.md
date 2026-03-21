@@ -14,10 +14,10 @@
 | **Tailwind CSS CDN** | 빌드 없이 유틸리티 CSS | salary, hexalounge |
 | **Tailwind CSS v3 (빌드)** | Vite 빌드 방식 유틸리티 CSS | food |
 | **CSS Variables** | `:root`로 테마 색상 관리 | pong, mz, tarot, dictionary |
-| **Pretendard 폰트** | 한글 웹폰트 (CDN) | salary, mz, tok-wrapped, tok-iq |
+| **Pretendard 폰트** | 한글 웹폰트 (CDN) | salary, mz, tok-wrapped, tok-iq, minpharma |
 | **Noto Sans KR** | Google Fonts 한글 웹폰트 | food, tarot |
 | **시스템 폰트** | 로컬 폰트만 사용 | pong, amlife, dictionary, hexalounge, infra-quote, life-sim-rpg, amazon-report-hub, the-gappun |
-| **Tailwind CSS v4 (@theme)** | PostCSS 빌드, @theme 커스텀 색상 | vibejob, infra-quote, life-sim-rpg, naver-monitor, naver-blog-analyzer, amazon-report-hub, the-gappun |
+| **Tailwind CSS v4 (@theme)** | PostCSS 빌드, @theme 커스텀 색상 | vibejob, infra-quote, life-sim-rpg, naver-monitor, naver-blog-analyzer, amazon-report-hub, the-gappun, minpharma |
 | **shadcn/ui (Radix UI)** | Headless 컴포넌트 (CVA + Tailwind) | vibejob |
 | **Svelte 5** | 컴포넌트 기반 UI 프레임워크 | food, rackops |
 | **D3.js** | 데이터 시각화 (Force Graph, 토폴로지) | rackops |
@@ -26,7 +26,7 @@
 | **@xyflow/react (React Flow v12)** | 노드 기반 다이어그램 캔버스 (줌/팬/미니맵/커스텀노드) | infra-quote |
 | **@dnd-kit/core** | 드래그 앤 드롭 툴킷 (패널→캔버스) | infra-quote |
 | **React 18** | 컴포넌트 기반 UI 프레임워크 | tarot |
-| **React 19** | 최신 React (App Router SSR/CSR) | vibejob, infra-quote, life-sim-rpg, naver-blog-analyzer, amazon-report-hub, the-gappun |
+| **React 19** | 최신 React (App Router SSR/CSR) | vibejob, infra-quote, life-sim-rpg, naver-blog-analyzer, amazon-report-hub, the-gappun, minpharma |
 | **Framer Motion** | React 애니메이션 라이브러리 | tarot |
 | **Canvas API** | 레이더 차트, 2D 렌더링 | mz, amlife, hexalounge, hexaconsulting, life-sim-rpg |
 | **html2canvas** | DOM → 이미지 캡처 | salary, pong, mz, amlife, hexaconsulting, tok-wrapped, tok-iq, quit-calculator |
@@ -37,6 +37,8 @@
 | **CSS 애니메이션** | fadeIn, slamIn, glitch, confetti, fadeUp, floatY | 전체 |
 | **HTMX 2.0** | 서버 HTML 부분 교체 (hx-get/post/target/swap) | hexalounge, hexaconsulting |
 | **Alpine.js** | 경량 프론트 반응성 (x-data, x-show) | hexalounge, hexaconsulting |
+| **TipTap** | 리치텍스트 에디터 (Bold/Italic/Heading/Image/Link/파일첨부) | minpharma |
+| **react-router-dom** | SPA 클라이언트 사이드 라우팅 | minpharma, the-gappun |
 
 ### 📡 API / SDK
 
@@ -87,21 +89,21 @@
 | **Cloudflare** | DNS + SSL + CDN | *.pearsoninsight.com | |
 | **GitHub Pages** | Docsify 문서 호스팅 | playbook | |
 | **Docker Compose** | 컨테이너 오케스트레이션 | tarot, psycho-bot | |
-| **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot, telbot, error-automation, rackops, naver-monitor, the-gappun | |
+| **FastAPI** | Python 비동기 REST API 서버 | tarot, psycho-bot, telbot, error-automation, rackops, naver-monitor, the-gappun, minpharma | |
 | **Django 6** | Python 풀스택 프레임워크 (ORM, Admin, Signal, Middleware) | hexalounge, hexaconsulting, naver-blog-analyzer | |
 | **Gunicorn** | Python WSGI HTTP 서버 | hexaconsulting | |
-| **Apache (Reverse Proxy)** | 리버스 프록시 + 정적 파일 서빙 | hexaconsulting | |
+| **Apache (Reverse Proxy)** | 리버스 프록시 + 정적 파일 서빙 | hexaconsulting, minpharma | |
 | **Go (net/http)** | Go 표준 라이브러리 HTTP 서버 | dictionary | |
 | **Go (chi)** | 경량 HTTP 라우터 (go-chi/chi v5) | amazon-report-hub | |
 | **Embedded PostgreSQL** | fergusstrange/embedded-postgres (설치 불필요, 자동 시작/종료) | amazon-report-hub | |
 | **pgx (PostgreSQL)** | Go PostgreSQL 드라이버 (배치 쿼리) | amazon-report-hub | |
 | **Redis** | 캐시 서버 (임베딩/RAG/대화기억/rate limit) | psycho-bot, human2, vibejob | |
 | **Alembic** | SQLAlchemy DB 마이그레이션 | psycho-bot, the-gappun | |
-| **SQLAlchemy 2.0 (async)** | 비동기 ORM (aiomysql/asyncpg) | tarot, psycho-bot, the-gappun |
+| **SQLAlchemy 2.0 (async)** | 비동기 ORM (aiomysql/asyncpg) | tarot, psycho-bot, the-gappun, minpharma |
 | **SQLAlchemy 2.0 (sync)** | 동기 ORM (PyMySQL) + JSON 컬럼 | naver-monitor | |
 | **asyncpg** | PostgreSQL 비동기 드라이버 | the-gappun | |
-| **python-jose (JWT)** | JWT 토큰 생성/검증 (HS256) | the-gappun | |
-| **uvicorn** | ASGI 서버 (FastAPI 실행) | tarot, psycho-bot, rackops, naver-monitor, the-gappun | |
+| **python-jose (JWT)** | JWT 토큰 생성/검증 (HS256) | the-gappun, minpharma | |
+| **uvicorn** | ASGI 서버 (FastAPI 실행) | tarot, psycho-bot, rackops, naver-monitor, the-gappun, minpharma | |
 | **PocketBase** | BaaS (DB+인증+파일+API) | collab-tool | |
 | **APScheduler** | 백그라운드 주기적 스케줄러 | rackops, naver-monitor | |
 | **Paramiko** | SSH 클라이언트 (원격 명령어 실행) | rackops | |
@@ -109,6 +111,7 @@
 | **Next.js 15 (App Router)** | React 풀스택 프레임워크 (SSR/API Routes) | vibejob | |
 | **NextAuth.js 5** | 인증 프레임워크 (Credentials + Prisma Adapter) | vibejob | |
 | **SCP** | SSH 파일 전송 | 배포 파이프라인 | |
+| **aiosmtplib** | 비동기 SMTP 메일 발송 | minpharma | |
 
 ### 🗄️ 데이터
 
@@ -120,7 +123,7 @@
 | **PostgreSQL + pgvector** | 벡터 DB (임베딩 검색) | tarot, psycho-bot, human2 |
 | **PostgreSQL (JSONB)** | 관계형 DB + JSONB 컬럼 (스키마리스 저장, GIN 인덱스) | naver-blog-analyzer, amazon-report-hub |
 | **PostgreSQL 17** | 관계형 DB (asyncpg 직접 접속) | the-gappun |
-| **MySQL/MariaDB** | 관계형 DB (CRUD, 세션, 인증) | dictionary, rackops, naver-monitor | |
+| **MySQL/MariaDB** | 관계형 DB (CRUD, 세션, 인증) | dictionary, rackops, naver-monitor, minpharma | |
 | **SQLite** | 파일 기반 경량 DB | error-automation, hexaconsulting | |
 | **pandas + openpyxl** | 엑셀 데이터 분석/가공 | product-j | |
 | **OpenPyXL** | 엑셀 비주얼 리포트 (셀 병합, 색상) | rackops | |

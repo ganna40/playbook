@@ -90,6 +90,7 @@
   * [naver-blog-analyzer - 블로그SEO+AI생성](references/naver-blog-analyzer.md)
   * [amazon-report-hub - Amazon리포트허브](references/amazon-report-hub.md)
   * [the-gappun - 건강기능식품쇼핑몰](references/the-gappun.md)
+  * [minpharma - 민파마기업웹사이트](references/minpharma.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)
