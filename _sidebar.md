@@ -91,6 +91,7 @@
   * [amazon-report-hub - Amazon리포트허브](references/amazon-report-hub.md)
   * [the-gappun - 건강기능식품쇼핑몰](references/the-gappun.md)
   * [minpharma - 민파마기업웹사이트](references/minpharma.md)
+  * [opscommand-builder - CLI명령어빌더](references/opscommand-builder.md)
 
 * **레시피**
   * [AWS WordPress 설치](recipes/aws-wordpress.md)

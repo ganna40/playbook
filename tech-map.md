@@ -131,8 +131,9 @@
 | **PostgreSQL (Prisma)** | 관계형 DB (Prisma 통해 접근) | vibejob | |
 | **localStorage** | 히스토리 저장 (대시보드) | git-uploader, dictionary, life-sim-rpg, the-gappun |
 | **React Context** | React 상태 관리 (장바구니/인증) | the-gappun | |
-| **Zustand 5** | React 상태 관리 (경량 Redux 대안) | life-sim-rpg | |
+| **Zustand 5** | React 상태 관리 (경량 Redux 대안) | life-sim-rpg, opscommand-builder | |
 
+| **Fuse.js** | Fuzzy 검색 + 동의어 확장 | opscommand-builder |
 ### 🎨 UI 프레임워크
 
 | 기술 | 설명 | 사용처 |
@@ -1118,13 +1119,39 @@ DB:     PostgreSQL 17 (25+ 테이블)
 ```
 위 기술지도를 참고해서 "___" 앱을 만들어줘.
 
-타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | quit-calculator처럼 퇴직금계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | tok-iq처럼 IQ분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트 | whisper-script처럼 스크립트추출기 | wp-mcp처럼 MCP서버 | ideal처럼 이상형월드컵 | infra-quote처럼 견적서빌더 | saju처럼 사주AI풀이 | life-sim-rpg처럼 인생시뮬레이션 | naver-monitor처럼 키워드모니터링 | naver-blog-analyzer처럼 블로그SEO+AI생성 | amazon-report-hub처럼 데이터리포트허브 | the-gappun처럼 리뷰쇼핑몰]
+타입: [pong처럼 O/X | mz처럼 선택형 | salary처럼 계산기 | quit-calculator처럼 퇴직금계산기 | food처럼 추천기 | tarot/human2처럼 AI챗봇 | error-automation처럼 SRE봇 | telbot처럼 알림봇 | collab-tool/dictionary처럼 업무도구 | rackops처럼 DCIM | hexalounge처럼 커뮤니티 | hexaconsulting처럼 세일즈퍼널 | tok-wrapped처럼 파일분석기 | tok-iq처럼 IQ분석기 | vibejob처럼 매칭플랫폼 | poli처럼 정치성향테스트 | whisper-script처럼 스크립트추출기 | wp-mcp처럼 MCP서버 | ideal처럼 이상형월드컵 | infra-quote처럼 견적서빌더 | saju처럼 사주AI풀이 | life-sim-rpg처럼 인생시뮬레이션 | naver-monitor처럼 키워드모니터링 | naver-blog-analyzer처럼 블로그SEO+AI생성 | amazon-report-hub처럼 데이터리포트허브 | the-gappun처럼 리뷰쇼핑몰 | opscommand-builder처럼 CLI명령어빌더]
 테마: [다크 | 라이트]
 필요 모듈: [QUIZ + TIMER + GRADE + RADAR + REVEAL + SHARE + ...]
-참고 레퍼런스: [pong | mz | amlife | salary | quit-calculator | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | tok-iq | vibejob | poli | whisper-script | wp-mcp | love | ideal | infra-quote | saju | saju-mcp | life-sim-rpg | naver-monitor | naver-blog-analyzer | amazon-report-hub]
+참고 레퍼런스: [pong | mz | amlife | salary | quit-calculator | food | tarot | psycho-bot | telbot | collab-tool | product-j | error-automation | human2 | dictionary | rackops | hexaconsulting | tok-wrapped | tok-iq | vibejob | poli | whisper-script | wp-mcp | love | ideal | infra-quote | saju | saju-mcp | life-sim-rpg | naver-monitor | naver-blog-analyzer | amazon-report-hub | opscommand-builder]
 
 추가 요구:
 - ...
 ```
 
 이것만 던지면 AI가 전체 구조를 이해하고 바로 만들 수 있음.
+
+---
+
+### opscommand-builder
+
+```
+유형:    CLI 명령어 빌더 (운영 도구)
+한줄:    OpenStack/OpenShift 행위 검색 → 옵션 선택 → CLI 명령어 자동 생성
+스택:    React 19 + TypeScript + Vite + Tailwind CSS v4 + Zustand 5 + Fuse.js + Vitest
+
+커맨드 101개 (OpenStack 80 + OpenShift 21)
+  → 스키마 기반 명령어 생성 (binary/template/flag 모두 profile 분기)
+  → 레거시 바이너리 전부 지원 (nova, neutron, cinder, swift, keystone, heat, glance)
+  → Profile: rhosp-17 / helion-legacy / ocp-4.x / ocp-3.x
+  → Role 기반 접근 제어 (member/admin)
+  → Danger UX: 파괴적 명령 confirm 필수
+  → Workspace: 명령어 저장/수정/삭제/순서변경/일괄복사 (localStorage persist)
+  → Shell escaping: bash/powershell/fish 3가지 quoting 전략
+
+프론트: React 19, Tailwind CSS v4 (@theme 커스텀 컬러), Zustand 5 (persist)
+검색:   Fuse.js (fuzzy) + 동의어 확장 (8개 canonical intent)
+테스트: Vitest 69개 (엔진 단위 + 8개 필수 검증 + 6개 표준 시나리오)
+폰트:   Pretendard + JetBrains Mono (시스템 fallback)
+테마:   라이트 (네이비 텍스트, 상태색 중심)
+특수:   keyvalue 독립 이스케이프, value_transform_by_profile, shell_context 라우팅
+```

@@ -1,223 +1,167 @@
-# saju - 사주팔자 AI 풀이 대시보드
+# saju - 사주팔자 AI 프리미엄 상담 서비스
 
-> URL: http://localhost:8888 (로컬 전용)
-> 소스: C:\Users\ganna\saju-app
+> GitHub: https://github.com/ganna40/saju_app_20260319
+> 소스: C:\Users\ganna\saju_app_20260318
+> URL: http://localhost:8000 (무료) / http://localhost:8000/premium (프리미엄)
 
 ## 개요
 
 | 항목 | 내용 |
 |------|------|
-| **유형** | AI 풀이 대시보드 (만세력→격국분석→전문분석엔진→LLM해석) |
-| **한줄 설명** | 생년월일시 입력하면 사주팔자 + 6개 전문 분석 모듈 + 사전해석 엔진 + AI 9개 카테고리 해석 |
-| **타겟** | 사주에 관심 있는 일반인 |
-| **테마** | 다크 (금/적색 악센트) |
-| **폰트** | Noto Serif KR + Nanum Myeongjo (Google Fonts) |
+| **유형** | AI 사주 상담 + 프리미엄 퍼널 서비스 (saju-mcp→분석엔진→Claude Opus 4.6 해석) |
+| **한줄 설명** | 무료 스토리텔링 사주 → 소액 리포트(재물/연애/진로) → CEO급 프리미엄 전략 → AI 멘토 구독 |
+| **타겟** | 일반인(무료) → 직장인/자산가(프리미엄) |
+| **테마** | 무료: 다크 (인디고 악센트) / 프리미엄: 다크 (골드 악센트, 세리프 폰트) |
+| **LLM** | Claude Opus 4.6 (claude -p subprocess 호출) |
+
+## 수익 퍼널 구조
+
+```
+유입 (Free)          →  맛보기 스토리텔링 사주 + 공유하기(바이럴)
+전환 (9,900원)       →  재물운/연애결혼/진로학업 상세 리포트
+핵심수익 (39,900원)  →  CEO급 인생 전략 대시보드 (Executive Summary + 5년 액션플랜)
+리텐션 (19,900원/월) →  AI 사주 멘토 챗봇 구독
+```
+
+## 프리미엄 티어별 리포트 구조
+
+### Essential (9,900원) - 3종
+
+**재물운 상세 리포트** (`PREMIUM_WEALTH_PROMPT`)
+- 올해 재물운 등급 (S~D) + 분기별 흐름 + 자산 포트폴리오 + 리스크 경고
+
+**연애/결혼 완전 분석** (`PREMIUM_LOVE_PROMPT`)
+- 연애 DNA 진단 + 배우자 프로필(일지·배우자성 기반) + 5년 타이밍 + 부부 관계 전망
+
+**진로/학업 완전 분석** (`PREMIUM_CAREER_PROMPT`)
+- 학습 DNA 진단 + 최적 진로 TOP 3(십성·격국 기반) + 시험운 타이밍 + 커리어 로드맵
+
+### Premium VIP (39,900원) (`PREMIUM_SYSTEM_PROMPT`)
+
+```
+1. Executive Summary (핵심 전략 요약)
+   - 현재 인생 페이즈 / 핵심 성공 무기 / 최대 리스크
+2. Wealth & Asset Strategy (맞춤형 자산 증식 솔루션)
+   - 자산 축적 형태 / 투자 주의점 / 재물운 폭발 시기
+3. Career & Business Roadmap (직업 및 커리어 전략)
+   - 최적 포지셔닝 / 업무 스타일 / 3년 커리어 지침
+4. Timing & Action Plan (5년 행동 지침)
+   - 2026~2030 세운 기반 해야 할 일 / 피해야 할 일
+5. VVIP Secret Note (컨설턴트의 당부)
+```
+
+### 프리미엄 프롬프트 원칙
+- 추상적 비유 금지 → 구체적 타이밍 + 행동 지침
+- 모든 조언에 명리학적 근거 괄호 병기 (예: "편관 대운 때문")
+- 리스크 매니지먼트 필수 포함
 
 ## 모듈 조합
 
 ```
-FastAPI + LLM(Ollama/EXAONE) + PRE-INTERPRETATION-ENGINE + lunar_python + STYLE-DARK
+FastAPI + saju-mcp(core 직접 import) + Claude Opus 4.6(subprocess) + SSE Streaming
 ```
 
 ## 아키텍처
 
 ```
-[브라우저] ←HTML→ [FastAPI :8888] ←HTTP→ [Ollama :11434 (EXAONE 3.5 7.8B)]
-                        │
-                        ├── lunar_python        (만세력 계산)
-                        ├── pattern_engine.py   (격국 판별, 16규칙)
-                        ├── yongshin.py         (용신/희기신 판별)
-                        ├── ten_gods.py         (십신 계산)
-                        │
-                        ├── sinsal.py           (신살 12종 판별 + 대운 발동)
-                        ├── interactions.py     (합충형파해 분석)
-                        ├── strength.py         (신강/신약 정밀 계산)
-                        ├── wealth.py           (재물그릇 v2, 9개 항목 100점)
-                        ├── life_events.py      (인생 이벤트 타임라인)
-                        ├── radar.py            (6축 운세 레이더)
-                        │
-                        └── pre_interpretation.py (규칙기반 사전해석 엔진)
+[브라우저 SPA]
+  ├── /              index.html (무료 채팅 + 공유 + 업셀 배너)
+  └── /premium       premium.html (티어 선택 → 폼 → 분석 → 후속질문)
+        ↓
+[FastAPI :8000]
+  ├── POST /api/chat      (무료 분석 + 후속질문)
+  └── POST /api/premium   (티어별 프리미엄 분석)
+        │
+        ├── saju-mcp core 모듈 직접 import (20+ 분석 함수)
+        │   ├── manseryeok     만세력 계산 (사주 4주)
+        │   ├── ten_gods       십신 계산
+        │   ├── strength       신강/신약 정밀 계산
+        │   ├── pattern_engine 격국 판별
+        │   ├── yongshin       용신/희기신 판별
+        │   ├── sinsal         신살 판별 + 대운 발동
+        │   ├── interactions   합충형파해 분석
+        │   ├── wealth         재물그릇 분석
+        │   ├── life_events    인생이벤트 타임라인
+        │   ├── radar          6축 운세 레이더
+        │   ├── twelve_stages  12운성
+        │   ├── palace         궁위 분석
+        │   ├── cross_analysis 교차 패턴 분석
+        │   ├── retrodiction   과거 역추적
+        │   ├── narrative      서사 생성
+        │   └── deep_consult   후속질문 심층 상담
+        │
+        ├── TIER_CONFIG 매핑 (티어→프롬프트+데이터추출 자동 선택)
+        │   ├── wealth  → PREMIUM_WEALTH_PROMPT  + extract_wealth_data()
+        │   ├── love    → PREMIUM_LOVE_PROMPT    + extract_love_data()
+        │   ├── career  → PREMIUM_CAREER_PROMPT  + extract_career_data()
+        │   └── premium → PREMIUM_SYSTEM_PROMPT  + extract_premium_data()
+        │
+        └── claude -p --model claude-opus-4-6 (subprocess, 300초 타임아웃)
+              → SSE 청크 스트리밍 (8자 단위)
 ```
 
-**dashboard.py** — FastAPI 백엔드 + HTML 템플릿 내장 (단일 파일)
-**server/services/** — 전문 분석 모듈 7개
+## 프롬프트 크기 최적화
 
-## 전문 분석 모듈 (2024-02 추가)
+티어별 필요한 데이터만 추출하여 프롬프트 크기 최소화:
 
-| 모듈 | 파일 | 역할 |
-|------|------|------|
-| **신살 엔진** | `sinsal.py` | 12종 신살 판별 (괴강살/화개살/역마살/양인살/천을귀인 등) + 원국/대운 구분 |
-| **합충형파해** | `interactions.py` | 육합/삼합/삼회/육충/형/파/해 자동 분석, 길흉 판정 |
-| **신강/신약** | `strength.py` | 오행 기운 점수 기반 정밀 판정 (0~100) |
-| **재물그릇 v2** | `wealth.py` | 9개 항목 100점 만점 (재성투출/통근/재고/식상생재/신강보정/종격/합충/관성/대운) |
-| **인생이벤트** | `life_events.py` | 대운별 전성기/시련기/결혼/직업변동/건강위기 타임라인 |
-| **운세 레이더** | `radar.py` | 재물운/직업운/학문운/연애운/건강운/대인운 6축 점수 |
+| 함수 | 추출 데이터 | 용도 |
+|------|------------|------|
+| `extract_wealth_data()` | pillars, strength, pattern, yongshin, wealth, daeun, interactions, ten_gods | 재물운 |
+| `extract_love_data()` | pillars, ten_gods, sinsal, interactions, daeun, palace, life_events, cross_insights | 연애/결혼 |
+| `extract_career_data()` | pillars, ten_gods, strength, pattern, yongshin, sinsal, daeun, life_events, cross_insights | 진로/학업 |
+| `extract_premium_data()` | 위 전체 + wealth + narrative (retrodictions, palace 등 제외) | 프리미엄 VIP |
 
-### 재물그릇 v2 채점 기준
+## 프론트엔드 구조
 
-| 항목 | 배점 | 설명 |
-|------|------|------|
-| A. 재성 투출 | 0~25 | 천간에 재성이 드러났는지 |
-| B. 재성 통근 | 0~15 | 재성 천간이 지지에 뿌리가 있는지 |
-| C. 재고(財庫) | 0~12 | 辰戌丑未 중 재성 오행의 고(庫) 유무 |
-| D. 식상생재 | 0~15 | 식상이 재성을 생하는 구조 |
-| E. 신강/신약 | -15~+12 | 돈을 감당하는 체질 (재다신약 감점) |
-| F. 종재격/종아격 | 0~+25 | 극약 일간이 재성을 따르는 특수 구조 |
-| G. 합거/충파 | -12~+3 | 재성이 합/충에 의해 무력화 |
-| H. 관성 제어 | -3~+8 | 재성→관성 흐름 조절 |
-| I. 대운 재성기 | 0~13 | 재성 오행 대운이 오는 시기 |
+### index.html (무료 채팅)
+- 바닐라 JS SPA, SSE 스트리밍, 마크다운 렌더링
+- 분석 완료 후: 공유하기 버튼 (Web Share API / 클립보드) + 프리미엄 업셀 카드
 
-**등급**: 대부(100억+) → 중부(30~100억) → 소부(10~30억) → 중산(5~10억) → 소강(2~5억) → 청빈(2억미만)
-
-## 사전해석 엔진 (pre_interpretation.py)
-
-**핵심 아이디어**: EXAONE에게 날것 데이터를 주는 대신, 파이썬이 먼저 결정적(deterministic) 초안을 생성 → EXAONE은 문체만 다듬기.
-
-### 규칙 매핑 테이블
-
-| 매핑 | 내용 |
-|------|------|
-| `DAY_STEM_TRAITS` | 10 천간별 기질 (甲=큰 나무, 乙=풀·덩굴, ...) |
-| `TENGO_PERSONALITY` | 5 십신 × 3 단계(과다/적당/부재) 성격 |
-| `SINSAL_PERSONALITY` | 12 신살별 성격 임팩트 |
-| `STAGE_PERSONALITY` | 12 운성별 의미 |
-| `CAREER_BY_PATTERN` | 10 격국별 적성 직업 |
-| `ELEM_ORGAN` / `ELEM_FOOD` | 5 오행별 장기/음식 |
-
-### 다중 필드 상호작용 규칙 (15개)
-
-단일 규칙이 아닌 **복합 조건** 분석:
-- 신약 + 비겁과다 → "허세형, 실력 부족"
-- 신강 + 재성부재 → "돈 안 보이는 구조, 명예 집착"
-- 신약 + 재성과다 → "재다신약, 큰 돈 감당 불가"
-- 식상 + 재성 → "식상생재, 재능이 돈으로 연결"
-- 관성과다 + 신약 → "스트레스 과부하, 프리랜서가 나음"
-- 괴강살 + 신강 → "카리스마 폭발, 독재적"
-- 화개살 + 인성강 → "고독한 천재형"
-- 역마살 + 비겁 → "한곳에 못 있음, 이사 잦음"
-- 등등
-
-### 8개 draft 함수
-
-| 함수 | 출력 내용 |
-|------|-----------|
-| `draft_overview` | 일간+신강+격국+재물+이벤트+상호작용+현재대운 |
-| `draft_personality` | 일간기질+십신성격+신살성격+12운성+도화살+복합분석 |
-| `draft_career` | 격국직업+사업/직장판정+레이더+재물그릇+대운이벤트 |
-| `draft_wealth` | 등급/규모/유형+전성기/위험기+식상생재+재테크추천 |
-| `draft_luck_timeline` | 대운별 전성기/시련기+이벤트+나이 |
-| `draft_marriage` | 배우자성+도화살+홍염살+일지충+결혼시기 |
-| `draft_health` | 약한/강한 오행+장기+질환+음식+건강위기나이 |
-| `draft_yearly` | 세운 흐름+신살 발동 |
-
-## EXAONE 프롬프트 설계
-
-### 시스템 프롬프트 (v2)
-
-```
-40년 경력 사주명리학 대가 역할.
-[절대 규칙]
-1. 사전분석 초안의 팩트(점수/나이/등급/신살) 변경/삭제 금지
-2. 초안에 없는 내용 임의 추가 금지
-3. "~할 수 있습니다" 같은 애매한 표현 금지 → "~한다" 단정
-4. 모든 주장에 근거 명시 (예: "신강 68점이라", "28세 전성기에")
-5. 소제목·번호 없이 문단 형태
-```
-
-### LLM 파라미터
-
-| 파라미터 | 값 | 이유 |
-|----------|-----|------|
-| temperature | **0.3** | 일관성 확보 (0.7→0.3 튜닝) |
-| top_p | **0.5** | 저확률 토큰 필터링 (0.9→0.5 튜닝) |
-| num_predict | 1500 | 길이 제한 |
-
-### 프롬프트 구조
-
-```
-[공통 컨텍스트 — 핵심 참조 데이터만]
-  사주 | 일간 | 격국 | 신강/신약 | 용신/기신
-  십신분포 | 오행강도 | 신살 | 재물그릇
-
-[사전분석 초안 — deterministic predraft]
-  (pre_interpretation.py가 생성한 규칙 기반 초안)
-
-[카테고리별 지시]
-  "초안의 팩트를 유지하면서 자연스러운 문단으로 다듬으세요"
-```
-
-**핵심**: 공통 컨텍스트는 간소화하고, **사전분석 초안이 풀이의 뼈대**. EXAONE은 문체만 담당.
-
-## API 엔드포인트
-
-### POST /api/analyze
-입력: `{ year, month, day, hour, minute, gender }`
-출력:
-```
-pillars[]           사주 4주 (천간/지지/지장간/십신)
-bazi_cn             한자 8글자
-pattern             격국명
-body_strength       신강/신약/중화 (점수)
-body_strength_score 0~100
-yongshin            용신
-heeshin/gishin      희기신 4종
-lucks[]             대운 8개 (각각 yearly[] 세운 포함)
-ten_god_summary     십신 5카테고리 분포
-twelve_stages       12운성 (4지지)
-peach_blossom       도화살 유무/위치
-spouse_palace       배우자궁 십신
-sinsal[]            신살 리스트 (이름/위치/원국여부/의미)
-interactions[]      합충형파해 (유형/글자/위치/길흉/의미)
-elem_scores{}       오행강도 (목/화/토/금/수 점수)
-wealth{}            재물그릇 (등급/점수/규모/유형/전성기/위험기)
-life_events[]       인생이벤트 타임라인
-radar{}             6축 운세 레이더 점수
-```
-
-### POST /api/interpret
-입력: analyze 결과 + category (9종)
-처리: `predraft_data 재구성 → generate_predraft() → EXAONE에 초안 주입`
-출력: `{ text }` — LLM이 다듬은 한국어 풀이
-
-## 9개 해석 카테고리
-
-| 카테고리 | 핵심 질문 |
-|----------|-----------|
-| 종합풀이 | 어떤 사람? 뭐하고 있나? 돈/결혼/인생 전환점 |
-| 성격분석 | 겉과 속, 스트레스 반응, 연인에게 태도 |
-| 직업운 | 구체적 직종 3개, 수입 수준, 사업vs직장 |
-| 대운해석 | 시기별 취업/승진/결혼/건강 예측 |
-| 재물운 | 재물그릇 등급, 전성기/위험기 나이, 재테크 추천 |
-| 배우자운 | 결혼 시기, 배우자 성격/직업, 이혼/바람기 |
-| 연애운 | 연애 횟수, 스타일, 모태솔로 가능성 |
-| 건강운 | 약한 장기, 질환명, 관리법 |
-| 세운풀이 | 향후 10년 연도별 좋은해/나쁜해 |
+### premium.html (프리미엄 랜딩 + 분석)
+- 골드 테마 (세리프 폰트, 금색 그라데이션)
+- 6개 티어 카드 랜딩 → 생년월일시 폼 → SSE 스트리밍 결과
+- 무료 분석 후 업셀 배너 (재물운/연애/진로/프리미엄)
+- 후속 질문 채팅 기능 (deep_consult 엔진 연동)
 
 ## data 구조
 
 ```
-(DB 없음, 모든 데이터 런타임 계산)
-├── dashboard.py               메인 서버 + HTML 템플릿
-└── server/services/
-    ├── pattern_engine.py      격국 판별 (16규칙, HIDDEN_STEMS_DATA)
-    ├── yongshin.py            용신/희기신 판별
-    ├── ten_gods.py            십신 계산 (TEN_GOD_LOOKUP)
-    ├── sinsal.py              12종 신살 + 대운 발동
-    ├── interactions.py        합충형파해 (육합/삼합/삼회/육충/형/파/해)
-    ├── strength.py            신강/신약 정밀 (오행 점수)
-    ├── wealth.py              재물그릇 v2 (9항목 100점)
-    ├── life_events.py         인생이벤트 타임라인
-    ├── radar.py               6축 운세 레이더
-    └── pre_interpretation.py  사전해석 엔진 (규칙기반 초안 생성)
+saju_app_20260318/
+├── main.py                          FastAPI 서버 (전체 라우팅 + 분석 로직)
+├── requirements.txt                 의존성
+├── static/
+│   ├── index.html                   무료 채팅 SPA
+│   └── premium.html                 프리미엄 랜딩 + 분석 SPA
+├── app/
+│   ├── prompts/
+│   │   ├── saju_system.py           무료 시스템 프롬프트 (스토리텔링형)
+│   │   └── saju_premium.py          프리미엄 프롬프트 4종 (VIP/재물/연애/진로)
+│   ├── api/routes/saju.py           (레거시 API 라우트)
+│   ├── core/config.py               설정
+│   ├── db/session.py                PostgreSQL async 세션
+│   ├── models/saju_cache.py         캐시 모델
+│   ├── schemas/saju.py              Pydantic 스키마
+│   └── services/
+│       ├── saju_interpreter.py      Anthropic API 직접 호출 서비스
+│       └── saju_prompt_builder.py   프롬프트 빌더
+└── tests/
+    └── test_saju_interpreter.py
 ```
+
+## 외부 의존
+
+| 의존 | 역할 |
+|------|------|
+| **saju-mcp** (`C:\Users\ganna\saju-mcp`) | 사주 분석 코어 엔진 (20+ 모듈, sys.path 직접 import) |
+| **Claude CLI** (`claude -p`) | LLM 해석 (Opus 4.6, subprocess 호출) |
 
 ## AI에게 비슷한 거 만들게 하려면
 
 ```
 playbook의 saju 레퍼런스를 보고
-"[새 풀이 앱]"을 만들어줘.
-FastAPI + LLM + PRE-INTERPRETATION-ENGINE + lunar_python 조합.
-다크 테마, 9개 카테고리 해석, 사전해석 엔진 + LLM 다듬기 구조.
-재물그릇(9항목 100점), 신살 12종, 합충형파해, 인생이벤트 포함.
-프롬프트는 temperature 0.3, 초안 팩트 변경 금지.
+"[새 사주 상담 앱]"을 만들어줘.
+FastAPI + saju-mcp(core import) + Claude subprocess + SSE 스트리밍 조합.
+프리미엄 퍼널: 무료(스토리텔링) → Essential(9,900원, 재물/연애/진로) → VIP(39,900원, CEO급 전략).
+골드 테마 프리미엄 랜딩, 티어별 프롬프트/데이터추출 최적화.
+모든 조언에 명리학적 근거 병기, 구체적 타이밍+행동 지침 위주.
 ```
