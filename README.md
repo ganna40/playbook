@@ -30,7 +30,17 @@ playbook의 조립 가이드를 보고
 부품: [필요한 모듈 나열]
 참고: [가장 비슷한 레퍼런스]
 테마: [다크 / 라이트]
+
+구현 후에는 recipes/web-security-checklist.md 기준으로 보안 점검과 수정도 해줘.
 ```
+
+### 3. 배포 전 필수 → [웹서비스 보안 체크리스트](recipes/web-security-checklist.md)
+
+- secret / env / token 클라이언트 노출 여부
+- 관리자 페이지와 관리자 API 접근 제어
+- CORS / 쿠키 / 보안 헤더
+- 에러 노출 / source map / 콘솔 로그
+- 결제 / 가격 / 권한 서버 검증
 
 ## 뭘 봐야 하나
 
@@ -41,6 +51,7 @@ playbook의 조립 가이드를 보고
 | "비슷한 앱 코드 보고 싶어" | → [레퍼런스](references/README.md) — 실제 앱 분석 |
 | "전체 기술 한눈에" | → [기술 지도](tech-map.md) — 기술 매트릭스 |
 | "이 기술 어떻게 세팅?" | → [레시피](recipes/github-upload.md) — How-to |
+| "배포 전 보안 확인" | → [웹서비스 보안 체크리스트](recipes/web-security-checklist.md) |
 | "이거 왜 안 돼?" | → [삽질 방지](gotchas/tailwind-v4.md) — 실수 모음 |
 | "새 프로젝트 분석" | → [AI 지침서](INSTRUCTIONS.md) — 분석 워크플로우 |
 

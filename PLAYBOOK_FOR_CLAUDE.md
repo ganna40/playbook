@@ -3,6 +3,8 @@
 > 원본: C:\Users\ganna\Downloads\playbook | 웹: https://ganna40.github.io/playbook
 > 마지막 동기화: 2026-02-18 (poli 추가)
 
+> 공통 규칙: 웹서비스를 만들거나 분석하거나 배포할 때는 항상 `recipes/web-security-checklist.md`를 기준으로 보안 점검을 포함한다.
+
 ---
 
 ## 1. 모듈 카탈로그 (26개) — 핵심 코드 패턴
@@ -350,6 +352,8 @@ scp -i key.pem -r ./project/* ubuntu@IP:/var/www/프로젝트명/
 모듈: [QUIZ+TIMER+GRADE+REVEAL+SHARE+...]
 참고 레퍼런스: [pong | mz | salary | ...]
 추가 요구: ...
+
+구현 후에는 recipes/web-security-checklist.md 기준으로 보안 점검과 수정까지 포함해줘.
 ```
 
 ---

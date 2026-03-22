@@ -3,6 +3,8 @@
 > 만들고 싶은 앱 타입을 골라 → 부품을 조립하면 끝.
 > 로봇 조립하듯이: **뼈대 + 두뇌 + 얼굴 + 입출력 + 기억장치**
 
+> 공통 규칙: 웹서비스를 만들면 마지막에 반드시 [웹서비스 보안 체크리스트](recipes/web-security-checklist.md)로 점검한다.
+
 ---
 
 ## 앱 타입 9종
@@ -291,6 +293,7 @@
 | "전체 기술 한눈에 보고 싶어" | → [기술 지도](tech-map.md) |
 | "새 프로젝트 분석해서 추가" | → [AI 지침서](INSTRUCTIONS.md) |
 | "이 기술 어떻게 세팅하지?" | → [레시피](recipes/github-upload.md) |
+| "배포 전 보안 점검하고 싶어" | → [웹서비스 보안 체크리스트](recipes/web-security-checklist.md) |
 | "이거 왜 안 돼?" | → [삽질 방지](gotchas/tailwind-v4.md) |
 | "서버가 죽었어" | → [EC2 OOM](gotchas/ec2-oom-swap.md) + [보안](gotchas/ec2-security.md) |
 | "GitHub에 올리는 법" | → [GitHub 업로드](recipes/github-upload.md) |
@@ -308,4 +311,6 @@ playbook의 조립 가이드를 보고
 참고: [가장 비슷한 레퍼런스]
 테마: [다크 / 라이트]
 추가: [특별 요구사항]
+
+구현 후에는 recipes/web-security-checklist.md 기준으로 보안 점검과 수정까지 해줘.
 ```
