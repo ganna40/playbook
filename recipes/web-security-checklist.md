@@ -211,7 +211,65 @@ app.add_middleware(
 )
 ```
 
-## 9. Supabase / PostgreSQL 체크
+## 9. DB 종류별 체크
+
+### PostgreSQL을 쓸 때
+
+- [ ] 사용자별 민감 테이블에 RLS(Row Level Security)를 켰는가
+- [ ] `SELECT`, `UPDATE`, `DELETE`, `INSERT` 정책이 모두 있는가
+- [ ] 사용자 본인 데이터만 읽도록 `user_id = auth.uid()` 또는 동등한 조건이 있는가
+- [ ] 관리자만 전체 조회 가능한 별도 정책이 있는가
+- [ ] View, Function, Materialized View가 RLS 우회 경로가 되지 않는가
+
+### PostgreSQL 권장 원칙
+
+- 새 민감 테이블 생성 시: **테이블 생성 → RLS 활성화 → 정책 작성** 순서로 간다
+- 앱 코드에서 한 번 막고, DB 정책에서 한 번 더 막는다
+- 관리자 조회는 별도 role 또는 명시적 정책으로만 허용한다
+
+### PostgreSQL 정책 예시
+
+```sql
+alter table orders enable row level security;
+
+create policy "users_can_read_own_orders"
+on orders
+for select
+using (user_id = auth.uid());
+
+create policy "users_can_update_own_orders"
+on orders
+for update
+using (user_id = auth.uid());
+```
+
+### MariaDB / MySQL을 쓸 때
+
+- [ ] 민감 데이터 조회 API에 `WHERE owner_id = current_user_id` 조건이 빠지지 않았는가
+- [ ] 목록 API뿐 아니라 상세 조회/수정/삭제에도 owner 조건이 들어가는가
+- [ ] 관리자 전용 API와 일반 사용자 API가 분리되어 있는가
+- [ ] DB 계정 권한이 과도하지 않은가
+- [ ] 가능하면 읽기 전용 계정과 쓰기 계정을 분리했는가
+
+### MariaDB / MySQL 주의
+
+- PostgreSQL식 RLS가 없으므로 **앱 코드에서 강제**해야 한다
+- 쿼리 한 군데라도 owner 조건이 빠지면 그대로 데이터 유출이 된다
+- ORM을 쓰더라도 `get(id)` 같은 단순 조회는 매우 위험하므로 `where(id=?, owner_id=?)` 형태로 강제한다
+
+### MariaDB / MySQL 예시
+
+```python
+result = await db.execute(
+    select(Order).where(
+        Order.id == order_id,
+        Order.user_id == current_user.id,
+    )
+)
+order = result.scalar_one_or_none()
+```
+
+## 10. Supabase / PostgreSQL 체크
 
 ### Supabase를 쓸 때
 
@@ -219,13 +277,15 @@ app.add_middleware(
 - [ ] `anon` 키로 읽히면 안 되는 테이블이 공개되지 않았는가
 - [ ] `auth.uid()` 기준 본인 데이터만 읽도록 정책이 있는가
 - [ ] admin/service_role 키가 프런트에 들어가지 않았는가
+- [ ] Edge Function, RPC, Storage 정책도 같은 기준으로 막혀 있는가
 
 ### 주의
 
 - `service_role`은 절대 클라이언트 금지
 - RLS 없는 테이블은 사실상 공개 가능성으로 간주
+- Supabase도 본질적으로 PostgreSQL이므로, 민감 테이블이면 RLS를 기본값으로 본다
 
-## 10. 운영 전 최종 점검표
+## 11. 운영 전 최종 점검표
 
 - [ ] 운영 `.env`에 실제 비밀값 설정
 - [ ] source map 비활성화 또는 비공개 처리
@@ -252,6 +312,14 @@ curl -i https://example.com/assets/index-xxxx.js.map
 # 보안 헤더 확인
 curl -I https://example.com/api/health
 ```
+
+## DB별 한 줄 요약
+
+| DB | 핵심 원칙 |
+|----|-----------|
+| PostgreSQL | 가능하면 RLS를 기본값으로 켠다 |
+| Supabase | `service_role`은 서버 전용, RLS 없는 테이블은 위험으로 본다 |
+| MariaDB / MySQL | RLS가 없으니 앱 코드에서 owner 필터를 강제한다 |
 
 ## AI에게 시킬 때 프롬프트
 
