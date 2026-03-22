@@ -404,6 +404,7 @@ sudo ufw status
 
 ## 함께 보면 좋은 문서
 
+- [웹서비스 보안 실전 프롬프트 템플릿](web-security-prompt-template.md)
 - [minpharma](../references/minpharma.md)
 - [FastAPI+SQLAlchemy async](fastapi-sqlalchemy-async.md)
 - [EC2 보안 (feroxbuster 차단)](../gotchas/ec2-security.md)

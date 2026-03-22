@@ -110,6 +110,7 @@
 
 * **보안**
   * [웹서비스 + 서버 보안 체크리스트](recipes/web-security-checklist.md)
+  * [웹서비스 보안 실전 프롬프트 템플릿](recipes/web-security-prompt-template.md)
   * [EC2 보안 (feroxbuster 차단)](gotchas/ec2-security.md)
   * [Cloudflare + Apache 배포](gotchas/cloudflare-apache.md)
 
