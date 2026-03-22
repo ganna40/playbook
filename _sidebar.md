@@ -109,7 +109,7 @@
   * [네이버 블로그 AI Humanizer](recipes/naver-blog-ai-humanizer.md)
 
 * **보안**
-  * [웹서비스 보안 체크리스트](recipes/web-security-checklist.md)
+  * [웹서비스 + 서버 보안 체크리스트](recipes/web-security-checklist.md)
   * [EC2 보안 (feroxbuster 차단)](gotchas/ec2-security.md)
   * [Cloudflare + Apache 배포](gotchas/cloudflare-apache.md)
 
