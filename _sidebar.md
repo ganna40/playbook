@@ -108,11 +108,14 @@
   * [FastAPI+SQLAlchemy async](recipes/fastapi-sqlalchemy-async.md)
   * [네이버 블로그 AI Humanizer](recipes/naver-blog-ai-humanizer.md)
 
+* **보안**
+  * [웹서비스 보안 체크리스트](recipes/web-security-checklist.md)
+  * [EC2 보안 (feroxbuster 차단)](gotchas/ec2-security.md)
+  * [Cloudflare + Apache 배포](gotchas/cloudflare-apache.md)
+
 * **삽질 방지**
   * [Tailwind CSS v4](gotchas/tailwind-v4.md)
   * [Windows + SSH](gotchas/windows-ssh.md)
   * [CSS Grid/Flex 오버플로우](gotchas/css-overflow.md)
   * [EC2 OOM Kill + Swap + MySQL](gotchas/ec2-oom-swap.md)
-  * [EC2 보안 (feroxbuster 차단)](gotchas/ec2-security.md)
-  * [Cloudflare + Apache 배포](gotchas/cloudflare-apache.md)
   * [FastAPI+SQLAlchemy async](gotchas/fastapi-sqlalchemy-async.md)
